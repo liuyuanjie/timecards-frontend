@@ -17,7 +17,9 @@ namespace Timecards.Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            var apiRequestFactory =
+                new ApiRequestFactory(new Uri(ConfigurationSettings.AppSettings["baseUrl"]));
+            Application.Run(new FormLogin(apiRequestFactory));
         }
     }
 }

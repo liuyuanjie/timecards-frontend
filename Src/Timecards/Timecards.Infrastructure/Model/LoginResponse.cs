@@ -1,6 +1,6 @@
 ﻿namespace Timecards.Infrastructure.Model
 {
-    public class LoginResponse
+    public class LoginResponse: ResponseBase
     {
         public string Token { get; set; }
     }

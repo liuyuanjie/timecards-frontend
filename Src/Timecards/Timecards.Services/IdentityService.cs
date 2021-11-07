@@ -13,20 +13,39 @@ namespace Timecards.Services
 {
     public class IdentityService: IIdentityService
     {
-        private readonly ApiRequestFactory _apiRequestFactory;
+        private readonly IApiRequestFactory _apiRequestFactory;
 
-        public IdentityService(ApiRequestFactory apiRequestFactory)
+        public IdentityService(IApiRequestFactory apiRequestFactory)
         {
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public IRestResponse GetToken(LoginRequest loginRequest)
+        public LoginResponse GetToken(LoginRequest loginRequest)
         {
             RestRequest request = new RestRequest("identity/token", Method.POST);
             request.AddJsonBody(loginRequest);
             var response = _apiRequestFactory.CreateClient().Execute(request);
 
-            return response;
+            var loginResponse = new LoginResponse
+            {
+                ResponseState = new ResponseState
+                {
+                    StatusCode = response.StatusCode,
+                    ErrorException = response.ErrorException,
+                    ErrorMessage = response.ErrorMessage
+                }
+            };
+
+            if (loginResponse.ResponseState.IsSuccess)
+            {
+                loginResponse.Token = response.Content;
+            }
+            else
+            {
+                loginResponse.RequestFailedState = JsonConvert.DeserializeObject<RequestFailedState>(response.Content);
+            }
+
+            return loginResponse;
         }
     }
 }

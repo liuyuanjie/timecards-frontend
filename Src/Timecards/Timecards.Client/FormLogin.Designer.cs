@@ -32,9 +32,9 @@ namespace Timecards.Client
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.buttonSignIn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.linkCreateAccount = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
@@ -59,31 +59,33 @@ namespace Timecards.Client
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
-            // textBox1
+            // textBoxEmail
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(43, 157);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 29);
-            this.textBox1.TabIndex = 2;
+            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxEmail.Location = new System.Drawing.Point(43, 157);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(270, 40);
+            this.textBoxEmail.TabIndex = 2;
             // 
-            // textBox2
+            // textBoxPassword
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(42, 233);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(270, 26);
-            this.textBox2.TabIndex = 3;
+            this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPassword.Location = new System.Drawing.Point(42, 233);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(270, 40);
+            this.textBoxPassword.TabIndex = 3;
             // 
-            // button1
+            // buttonSignIn
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(42, 309);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 36);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Sign In";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSignIn.Location = new System.Drawing.Point(42, 309);
+            this.buttonSignIn.Name = "buttonSignIn";
+            this.buttonSignIn.Size = new System.Drawing.Size(270, 36);
+            this.buttonSignIn.TabIndex = 4;
+            this.buttonSignIn.Text = "Sign In";
+            this.buttonSignIn.UseVisualStyleBackColor = true;
+            this.buttonSignIn.Click += new System.EventHandler(this.buttonSignIn_Click);
             // 
             // label3
             // 
@@ -113,9 +115,9 @@ namespace Timecards.Client
             this.ClientSize = new System.Drawing.Size(354, 414);
             this.Controls.Add(this.linkCreateAccount);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonSignIn);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -123,7 +125,7 @@ namespace Timecards.Client
             this.MinimizeBox = false;
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormLogin";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,11 +135,11 @@ namespace Timecards.Client
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Button buttonSignIn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel linkCreateAccount;
+        private System.Windows.Forms.TextBox textBoxEmail;
     }
 }
 

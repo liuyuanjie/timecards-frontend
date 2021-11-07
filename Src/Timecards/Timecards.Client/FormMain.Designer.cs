@@ -39,7 +39,7 @@ namespace Timecards.Client
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
-            this.Text = "FormMain";
+            this.Text = "Work Time";
             this.ResumeLayout(false);
 
         }

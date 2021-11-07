@@ -55,18 +55,18 @@ namespace Timecards.Client
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(26, 103);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 29);
+            this.textBox1.Size = new System.Drawing.Size(278, 26);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(26, 161);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(278, 29);
+            this.textBox2.Size = new System.Drawing.Size(278, 26);
             this.textBox2.TabIndex = 5;
             // 
             // label3
@@ -81,10 +81,11 @@ namespace Timecards.Client
             // 
             // textBox3
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(26, 221);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(278, 29);
+            this.textBox3.PasswordChar = '*';
+            this.textBox3.Size = new System.Drawing.Size(278, 26);
             this.textBox3.TabIndex = 7;
             // 
             // label4
@@ -99,10 +100,11 @@ namespace Timecards.Client
             // 
             // textBox4
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(26, 282);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(278, 29);
+            this.textBox4.PasswordChar = '*';
+            this.textBox4.Size = new System.Drawing.Size(278, 26);
             this.textBox4.TabIndex = 9;
             // 
             // label5
@@ -122,7 +124,7 @@ namespace Timecards.Client
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(278, 39);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Sign Up";
+            this.button1.Text = "Create Account";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -168,7 +170,7 @@ namespace Timecards.Client
             this.MinimizeBox = false;
             this.Name = "FormRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormRegister";
+            this.Text = "Register";
             this.ResumeLayout(false);
             this.PerformLayout();
 

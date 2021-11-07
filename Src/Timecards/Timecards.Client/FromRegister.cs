@@ -19,7 +19,7 @@ namespace Timecards.Client
         private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            new FormLogin().ShowDialog();
+            //new FormLogin().ShowDialog();
         }
     }
 }

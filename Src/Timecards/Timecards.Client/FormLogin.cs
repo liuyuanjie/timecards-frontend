@@ -1,12 +1,19 @@
-﻿using System.Threading;
+﻿using System.Net;
+using System.Threading;
 using System.Windows.Forms;
+using Timecards.Infrastructure;
+using Timecards.Infrastructure.Model;
+using Timecards.Services;
 
 namespace Timecards.Client
 {
     public partial class FormLogin : Form
     {
-        public FormLogin()
+        private readonly IApiRequestFactory _apiRequestFactory;
+
+        public FormLogin(IApiRequestFactory apiRequestFactory)
         {
+            _apiRequestFactory = apiRequestFactory;
             InitializeComponent();
         }
 
@@ -15,6 +22,26 @@ namespace Timecards.Client
             FormRegister formRegister = new FormRegister();
             this.Hide();
             formRegister.ShowDialog();
+        }
+
+        private void buttonSignIn_Click(object sender, System.EventArgs e)
+        {
+            var identityService = new IdentityService(_apiRequestFactory);
+            var loginResponse = identityService.GetToken(new LoginRequest
+            {
+                Email = textBoxEmail.Text,
+                Password = textBoxPassword.Text
+            });
+            if (loginResponse.ResponseState.IsSuccess)
+            {
+                FormMain formMain = new FormMain();
+                this.Hide();
+                formMain.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
+            }
         }
     }
 }
