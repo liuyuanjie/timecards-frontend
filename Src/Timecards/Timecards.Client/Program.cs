@@ -15,10 +15,11 @@ namespace Timecards.Client
         [STAThread]
         static void Main()
         {
+            //ConfigurationManager.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var apiRequestFactory =
-                new ApiRequestFactory(new Uri(ConfigurationSettings.AppSettings["baseUrl"]));
+                new ApiRequestFactory(new Uri(ConfigurationManager.AppSettings["baseUrl"]));
             Application.Run(new FormLogin(apiRequestFactory));
         }
     }

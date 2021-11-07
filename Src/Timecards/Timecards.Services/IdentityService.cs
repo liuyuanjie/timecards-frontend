@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using Newtonsoft.Json;
 using RestSharp;
-using RestSharp.Authenticators;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 
 namespace Timecards.Services
 {
-    public class IdentityService: IIdentityService
+    public class IdentityService : IIdentityService
     {
+        const string IdentityTokenEndPoint = "identity/token";
+
         private readonly IApiRequestFactory _apiRequestFactory;
 
         public IdentityService(IApiRequestFactory apiRequestFactory)
@@ -20,12 +17,18 @@ namespace Timecards.Services
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public LoginResponse GetToken(LoginRequest loginRequest)
+        public void AsyncLogin(LoginRequest loginRequest, Action<LoginResponse> callbackProcessHandler)
         {
-            RestRequest request = new RestRequest("identity/token", Method.POST);
+            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(loginRequest);
-            var response = _apiRequestFactory.CreateClient().Execute(request);
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost(request, (response, e) =>
+            {
+                callbackProcessHandler.Invoke(LoginResponse(response));
+            }, Method.POST.ToString());
+        }
 
+        private static LoginResponse LoginResponse(IRestResponse response)
+        {
             var loginResponse = new LoginResponse
             {
                 ResponseState = new ResponseState

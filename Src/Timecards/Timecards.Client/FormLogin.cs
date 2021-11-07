@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Threading;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using Timecards.Services;
@@ -27,21 +25,24 @@ namespace Timecards.Client
         private void buttonSignIn_Click(object sender, System.EventArgs e)
         {
             var identityService = new IdentityService(_apiRequestFactory);
-            var loginResponse = identityService.GetToken(new LoginRequest
+            identityService.AsyncLogin(new LoginRequest
             {
                 Email = textBoxEmail.Text,
                 Password = textBoxPassword.Text
+            }, (loginResponse) =>
+            {
+                if (loginResponse.ResponseState.IsSuccess)
+                {
+                    FormMain formMain = new FormMain();
+                    this.Hide();
+                    formMain.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
+                }
             });
-            if (loginResponse.ResponseState.IsSuccess)
-            {
-                FormMain formMain = new FormMain();
-                this.Hide();
-                formMain.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
-            }
+
         }
     }
 }

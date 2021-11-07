@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomAsyncPipeline.cs" />
     <Compile Include="IApiRequestFactory.cs" />
     <Compile Include="ApiRequestFactory.cs" />
     <Compile Include="Model\LoginResponse.cs" />
