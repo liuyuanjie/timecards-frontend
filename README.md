@@ -1,0 +1,1 @@
+The goal is to build a desktop application that can manage the timecards (of week) of multiple staff members.
