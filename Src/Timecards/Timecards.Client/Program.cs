@@ -18,9 +18,16 @@ namespace Timecards.Client
             //ConfigurationManager.
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(SystmeExceptionHandler);
             var apiRequestFactory =
                 new ApiRequestFactory(new Uri(ConfigurationManager.AppSettings["baseUrl"]));
             System.Windows.Forms.Application.Run(new FormLogin(apiRequestFactory));
+        }
+
+        static void SystmeExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+        {
+            var e = (Exception) args.ExceptionObject;
+            System.Windows.Forms.MessageBox.Show(e.Message, "System Error", MessageBoxButtons.OK);
         }
     }
 }
