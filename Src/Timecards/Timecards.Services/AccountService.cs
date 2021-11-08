@@ -7,20 +7,43 @@ namespace Timecards.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly ApiRequestFactory _apiRequestFactory;
+        const string IdentityTokenEndPoint = "account/register";
 
-        public AccountService(ApiRequestFactory apiRequestFactory)
+        private readonly IApiRequestFactory _apiRequestFactory;
+
+        public IdentityService(IApiRequestFactory apiRequestFactory)
         {
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public IRestResponse Register(RegisterRequest registerRequest)
+        public void AsyncLogin(RegisterRequest registerRequest, Action callbackProcessHandler)
         {
-            RestRequest request = new RestRequest("identity/token", Method.POST);
+            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(registerRequest);
-            var response = _apiRequestFactory.CreateClient().Execute(request);
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost(request, (response, e) =>
+            {
+                callbackProcessHandler.Invoke(LoginResponse(response));
+            }, Method.POST.ToString());
+        }
 
-            return response;
+        private static LoginResponse LoginResponse(IRestResponse response)
+        {
+            var loginResponse = new LoginResponse
+            {
+                ResponseState = new ResponseState
+                {
+                    StatusCode = response.StatusCode,
+                    ErrorException = response.ErrorException,
+                    ErrorMessage = response.ErrorMessage
+                }
+            };
+
+            if (!loginResponse.ResponseState.IsSuccess)
+            {
+                loginResponse.RequestFailedState = JsonConvert.DeserializeObject<RequestFailedState>(response.Content);
+            }
+
+            return loginResponse;
         }
     }
 }

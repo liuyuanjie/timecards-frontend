@@ -7,11 +7,11 @@ namespace Timecards.Client
 {
     public partial class FormLogin : Form
     {
-        private readonly IApiRequestFactory _apiRequestFactory;
+        private readonly ILoginCommand _loginCommand;
 
         public FormLogin(IApiRequestFactory apiRequestFactory)
         {
-            _apiRequestFactory = apiRequestFactory;
+            _loginCommand = new LoginCommand(apiRequestFactory);
             InitializeComponent();
         }
 
@@ -24,25 +24,27 @@ namespace Timecards.Client
 
         private void buttonSignIn_Click(object sender, System.EventArgs e)
         {
-            var identityService = new IdentityService(_apiRequestFactory);
-            identityService.AsyncLogin(new LoginRequest
+            var loginRequest = new LoginRequest
             {
                 Email = textBoxEmail.Text,
                 Password = textBoxPassword.Text
-            }, (loginResponse) =>
-            {
-                if (loginResponse.ResponseState.IsSuccess)
-                {
-                    FormMain formMain = new FormMain();
-                    this.Hide();
-                    formMain.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
-                }
-            });
+            };
 
+            _loginCommand.Login(loginRequest, (loginResponse) => CallbackProcess(loginResponse));
+        }
+
+        private void CallbackProcess(LoginResponse loginResponse)
+        {
+            if (loginResponse.ResponseState.IsSuccess)
+            {
+                FormMain formMain = new FormMain();
+                this.Hide();
+                formMain.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
+            }
         }
     }
 }
