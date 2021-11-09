@@ -17,19 +17,19 @@ namespace Timecards.Services
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public void AsyncRegister(RegisterRequest registerRequest, Action callbackProcessHandler)
+        public void AsyncRegister(RegisterRequest registerRequest, Action<RegisterResponse> callbackProcessHandler)
         {
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(registerRequest);
             _apiRequestFactory.CreateClient().ExecuteAsyncPost(request, (response, e) =>
             {
-                callbackProcessHandler.Invoke();
+                callbackProcessHandler.Invoke(BuildRegisterResponse(response));
             }, Method.POST.ToString());
         }
 
-        private static LoginResponse LoginResponse(IRestResponse response)
+        private static RegisterResponse BuildRegisterResponse(IRestResponse response)
         {
-            var loginResponse = new LoginResponse
+            var registerResponse = new RegisterResponse
             {
                 ResponseState = new ResponseState
                 {
@@ -39,12 +39,12 @@ namespace Timecards.Services
                 }
             };
 
-            if (!loginResponse.ResponseState.IsSuccess)
+            if (!registerResponse.ResponseState.IsSuccess)
             {
-                loginResponse.RequestFailedState = JsonConvert.DeserializeObject<RequestFailedState>(response.Content);
+                registerResponse.RequestFailedState = JsonConvert.DeserializeObject<RequestFailedState>(response.Content);
             }
 
-            return loginResponse;
+            return registerResponse;
         }
     }
 }

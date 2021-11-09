@@ -13,9 +13,9 @@ namespace Timecards.Infrastructure
             _accountService = new AccountService(apiRequestFactory);
         }
 
-        public void RegisterAsync(RegisterRequest registerRequest, Action callbackProcess)
+        public void RegisterAsync(RegisterRequest registerRequest, Action<RegisterResponse> callbackProcess)
         {
-            _accountService.AsyncRegister(registerRequest, () => callbackProcess());
+            _accountService.AsyncRegister(registerRequest, callbackProcess);
         }
     }
 }

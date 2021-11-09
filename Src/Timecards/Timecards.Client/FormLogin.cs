@@ -9,16 +9,19 @@ namespace Timecards.Client
     public partial class FormLogin : Form
     {
         private readonly ILoginCommand _loginCommand;
+        private readonly IApiRequestFactory _apiRequestFactory;
 
         public FormLogin(IApiRequestFactory apiRequestFactory)
         {
-            _loginCommand = new LoginCommand(apiRequestFactory);
             InitializeComponent();
+            _apiRequestFactory = apiRequestFactory;
+            _loginCommand = new LoginCommand(apiRequestFactory);
+
         }
 
         private void linkCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormRegister formRegister = new FormRegister();
+            FormRegister formRegister = new FormRegister(_apiRequestFactory);
             this.Hide();
             formRegister.ShowDialog();
         }

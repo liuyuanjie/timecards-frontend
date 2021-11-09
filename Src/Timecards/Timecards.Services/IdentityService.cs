@@ -23,11 +23,11 @@ namespace Timecards.Services
             request.AddJsonBody(loginRequest);
             _apiRequestFactory.CreateClient().ExecuteAsyncPost(request, (response, e) =>
             {
-                callbackProcessHandler.Invoke(LoginResponse(response));
+                callbackProcessHandler.Invoke(BuildLoginResponse(response));
             }, Method.POST.ToString());
         }
 
-        private static LoginResponse LoginResponse(IRestResponse response)
+        private static LoginResponse BuildLoginResponse(IRestResponse response)
         {
             var loginResponse = new LoginResponse
             {

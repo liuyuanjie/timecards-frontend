@@ -1,55 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using Timecards.Application.Commands;
+using Timecards.Infrastructure;
+using Timecards.Infrastructure.Model;
 
 namespace Timecards.Client
 {
     public partial class FormRegister : Form
     {
         private readonly IRegisterCommand _registerCommand;
+        private readonly IApiRequestFactory _apiRequestFactory;
 
         public FormRegister(IApiRequestFactory apiRequestFactory)
         {
             InitializeComponent();
+            _apiRequestFactory = apiRequestFactory;
             _registerCommand = new RegisterCommand(apiRequestFactory);
         }
 
         private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            new FormLogin().ShowDialog();
+            new FormLogin(_apiRequestFactory).ShowDialog();
         }
 
         private void buttonSignUp_Click(object sender, System.EventArgs e)
         {
-            var loginRequest = new RegisterRequest
+            var registerRequest = new RegisterRequest
             {
                 FullName = textBoxFullName.Text,
                 Email = textBoxEmail.Text,
-                Password = textPassword.Text,
-                ConfirmPassword = ConfirmPassword.Text,
-                RoleType = radioRoleType.Value
+                Password = textBoxEmail.Text,
+                ConfirmPassword = textBoxConfirmPassword.Text,
+                RoleType = radioButtonAdmin.Checked ? RoleType.Admin : RoleType.Staff
             };
 
-            _registerCommand.Login(loginRequest, () => CallbackProcess());
+            _registerCommand.RegisterAsync(registerRequest, (registerResponse) => CallbackProcess(registerResponse));
         }
 
-        private void CallbackProcess()
+        private void CallbackProcess(RegisterResponse registerResponse)
         {
-            if (loginResponse.ResponseState.IsSuccess)
+            if (registerResponse.ResponseState.IsSuccess)
             {
-                FormMain formMain = new FormMain();
+                FormLogin formMain = new FormLogin(_apiRequestFactory);
                 this.Hide();
                 formMain.ShowDialog();
             }
             else
             {
-                MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
+                MessageBox.Show(registerResponse.RequestFailedState.ErrorMessage, "Register Failed", MessageBoxButtons.OK);
             }
         }
     }

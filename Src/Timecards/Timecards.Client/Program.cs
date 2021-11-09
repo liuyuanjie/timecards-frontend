@@ -16,11 +16,11 @@ namespace Timecards.Client
         static void Main()
         {
             //ConfigurationManager.
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             var apiRequestFactory =
                 new ApiRequestFactory(new Uri(ConfigurationManager.AppSettings["baseUrl"]));
-            Application.Run(new FormLogin(apiRequestFactory));
+            System.Windows.Forms.Application.Run(new FormLogin(apiRequestFactory));
         }
     }
 }

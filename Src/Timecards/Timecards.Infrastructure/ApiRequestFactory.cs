@@ -14,9 +14,7 @@ namespace Timecards.Infrastructure
 
         public IRestClient CreateClient()
         {
-             var client = new RestClient(_baseUri);
-
-            return client;
+             return new RestClient(_baseUri);
         }
     }
 }

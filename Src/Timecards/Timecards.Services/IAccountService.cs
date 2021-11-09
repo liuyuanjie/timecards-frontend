@@ -9,6 +9,6 @@ namespace Timecards.Services
 {
     public interface IAccountService
     {
-        void AsyncRegister(RegisterRequest registerRequest, Action callbackProcessHandler);
+        void AsyncRegister(RegisterRequest registerRequest, Action<RegisterResponse> callbackProcessHandler);
     }
 }
