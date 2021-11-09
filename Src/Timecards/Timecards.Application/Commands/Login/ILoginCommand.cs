@@ -5,6 +5,6 @@ namespace Timecards.Application.Commands
 {
     public interface ILoginCommand
     {
-        void LoginAsync(LoginRequest loginRequest, Action<LoginResponse> callbackProcess);
+        void LoginAsync(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcess);
     }
 }

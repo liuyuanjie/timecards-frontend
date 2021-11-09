@@ -6,7 +6,7 @@ using Timecards.Infrastructure.Model;
 
 namespace Timecards.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService : ServiceBase, IAccountService
     {
         const string IdentityTokenEndPoint = "account/register";
 
@@ -17,48 +17,16 @@ namespace Timecards.Services
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public void AsyncRegister(RegisterRequest registerRequest, Action<RegisterResponse> callbackProcessHandler)
+        public void AsyncRegister(RegisterRequest registerRequest, Action<ResponseBase<RegisterResult>> callbackProcessHandler)
         {
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(registerRequest);
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost<RegisterResponseResult>(request, (response, e) =>
+
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost<RegisterResult>(request, (response, e) =>
             {
-                callbackProcessHandler.Invoke(BuildRegisterResponse(response));
+                callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
             }, Method.POST.ToString());
         }
 
-        private static RegisterResponse BuildRegisterResponse(IRestResponse<RegisterResponseResult> response)
-        {
-            var registerResponse = new RegisterResponse
-            {
-                ResponseState = new ResponseState
-                {
-                    StatusCode = response.StatusCode,
-                }
-            };
-
-            if (registerResponse.ResponseState.IsSuccess)
-            {
-                registerResponse.ResponseResult = response.Data;
-            }
-            else
-            {
-                if(response.ErrorException != null)
-                {
-                    registerResponse.ResponseState.ResponseStateMessage = new ResponseStateMessage
-                    {
-                        ErrorCode = "RequestFailed",
-                        ErrorMessage = response.ErrorMessage
-                    };
-                }
-                else
-                {
-                    registerResponse.ResponseState.ResponseStateMessage =
-                        JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content);
-                }
-            }
-
-            return registerResponse;
-        }
     }
 }

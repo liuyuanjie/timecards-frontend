@@ -1,9 +1,8 @@
-﻿using System.Text;
+﻿using System.Threading;
 using System.Windows.Forms;
 using Timecards.Application.Commands;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
-using Timecards.Services;
 
 namespace Timecards.Client
 {
@@ -38,21 +37,27 @@ namespace Timecards.Client
             _loginCommand.LoginAsync(loginRequest, (loginResponse) => CallbackProcess(loginResponse));
         }
 
-        private void CallbackProcess(LoginResponse loginResponse)
+        private void CallbackProcess(ResponseBase<LoginResult> loginResponse)
         {
             if (loginResponse.ResponseState.IsSuccess)
             {
-                FormMain formMain = new FormMain();
+                FormMain formMain = new FormMain(_apiRequestFactory);
                 this.Hide();
                 formMain.ShowDialog();
             }
             else
             {
                 MessageBox.Show(
-                    loginResponse.ResponseState.ResponseStateMessage.OutputResponeMessage(),
+                    loginResponse.ResponseState.ResponseStateMessage.OutputResponseMessage(),
                     "Login Failed",
                     MessageBoxButtons.OK);
             }
+        }
+
+        public void CallbackFromRegister(string email)
+        {
+            textBoxEmail.Text = email;
+            textBoxPassword.Focus();
         }
     }
 }

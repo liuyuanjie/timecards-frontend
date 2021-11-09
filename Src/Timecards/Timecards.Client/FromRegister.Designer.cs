@@ -163,10 +163,11 @@ namespace Timecards.Client
             this.linkSignIn.Location = new System.Drawing.Point(528, 115);
             this.linkSignIn.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.linkSignIn.Name = "linkSignIn";
-            this.linkSignIn.Size = new System.Drawing.Size(78, 25);
-            this.linkSignIn.TabIndex = 11;
+            this.linkSignIn.Size = new System.Drawing.Size(75, 30);
+            this.linkSignIn.TabIndex = 20;
             this.linkSignIn.TabStop = true;
             this.linkSignIn.Text = "Sign In";
+            this.linkSignIn.UseCompatibleTextRendering = true;
             this.linkSignIn.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSignIn_LinkClicked);
             // 
             // radioButtonStaff

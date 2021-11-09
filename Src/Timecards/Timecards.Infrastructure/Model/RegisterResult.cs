@@ -2,12 +2,7 @@
 
 namespace Timecards.Infrastructure.Model
 {
-    public class RegisterResponse: ResponseBase
-    {
-        public RegisterResponseResult ResponseResult { get; set; }
-    }
-
-    public class RegisterResponseResult
+    public class RegisterResult
     {
         public Guid UserId { get; set; }
         public string UserName { get; set; }

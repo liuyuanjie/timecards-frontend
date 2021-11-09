@@ -5,6 +5,6 @@ namespace Timecards.Application.Commands
 {
     public interface IRegisterCommand
     {
-        void RegisterAsync(RegisterRequest registerRequest, Action<RegisterResponse> callbackProcess);
+        void RegisterAsync(RegisterRequest registerRequest, Action<ResponseBase<RegisterResult>> callbackProcess);
     }
 }

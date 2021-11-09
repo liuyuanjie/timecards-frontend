@@ -13,7 +13,7 @@ namespace Timecards.Application.Commands
             _identityService = new IdentityService(apiRequestFactory);
         }
 
-        public void LoginAsync(LoginRequest loginRequest, Action<LoginResponse> callbackProcess)
+        public void LoginAsync(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcess)
         {
             _identityService.AsyncLogin(loginRequest, (loginResponse) => callbackProcess(loginResponse));
         }

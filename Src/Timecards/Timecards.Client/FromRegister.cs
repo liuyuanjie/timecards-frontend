@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Timecards.Application.Commands;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
@@ -39,18 +37,19 @@ namespace Timecards.Client
             _registerCommand.RegisterAsync(registerRequest, (registerResponse) => CallbackProcess(registerResponse));
         }
 
-        private void CallbackProcess(RegisterResponse registerResponse)
+        private void CallbackProcess(ResponseBase<RegisterResult> registerResponse)
         {
             if (registerResponse.ResponseState.IsSuccess)
             {
-                FormLogin formMain = new FormLogin(_apiRequestFactory);
+                FormLogin fromLogin = new FormLogin(_apiRequestFactory);
                 this.Hide();
-                formMain.ShowDialog();
+                fromLogin.CallbackFromRegister(registerResponse.ResponseResult.Email);
+                fromLogin.ShowDialog();
             }
             else
             {
                 MessageBox.Show(
-                    registerResponse.ResponseState.ResponseStateMessage.OutputResponeMessage(),
+                    registerResponse.ResponseState.ResponseStateMessage.OutputResponseMessage(),
                     "Register Failed",
                     MessageBoxButtons.OK);
             }

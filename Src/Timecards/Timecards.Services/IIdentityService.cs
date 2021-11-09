@@ -9,6 +9,6 @@ namespace Timecards.Services
 {
     public interface IIdentityService
     {
-        void AsyncLogin(LoginRequest loginRequest, Action<LoginResponse> callbackProcessHandler);
+        void AsyncLogin(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcessHandler);
     }
 }
