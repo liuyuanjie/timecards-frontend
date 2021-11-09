@@ -50,5 +50,10 @@ namespace Timecards.Client
                 MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
             }
         }
+
+        public void RegisterCallbackProcess(string email)
+        {
+            textBoxEmail.Text = email;
+        }
     }
 }

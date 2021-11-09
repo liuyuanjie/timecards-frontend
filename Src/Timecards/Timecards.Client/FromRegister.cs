@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Timecards.Application.Commands;
 using Timecards.Infrastructure;
@@ -28,9 +29,9 @@ namespace Timecards.Client
         {
             var registerRequest = new RegisterRequest
             {
-                FullName = textBoxFullName.Text,
+                UserName = textBoxUserName.Text,
                 Email = textBoxEmail.Text,
-                Password = textBoxEmail.Text,
+                Password = textBoxPassword.Text,
                 ConfirmPassword = textBoxConfirmPassword.Text,
                 RoleType = radioButtonAdmin.Checked ? RoleType.Admin : RoleType.Staff
             };
@@ -45,10 +46,14 @@ namespace Timecards.Client
                 FormLogin formMain = new FormLogin(_apiRequestFactory);
                 this.Hide();
                 formMain.ShowDialog();
+                formMain.RegisterCallbackProcess(textBoxEmail.Text);
             }
             else
             {
-                MessageBox.Show(registerResponse.RequestFailedState.ErrorMessage, "Register Failed", MessageBoxButtons.OK);
+                MessageBox.Show(
+                    string.Join(";", registerResponse.RequestFailedState.SubErrorMessage.Select(x => x.Value).ToArray()),
+                    "Register Failed",
+                    MessageBoxButtons.OK);
             }
         }
     }
