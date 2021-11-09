@@ -118,6 +118,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Timecards.Application\Timecards.Application.csproj">
+      <Project>{accdd8ff-5ce8-4ff0-b8a1-87561638b8f9}</Project>
+      <Name>Timecards.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Timecards.Infrastructure\Timecards.Infrastructure.csproj">
       <Project>{BCE93D34-5B73-4E75-B37E-C26242F04992}</Project>
       <Name>Timecards.Infrastructure</Name>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using RestSharp;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
@@ -11,18 +12,18 @@ namespace Timecards.Services
 
         private readonly IApiRequestFactory _apiRequestFactory;
 
-        public IdentityService(IApiRequestFactory apiRequestFactory)
+        public AccountService(IApiRequestFactory apiRequestFactory)
         {
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public void AsyncLogin(RegisterRequest registerRequest, Action callbackProcessHandler)
+        public void AsyncRegister(RegisterRequest registerRequest, Action callbackProcessHandler)
         {
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(registerRequest);
             _apiRequestFactory.CreateClient().ExecuteAsyncPost(request, (response, e) =>
             {
-                callbackProcessHandler.Invoke(LoginResponse(response));
+                callbackProcessHandler.Invoke();
             }, Method.POST.ToString());
         }
 

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timecards.Services", "Timec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timecards.Infrastructure", "Timecards.Infrastructure\Timecards.Infrastructure.csproj", "{BCE93D34-5B73-4E75-B37E-C26242F04992}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timecards.Application", "Timecards.Application\Timecards.Application.csproj", "{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BCE93D34-5B73-4E75-B37E-C26242F04992}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCE93D34-5B73-4E75-B37E-C26242F04992}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCE93D34-5B73-4E75-B37E-C26242F04992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

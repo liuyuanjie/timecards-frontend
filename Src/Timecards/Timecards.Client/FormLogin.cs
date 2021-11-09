@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Timecards.Application.Commands;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using Timecards.Services;
@@ -30,7 +31,7 @@ namespace Timecards.Client
                 Password = textBoxPassword.Text
             };
 
-            _loginCommand.Login(loginRequest, (loginResponse) => CallbackProcess(loginResponse));
+            _loginCommand.LoginAsync(loginRequest, (loginResponse) => CallbackProcess(loginResponse));
         }
 
         private void CallbackProcess(LoginResponse loginResponse)

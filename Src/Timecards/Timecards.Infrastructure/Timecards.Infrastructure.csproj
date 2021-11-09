@@ -46,8 +46,8 @@
     <Compile Include="IApiRequestFactory.cs" />
     <Compile Include="ApiRequestFactory.cs" />
     <Compile Include="Model\LoginResponse.cs" />
-    <Compile Include="Model\RegisterModel.cs" />
     <Compile Include="Model\LoginRequest.cs" />
+    <Compile Include="Model\RegisterRequest.cs" />
     <Compile Include="Model\ResponseBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

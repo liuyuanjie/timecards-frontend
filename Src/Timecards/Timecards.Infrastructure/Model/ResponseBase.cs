@@ -25,28 +25,4 @@ namespace Timecards.Infrastructure.Model
         public string ErrorMessage { get; set; }
         public List<KeyValuePair<string, string>> SubErrorMessage { get; set; }
     }
-
-    private static LoginResponse LoginResponse(IRestResponse response)
-    {
-        var loginResponse = new LoginResponse
-        {
-            ResponseState = new ResponseState
-            {
-                StatusCode = response.StatusCode,
-                ErrorException = response.ErrorException,
-                ErrorMessage = response.ErrorMessage
-            }
-        };
-
-        if (loginResponse.ResponseState.IsSuccess)
-        {
-            loginResponse.Token = response.Content;
-        }
-        else
-        {
-            loginResponse.RequestFailedState = JsonConvert.DeserializeObject<RequestFailedState>(response.Content);
-        }
-
-        return loginResponse;
-    }
 }
