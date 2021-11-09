@@ -2,27 +2,39 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Security.Permissions;
+using System.Text;
 
 namespace Timecards.Infrastructure.Model
 {
     public class ResponseBase
     {
         public ResponseState ResponseState { get; set; }
-        public RequestFailedState RequestFailedState { get; set; }
     }
 
     public class ResponseState
     {
         public HttpStatusCode StatusCode { get; set; }
-        public string ErrorMessage { get; set; }
-        public Exception ErrorException { get; set; }
-        public bool IsSuccess => StatusCode == HttpStatusCode.OK;
+        public ResponseStateMessage ResponseStateMessage { get; set; }
+
+        public bool IsSuccess => StatusCode == HttpStatusCode.OK || StatusCode == HttpStatusCode.Created || StatusCode == HttpStatusCode.NoContent;
     }
 
-    public class RequestFailedState
+    public class ResponseStateMessage
     {
         public string ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
         public List<KeyValuePair<string, string>> SubErrorMessage { get; set; }
+
+        public string OutputResponeMessage()
+        {
+            StringBuilder message = new StringBuilder();
+            message.Append(ErrorMessage);
+            if (SubErrorMessage != null && SubErrorMessage.Count > 0)
+            {
+                SubErrorMessage.ForEach(s => message.Append(s.Value));
+            }
+
+            return message.ToString();
+        }
     }
 }

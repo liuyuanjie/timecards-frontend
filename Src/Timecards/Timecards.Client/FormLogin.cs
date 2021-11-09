@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Text;
+using System.Windows.Forms;
 using Timecards.Application.Commands;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
@@ -47,7 +48,10 @@ namespace Timecards.Client
             }
             else
             {
-                MessageBox.Show(loginResponse.RequestFailedState.ErrorMessage, "Login Failed", MessageBoxButtons.OK);
+                MessageBox.Show(
+                    loginResponse.ResponseState.ResponseStateMessage.OutputResponeMessage(),
+                    "Login Failed",
+                    MessageBoxButtons.OK);
             }
         }
     }

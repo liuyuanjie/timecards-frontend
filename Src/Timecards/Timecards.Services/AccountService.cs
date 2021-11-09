@@ -21,27 +21,41 @@ namespace Timecards.Services
         {
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(registerRequest);
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost(request, (response, e) =>
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost<RegisterResponseResult>(request, (response, e) =>
             {
                 callbackProcessHandler.Invoke(BuildRegisterResponse(response));
             }, Method.POST.ToString());
         }
 
-        private static RegisterResponse BuildRegisterResponse(IRestResponse response)
+        private static RegisterResponse BuildRegisterResponse(IRestResponse<RegisterResponseResult> response)
         {
             var registerResponse = new RegisterResponse
             {
                 ResponseState = new ResponseState
                 {
                     StatusCode = response.StatusCode,
-                    ErrorException = response.ErrorException,
-                    ErrorMessage = response.ErrorMessage
                 }
             };
 
-            if (!registerResponse.ResponseState.IsSuccess)
+            if (registerResponse.ResponseState.IsSuccess)
             {
-                registerResponse.RequestFailedState = JsonConvert.DeserializeObject<RequestFailedState>(response.Content);
+                registerResponse.ResponseResult = response.Data;
+            }
+            else
+            {
+                if(response.ErrorException != null)
+                {
+                    registerResponse.ResponseState.ResponseStateMessage = new ResponseStateMessage
+                    {
+                        ErrorCode = "RequestFailed",
+                        ErrorMessage = response.ErrorMessage
+                    };
+                }
+                else
+                {
+                    registerResponse.ResponseState.ResponseStateMessage =
+                        JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content);
+                }
             }
 
             return registerResponse;

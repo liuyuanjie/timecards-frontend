@@ -21,34 +21,44 @@ namespace Timecards.Services
         {
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(loginRequest);
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost(request, (response, e) =>
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost<LoginResponseResult>(request, (response, e) =>
             {
                 callbackProcessHandler.Invoke(BuildLoginResponse(response));
             }, Method.POST.ToString());
         }
 
-        private static LoginResponse BuildLoginResponse(IRestResponse response)
+        private static LoginResponse BuildLoginResponse(IRestResponse<LoginResponseResult> response)
         {
-            var loginResponse = new LoginResponse
+            var registerResponse = new LoginResponse
             {
                 ResponseState = new ResponseState
                 {
                     StatusCode = response.StatusCode,
-                    ErrorException = response.ErrorException,
-                    ErrorMessage = response.ErrorMessage
                 }
             };
 
-            if (loginResponse.ResponseState.IsSuccess)
+            if (registerResponse.ResponseState.IsSuccess)
             {
-                loginResponse.Token = response.Content;
+                registerResponse.ResponseResult = response.Data;
             }
             else
             {
-                loginResponse.RequestFailedState = JsonConvert.DeserializeObject<RequestFailedState>(response.Content);
+                if (response.ErrorException != null)
+                {
+                    registerResponse.ResponseState.ResponseStateMessage = new ResponseStateMessage
+                    {
+                        ErrorCode = "RequestFailed",
+                        ErrorMessage = response.ErrorMessage
+                    };
+                }
+                else
+                {
+                    registerResponse.ResponseState.ResponseStateMessage =
+                        JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content);
+                }
             }
 
-            return loginResponse;
+            return registerResponse;
         }
     }
 }
