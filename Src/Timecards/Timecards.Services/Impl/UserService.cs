@@ -26,6 +26,5 @@ namespace Timecards.Services.Impl
                 callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
             }, Method.POST.ToString());
         }
-
     }
 }

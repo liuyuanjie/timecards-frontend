@@ -6,7 +6,7 @@ namespace Timecards.Services.Impl
 {
     public class ServiceBase
     {
-        protected ResponseBase<T> BuildAsyncResponseResult<T>(IRestResponse<T> response) where T : class
+        protected virtual ResponseBase<T> BuildAsyncResponseResult<T>(IRestResponse<T> response) where T : class
         {
             var serverResponse = new ResponseBase<T>
             {

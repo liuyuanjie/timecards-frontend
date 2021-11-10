@@ -23,8 +23,14 @@ namespace Timecards.Services.Impl
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost<LoginResult>(request, (response, e) =>
             {
-                callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
+                callbackProcessHandler.Invoke(BuildAsyncResponseResult(loginRequest, response));
             }, Method.POST.ToString());
+        }
+
+        private ResponseBase<LoginResult> BuildAsyncResponseResult(LoginRequest loginRequest, IRestResponse<LoginResult> response)
+        {
+            response.Data.Email = loginRequest.Email;
+            return base.BuildAsyncResponseResult(response);
         }
     }
 }
