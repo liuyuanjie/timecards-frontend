@@ -46,12 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentityService.cs" />
     <Compile Include="IIdentityService.cs" />
     <Compile Include="IAccountService.cs" />
-    <Compile Include="AccountService.cs" />
+    <Compile Include="Impl\AccountService.cs" />
+    <Compile Include="Impl\IdentityService.cs" />
+    <Compile Include="Impl\ProjectService.cs" />
+    <Compile Include="Impl\ServiceBase.cs" />
+    <Compile Include="Impl\UserService.cs" />
+    <Compile Include="IProjectService.cs" />
+    <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Timecards.Infrastructure\Timecards.Infrastructure.csproj">

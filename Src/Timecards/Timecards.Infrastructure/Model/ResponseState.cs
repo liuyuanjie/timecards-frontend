@@ -6,6 +6,10 @@ namespace Timecards.Infrastructure.Model
 {
     public class ResponseState
     {
+        public ResponseState(HttpStatusCode statusCode)
+        {
+            StatusCode = statusCode;
+        }
         public HttpStatusCode StatusCode { get; set; }
         public ResponseStateMessage ResponseStateMessage { get; set; }
 

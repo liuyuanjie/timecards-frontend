@@ -2,6 +2,7 @@ using System;
 using Timecards.Application.Commands;
 using Timecards.Infrastructure.Model;
 using Timecards.Services;
+using Timecards.Services.Impl;
 
 namespace Timecards.Infrastructure
 {
@@ -15,7 +16,7 @@ namespace Timecards.Infrastructure
 
         public void RegisterAsync(RegisterRequest registerRequest, Action<ResponseBase<RegisterResult>> callbackProcess)
         {
-            _accountService.AsyncRegister(registerRequest, callbackProcess);
+            _accountService.RegisterAsync(registerRequest, callbackProcess);
         }
     }
 }
