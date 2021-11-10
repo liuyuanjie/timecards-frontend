@@ -54,9 +54,7 @@
     <Compile Include="Commands\Login\LoginCommand.cs" />
     <Compile Include="Commands\Register\IRegisterCommand.cs" />
     <Compile Include="Commands\Register\RegisterCommand.cs" />
-    <Compile Include="AccountStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TokenStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Timecards.Infrastructure\Timecards.Infrastructure.csproj">

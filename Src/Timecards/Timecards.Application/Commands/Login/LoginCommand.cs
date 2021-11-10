@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using Timecards.Services;
@@ -19,16 +20,20 @@ namespace Timecards.Application.Commands.Login
 
         public void LoginAsync(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcess)
         {
-            callbackProcess += StoreToken();
-            _identityService.LoginAsync(loginRequest, (loginResponse) => callbackProcess(loginResponse));
+            var newCallbackProcess = new Action<ResponseBase<LoginResult>>(StoreToken());
+            newCallbackProcess += GetLogin(callbackProcess);
+            _identityService.LoginAsync(loginRequest, (loginResponse) => newCallbackProcess(loginResponse));
         }
 
         private Action<ResponseBase<LoginResult>> StoreToken()
         {
-            return responseResult => { TokenStore.Login.Token = responseResult.ResponseResult.Token; };
+            return responseResult =>
+            {
+                TokenStore.Login = new LoginResult { Token = responseResult.ResponseResult.Token };
+            };
         }
 
-        private Action<ResponseBase<LoginResult>> GetLogin()
+        private Action<ResponseBase<LoginResult>> GetLogin(Action<ResponseBase<LoginResult>> callbackProcess)
         {
             return responseResult =>
             {
@@ -37,7 +42,11 @@ namespace Timecards.Application.Commands.Login
                     Email = responseResult.ResponseResult.Email
                 }, userResponseResult =>
                 {
-                    AccountStore.Account = userResponseResult.ResponseResult;
+                    AccountStore.Account = userResponseResult.ResponseResult.First();
+                    callbackProcess(new ResponseBase<LoginResult>()
+                    {
+                        ResponseState = userResponseResult.ResponseState,
+                    });
                 });
             };
         }

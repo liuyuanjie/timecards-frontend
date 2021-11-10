@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using RestSharp;
+using Timecards.Application;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 
@@ -7,7 +9,7 @@ namespace Timecards.Services.Impl
 {
     public class UserService : ServiceBase, IUserService
     {
-        const string IdentityTokenEndPoint = "account/register";
+        const string IdentityTokenEndPoint = "users";
 
         private readonly IApiRequestFactory _apiRequestFactory;
 
@@ -16,15 +18,16 @@ namespace Timecards.Services.Impl
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public void GetUserAsync(UserRequest registerRequest, Action<ResponseBase<UserResult>> callbackProcessHandler)
+        public void GetUserAsync(UserRequest userRequest, Action<ResponseBase<List<UserResult>>> callbackProcessHandler)
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
-            request.AddJsonBody(registerRequest);
+            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddQueryParameter(nameof(UserRequest.Email), userRequest.Email);
 
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost<UserResult>(request, (response, e) =>
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost<List<UserResult>>(request, (response, e) =>
             {
                 callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
-            }, Method.POST.ToString());
+            }, Method.GET.ToString());
         }
     }
 }

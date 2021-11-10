@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using Timecards.Services;
@@ -15,7 +16,7 @@ namespace Timecards.Application.Commands.User
             _userService = new UserService(apiRequestFactory);
         }
 
-        public void LoginAsync(UserRequest userRequest, Action<ResponseBase<UserResult>> callbackProcess)
+        public void LoginAsync(UserRequest userRequest, Action<ResponseBase<List<UserResult>>> callbackProcess)
         {
             _userService.GetUserAsync(userRequest, (userRequestResponse) => callbackProcess(userRequestResponse));
         }

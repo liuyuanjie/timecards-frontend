@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountStore.cs" />
     <Compile Include="IApiRequestFactory.cs" />
     <Compile Include="ApiRequestFactory.cs" />
     <Compile Include="Model\ProjectRequest.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Model\ResponseBase.cs" />
     <Compile Include="Model\ResponseState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

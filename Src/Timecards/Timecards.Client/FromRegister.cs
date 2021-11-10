@@ -27,6 +27,8 @@ namespace Timecards.Client
         {
             var registerRequest = new RegisterRequest
             {
+                FirstName = textBoxFirstName.Text,
+                LastName = textBoxLastName.Text,
                 UserName = textBoxFullName.Text,
                 Email = textBoxEmail.Text,
                 Password = textBoxPassword.Text,
