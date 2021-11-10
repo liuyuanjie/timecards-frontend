@@ -20,16 +20,19 @@ namespace Timecards.Application.Commands.Login
 
         public void LoginAsync(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcess)
         {
-            var newCallbackProcess = new Action<ResponseBase<LoginResult>>(StoreToken());
-            newCallbackProcess += GetLogin(callbackProcess);
-            _identityService.LoginAsync(loginRequest, (loginResponse) => newCallbackProcess(loginResponse));
+            var reCreatedCallbackProcess = new Action<ResponseBase<LoginResult>>(StoreToken());
+            reCreatedCallbackProcess += GetLogin(callbackProcess);
+            _identityService.LoginAsync(loginRequest, (loginResponse) => reCreatedCallbackProcess(loginResponse));
         }
 
         private Action<ResponseBase<LoginResult>> StoreToken()
         {
             return responseResult =>
             {
-                TokenStore.Login = new LoginResult { Token = responseResult.ResponseResult.Token };
+                if (responseResult.ResponseState.IsSuccess)
+                {
+                    TokenStore.Login = new LoginResult { Token = responseResult.ResponseResult.Token };
+                }
             };
         }
 
@@ -37,18 +40,37 @@ namespace Timecards.Application.Commands.Login
         {
             return responseResult =>
             {
-                _userService.GetUserAsync(new UserRequest
+                if (responseResult.ResponseState.IsSuccess)
                 {
-                    Email = responseResult.ResponseResult.Email
-                }, userResponseResult =>
+                    GetLoginAccount(callbackProcess, responseResult);
+                }
+                else
                 {
-                    AccountStore.Account = userResponseResult.ResponseResult.First();
                     callbackProcess(new ResponseBase<LoginResult>()
                     {
-                        ResponseState = userResponseResult.ResponseState,
+                        ResponseState = responseResult.ResponseState
                     });
-                });
+                }
             };
+        }
+
+        private void GetLoginAccount(Action<ResponseBase<LoginResult>> callbackProcess, ResponseBase<LoginResult> responseResult)
+        {
+            _userService.GetUserAsync(new UserRequest
+            {
+                Email = responseResult.ResponseResult.Email
+            }, userResponseResult =>
+            {
+                if (responseResult.ResponseState.IsSuccess)
+                {
+                    AccountStore.Account = userResponseResult.ResponseResult.First();
+                }
+
+                callbackProcess(new ResponseBase<LoginResult>()
+                {
+                    ResponseState = userResponseResult.ResponseState,
+                });
+            });
         }
     }
 }

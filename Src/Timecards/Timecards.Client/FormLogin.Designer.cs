@@ -65,7 +65,7 @@ namespace Timecards.Client
             // 
             this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxEmail.Location = new System.Drawing.Point(86, 302);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(536, 44);
             this.textBoxEmail.TabIndex = 2;
@@ -74,7 +74,7 @@ namespace Timecards.Client
             // 
             this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPassword.Location = new System.Drawing.Point(84, 448);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(536, 44);
@@ -84,7 +84,7 @@ namespace Timecards.Client
             // 
             this.buttonSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSignIn.Location = new System.Drawing.Point(84, 594);
-            this.buttonSignIn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonSignIn.Margin = new System.Windows.Forms.Padding(6);
             this.buttonSignIn.Name = "buttonSignIn";
             this.buttonSignIn.Size = new System.Drawing.Size(540, 69);
             this.buttonSignIn.TabIndex = 4;
@@ -128,7 +128,7 @@ namespace Timecards.Client
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormLogin";

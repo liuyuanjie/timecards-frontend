@@ -45,6 +45,8 @@ namespace Timecards.Client
             this.LabelUserName = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelRole = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -63,71 +65,72 @@ namespace Timecards.Client
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(9, 114);
+            this.groupBox1.Location = new System.Drawing.Point(9, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1992, 124);
+            this.groupBox1.Size = new System.Drawing.Size(2244, 124);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "User Infomation";
+            this.groupBox1.Text = "My Profile";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(1730, 64);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 25);
+            this.label5.Size = new System.Drawing.Size(62, 25);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Role";
+            this.label5.Text = "Role:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(1282, 64);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 25);
+            this.label4.Size = new System.Drawing.Size(71, 25);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Email";
+            this.label4.Text = "Email:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(851, 64);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 25);
+            this.label3.Size = new System.Drawing.Size(125, 25);
             this.label3.TabIndex = 2;
-            this.label3.Text = "User Name";
+            this.label3.Text = "User Name:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(448, 64);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 25);
+            this.label2.Size = new System.Drawing.Size(121, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Last Name";
+            this.label2.Text = "Last Name:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 25);
+            this.label1.Size = new System.Drawing.Size(122, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "First Name";
+            this.label1.Text = "First Name:";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 88);
+            this.dateTimePicker1.Location = new System.Drawing.Point(12, 66);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(395, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(511, 31);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.splitContainer1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 264);
+            this.groupBox2.Location = new System.Drawing.Point(12, 202);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1992, 844);
+            this.groupBox2.Size = new System.Drawing.Size(2244, 844);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Week Time";
@@ -141,18 +144,21 @@ namespace Timecards.Client
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker1);
             this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1986, 814);
-            this.splitContainer1.SplitterDistance = 424;
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            this.splitContainer1.Size = new System.Drawing.Size(2238, 814);
+            this.splitContainer1.SplitterDistance = 531;
             this.splitContainer1.TabIndex = 3;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 252);
+            this.comboBox1.Location = new System.Drawing.Point(5, 202);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(395, 33);
+            this.comboBox1.Size = new System.Drawing.Size(511, 33);
             this.comboBox1.TabIndex = 2;
             // 
             // labelFirstName
@@ -185,16 +191,35 @@ namespace Timecards.Client
             // 
             // labelRole
             // 
-            this.labelRole.Location = new System.Drawing.Point(1792, 58);
+            this.labelRole.Location = new System.Drawing.Point(1792, 64);
             this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(182, 37);
+            this.labelRole.Size = new System.Drawing.Size(182, 31);
             this.labelRole.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 163);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(151, 25);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Select Project:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(169, 25);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Select Workday:";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2016, 1402);
+            this.ClientSize = new System.Drawing.Size(2288, 1402);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -208,6 +233,7 @@ namespace Timecards.Client
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -230,5 +256,7 @@ namespace Timecards.Client
         private System.Windows.Forms.Label LabelUserName;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

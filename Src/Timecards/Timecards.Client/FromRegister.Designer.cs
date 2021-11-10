@@ -245,14 +245,14 @@ namespace Timecards.Client
             this.textBoxLastName.Location = new System.Drawing.Point(355, 200);
             this.textBoxLastName.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(273, 44);
+            this.textBoxLastName.Size = new System.Drawing.Size(251, 44);
             this.textBoxLastName.TabIndex = 2;
             // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 992);
+            this.ClientSize = new System.Drawing.Size(668, 992);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.textBoxFirstName);
             this.Controls.Add(this.label7);
