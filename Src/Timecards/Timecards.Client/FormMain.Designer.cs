@@ -71,7 +71,6 @@ namespace Timecards.Client
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "My Profile";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label5
             // 
@@ -134,7 +133,6 @@ namespace Timecards.Client
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Week Time";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // splitContainer1
             // 
@@ -148,7 +146,6 @@ namespace Timecards.Client
             this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker1);
             this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(2238, 814);
             this.splitContainer1.SplitterDistance = 531;
             this.splitContainer1.TabIndex = 3;
@@ -204,7 +201,6 @@ namespace Timecards.Client
             this.label6.Size = new System.Drawing.Size(151, 25);
             this.label6.TabIndex = 10;
             this.label6.Text = "Select Project:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
