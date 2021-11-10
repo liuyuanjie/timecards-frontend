@@ -27,7 +27,7 @@ namespace Timecards.Client
         static void SystmeExceptionHandler(object sender, UnhandledExceptionEventArgs args)
         {
             var e = (Exception) args.ExceptionObject;
-            System.Windows.Forms.MessageBox.Show(e.Message, "System Error", MessageBoxButtons.OK);
+            System.Windows.Forms.MessageBox.Show(e.ToString(), "System Error", MessageBoxButtons.OK);
         }
     }
 }

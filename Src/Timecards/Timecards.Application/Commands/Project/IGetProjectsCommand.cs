@@ -5,6 +5,6 @@ namespace Timecards.Application.Commands.Project
 {
     public interface IGetProjectsCommand
     {
-        void GetProjectsAsync(ProjectRequest loginRequest, Action<ResponseBase<ProjectResult>> callbackProcess);
+        void GetProjectsAsync(Action<ResponseBase<ProjectResult>> callbackProcess);
     }
 }

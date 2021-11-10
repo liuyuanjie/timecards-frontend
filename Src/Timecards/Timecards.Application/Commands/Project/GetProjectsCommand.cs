@@ -15,9 +15,14 @@ namespace Timecards.Application.Commands.Project
             _projectService = new ProjectService(apiRequestFactory);
         }
 
-        public void GetProjectsAsync(ProjectRequest projectRequest, Action<ResponseBase<ProjectResult>> callbackProcess)
+        public void GetProjectsAsync(Action<ResponseBase<ProjectResult>> callbackProcess)
         {
-            _projectService.GetProjectsAsync(projectRequest, (projectResponse) => callbackProcess(projectResponse));
+
+            _projectService.GetProjectsAsync((projectResponse) => callbackProcess(new ResponseBase<ProjectResult>
+            {
+                ResponseState = projectResponse.ResponseState,
+                ResponseResult = new ProjectResult { Projects = projectResponse.ResponseResult }
+            }));
         }
     }
 }

@@ -31,6 +31,11 @@ namespace Timecards.Client
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelRole = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.LabelUserName = new System.Windows.Forms.Label();
+            this.labelLastName = new System.Windows.Forms.Label();
+            this.labelFirstName = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,14 +44,9 @@ namespace Timecards.Client
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.labelFirstName = new System.Windows.Forms.Label();
-            this.labelLastName = new System.Windows.Forms.Label();
-            this.LabelUserName = new System.Windows.Forms.Label();
-            this.labelEmail = new System.Windows.Forms.Label();
-            this.labelRole = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxProject = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -65,12 +65,48 @@ namespace Timecards.Client
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(9, 62);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(2244, 124);
+            this.groupBox1.Size = new System.Drawing.Size(1996, 124);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "My Profile";
+            // 
+            // labelRole
+            // 
+            this.labelRole.Location = new System.Drawing.Point(1792, 64);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(182, 31);
+            this.labelRole.TabIndex = 9;
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.Location = new System.Drawing.Point(1353, 64);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(348, 31);
+            this.labelEmail.TabIndex = 8;
+            // 
+            // LabelUserName
+            // 
+            this.LabelUserName.Location = new System.Drawing.Point(976, 64);
+            this.LabelUserName.Name = "LabelUserName";
+            this.LabelUserName.Size = new System.Drawing.Size(286, 31);
+            this.LabelUserName.TabIndex = 7;
+            // 
+            // labelLastName
+            // 
+            this.labelLastName.Location = new System.Drawing.Point(559, 64);
+            this.labelLastName.Name = "labelLastName";
+            this.labelLastName.Size = new System.Drawing.Size(286, 31);
+            this.labelLastName.TabIndex = 6;
+            // 
+            // labelFirstName
+            // 
+            this.labelFirstName.Location = new System.Drawing.Point(142, 58);
+            this.labelFirstName.Name = "labelFirstName";
+            this.labelFirstName.Size = new System.Drawing.Size(286, 31);
+            this.labelFirstName.TabIndex = 5;
             // 
             // label5
             // 
@@ -121,15 +157,16 @@ namespace Timecards.Client
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(12, 66);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(511, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(417, 31);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.splitContainer1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 202);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 124);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(2244, 844);
+            this.groupBox2.Size = new System.Drawing.Size(1996, 979);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Week Time";
@@ -145,62 +182,10 @@ namespace Timecards.Client
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker1);
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(2238, 814);
-            this.splitContainer1.SplitterDistance = 531;
+            this.splitContainer1.Panel1.Controls.Add(this.comboBoxProject);
+            this.splitContainer1.Size = new System.Drawing.Size(1990, 949);
+            this.splitContainer1.SplitterDistance = 472;
             this.splitContainer1.TabIndex = 3;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(5, 202);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(511, 33);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // labelFirstName
-            // 
-            this.labelFirstName.Location = new System.Drawing.Point(142, 58);
-            this.labelFirstName.Name = "labelFirstName";
-            this.labelFirstName.Size = new System.Drawing.Size(286, 31);
-            this.labelFirstName.TabIndex = 5;
-            // 
-            // labelLastName
-            // 
-            this.labelLastName.Location = new System.Drawing.Point(559, 64);
-            this.labelLastName.Name = "labelLastName";
-            this.labelLastName.Size = new System.Drawing.Size(286, 31);
-            this.labelLastName.TabIndex = 6;
-            // 
-            // LabelUserName
-            // 
-            this.LabelUserName.Location = new System.Drawing.Point(976, 64);
-            this.LabelUserName.Name = "LabelUserName";
-            this.LabelUserName.Size = new System.Drawing.Size(286, 31);
-            this.LabelUserName.TabIndex = 7;
-            // 
-            // labelEmail
-            // 
-            this.labelEmail.Location = new System.Drawing.Point(1353, 64);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(348, 31);
-            this.labelEmail.TabIndex = 8;
-            // 
-            // labelRole
-            // 
-            this.labelRole.Location = new System.Drawing.Point(1792, 64);
-            this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(182, 31);
-            this.labelRole.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 163);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 25);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Select Project:";
             // 
             // label7
             // 
@@ -211,11 +196,29 @@ namespace Timecards.Client
             this.label7.TabIndex = 11;
             this.label7.Text = "Select Workday:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 163);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(151, 25);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Select Project:";
+            // 
+            // comboBoxProject
+            // 
+            this.comboBoxProject.Font = new System.Drawing.Font("Cascadia Mono", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProject.FormattingEnabled = true;
+            this.comboBoxProject.Location = new System.Drawing.Point(5, 202);
+            this.comboBoxProject.Name = "comboBoxProject";
+            this.comboBoxProject.Size = new System.Drawing.Size(424, 36);
+            this.comboBoxProject.TabIndex = 2;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2288, 1402);
+            this.ClientSize = new System.Drawing.Size(1996, 1103);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -225,6 +228,7 @@ namespace Timecards.Client
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Work Time";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -245,7 +249,7 @@ namespace Timecards.Client
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxProject;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label labelRole;
         private System.Windows.Forms.Label labelEmail;

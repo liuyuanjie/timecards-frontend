@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using RestSharp;
+using Timecards.Application;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 
@@ -7,7 +9,7 @@ namespace Timecards.Services.Impl
 {
     public class ProjectService : ServiceBase, IProjectService
     {
-        const string IdentityTokenEndPoint = "Project/register";
+        const string IdentityTokenEndPoint = "projects";
 
         private readonly IApiRequestFactory _apiRequestFactory;
 
@@ -16,16 +18,15 @@ namespace Timecards.Services.Impl
             _apiRequestFactory = apiRequestFactory;
         }
 
-        public void GetProjectsAsync(ProjectRequest projectRequest, Action<ResponseBase<ProjectResult>> callbackProcessHandler)
+        public void GetProjectsAsync(Action<ResponseBase<List<Project>>> callbackProcessHandler)
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
-            request.AddJsonBody(projectRequest);
+            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
 
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost<ProjectResult>(request, (response, e) =>
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost<List<Project>>(request, (response, e) =>
             {
                 callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
-            }, Method.POST.ToString());
+            }, Method.GET.ToString());
         }
-
     }
 }
