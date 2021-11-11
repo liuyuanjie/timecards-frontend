@@ -1,11 +1,14 @@
-﻿namespace TimecardsControl
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace TimecardsControl
 {
     partial class InputWorkTime
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -23,7 +26,7 @@
         #region Component Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify 
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -47,22 +50,22 @@
             this.numericUpDownWorkTime6 = new System.Windows.Forms.NumericUpDown();
             this.labelDate6 = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
+            this.labelTotalHour = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.labelWorkDate = new System.Windows.Forms.Label();
             this.textBoxNote7 = new System.Windows.Forms.TextBox();
+            this.labelProject = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.numericUpDownWorkTime7 = new System.Windows.Forms.NumericUpDown();
             this.labelDate7 = new System.Windows.Forms.Label();
-            this.labelProject = new System.Windows.Forms.Label();
-            this.labelWorkDate = new System.Windows.Forms.Label();
-            this.labelTotalHour = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime6)).BeginInit();
             this.panelInput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime7)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDate1
@@ -78,19 +81,11 @@
             // 
             this.numericUpDownWorkTime1.DecimalPlaces = 1;
             this.numericUpDownWorkTime1.Location = new System.Drawing.Point(10, 93);
-            this.numericUpDownWorkTime1.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime1.Maximum = new decimal(new int[] {24, 0, 0, 0});
             this.numericUpDownWorkTime1.Name = "numericUpDownWorkTime1";
             this.numericUpDownWorkTime1.Size = new System.Drawing.Size(192, 31);
             this.numericUpDownWorkTime1.TabIndex = 1;
-            this.numericUpDownWorkTime1.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime1.Value = new decimal(new int[] {8, 0, 0, 0});
             // 
             // textBoxNote1
             // 
@@ -109,19 +104,11 @@
             // numericUpDownWorkTime2
             // 
             this.numericUpDownWorkTime2.Location = new System.Drawing.Point(220, 93);
-            this.numericUpDownWorkTime2.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime2.Maximum = new decimal(new int[] {24, 0, 0, 0});
             this.numericUpDownWorkTime2.Name = "numericUpDownWorkTime2";
             this.numericUpDownWorkTime2.Size = new System.Drawing.Size(192, 31);
             this.numericUpDownWorkTime2.TabIndex = 2;
-            this.numericUpDownWorkTime2.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime2.Value = new decimal(new int[] {8, 0, 0, 0});
             // 
             // labelDate2
             // 
@@ -142,19 +129,11 @@
             // numericUpDownWorkTime3
             // 
             this.numericUpDownWorkTime3.Location = new System.Drawing.Point(437, 93);
-            this.numericUpDownWorkTime3.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime3.Maximum = new decimal(new int[] {24, 0, 0, 0});
             this.numericUpDownWorkTime3.Name = "numericUpDownWorkTime3";
             this.numericUpDownWorkTime3.Size = new System.Drawing.Size(192, 31);
             this.numericUpDownWorkTime3.TabIndex = 3;
-            this.numericUpDownWorkTime3.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime3.Value = new decimal(new int[] {8, 0, 0, 0});
             // 
             // labelDate3
             // 
@@ -175,19 +154,11 @@
             // numericUpDownWorkTime4
             // 
             this.numericUpDownWorkTime4.Location = new System.Drawing.Point(651, 93);
-            this.numericUpDownWorkTime4.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime4.Maximum = new decimal(new int[] {24, 0, 0, 0});
             this.numericUpDownWorkTime4.Name = "numericUpDownWorkTime4";
             this.numericUpDownWorkTime4.Size = new System.Drawing.Size(192, 31);
             this.numericUpDownWorkTime4.TabIndex = 4;
-            this.numericUpDownWorkTime4.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime4.Value = new decimal(new int[] {8, 0, 0, 0});
             // 
             // labelDate4
             // 
@@ -208,19 +179,11 @@
             // numericUpDownWorkTime5
             // 
             this.numericUpDownWorkTime5.Location = new System.Drawing.Point(861, 93);
-            this.numericUpDownWorkTime5.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime5.Maximum = new decimal(new int[] {24, 0, 0, 0});
             this.numericUpDownWorkTime5.Name = "numericUpDownWorkTime5";
             this.numericUpDownWorkTime5.Size = new System.Drawing.Size(192, 31);
             this.numericUpDownWorkTime5.TabIndex = 5;
-            this.numericUpDownWorkTime5.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime5.Value = new decimal(new int[] {8, 0, 0, 0});
             // 
             // labelDate5
             // 
@@ -241,11 +204,7 @@
             // numericUpDownWorkTime6
             // 
             this.numericUpDownWorkTime6.Location = new System.Drawing.Point(1072, 93);
-            this.numericUpDownWorkTime6.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime6.Maximum = new decimal(new int[] {24, 0, 0, 0});
             this.numericUpDownWorkTime6.Name = "numericUpDownWorkTime6";
             this.numericUpDownWorkTime6.Size = new System.Drawing.Size(192, 31);
             this.numericUpDownWorkTime6.TabIndex = 6;
@@ -261,7 +220,7 @@
             // 
             // panelInput
             // 
-            this.panelInput.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelInput.BackColor = System.Drawing.SystemColors.Control;
             this.panelInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelInput.Controls.Add(this.labelTotalHour);
             this.panelInput.Controls.Add(this.button2);
@@ -294,6 +253,33 @@
             this.panelInput.Size = new System.Drawing.Size(1843, 182);
             this.panelInput.TabIndex = 21;
             // 
+            // labelTotalHour
+            // 
+            this.labelTotalHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelTotalHour.Location = new System.Drawing.Point(1212, 17);
+            this.labelTotalHour.Name = "labelTotalHour";
+            this.labelTotalHour.Size = new System.Drawing.Size(402, 23);
+            this.labelTotalHour.TabIndex = 24;
+            this.labelTotalHour.Text = "TotalHour";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1659, 81);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(164, 81);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "Delete";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // labelWorkDate
+            // 
+            this.labelWorkDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelWorkDate.Location = new System.Drawing.Point(432, 17);
+            this.labelWorkDate.Name = "labelWorkDate";
+            this.labelWorkDate.Size = new System.Drawing.Size(774, 23);
+            this.labelWorkDate.TabIndex = 23;
+            this.labelWorkDate.Text = "WeekDate";
+            // 
             // textBoxNote7
             // 
             this.textBoxNote7.Location = new System.Drawing.Point(1291, 131);
@@ -301,14 +287,29 @@
             this.textBoxNote7.Size = new System.Drawing.Size(192, 31);
             this.textBoxNote7.TabIndex = 24;
             // 
+            // labelProject
+            // 
+            this.labelProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelProject.Location = new System.Drawing.Point(10, 17);
+            this.labelProject.Name = "labelProject";
+            this.labelProject.Size = new System.Drawing.Size(402, 23);
+            this.labelProject.TabIndex = 22;
+            this.labelProject.Text = "Project";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1489, 81);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 81);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // numericUpDownWorkTime7
             // 
             this.numericUpDownWorkTime7.Location = new System.Drawing.Point(1291, 93);
-            this.numericUpDownWorkTime7.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
+            this.numericUpDownWorkTime7.Maximum = new decimal(new int[] {24, 0, 0, 0});
             this.numericUpDownWorkTime7.Name = "numericUpDownWorkTime7";
             this.numericUpDownWorkTime7.Size = new System.Drawing.Size(192, 31);
             this.numericUpDownWorkTime7.TabIndex = 7;
@@ -322,48 +323,6 @@
             this.labelDate7.TabIndex = 22;
             this.labelDate7.Text = "Sunday";
             // 
-            // labelProject
-            // 
-            this.labelProject.Location = new System.Drawing.Point(10, 17);
-            this.labelProject.Name = "labelProject";
-            this.labelProject.Size = new System.Drawing.Size(402, 23);
-            this.labelProject.TabIndex = 22;
-            this.labelProject.Text = "Project";
-            // 
-            // labelWorkDate
-            // 
-            this.labelWorkDate.Location = new System.Drawing.Point(432, 17);
-            this.labelWorkDate.Name = "labelWorkDate";
-            this.labelWorkDate.Size = new System.Drawing.Size(774, 23);
-            this.labelWorkDate.TabIndex = 23;
-            this.labelWorkDate.Text = "WeekDate";
-            // 
-            // labelTotalHour
-            // 
-            this.labelTotalHour.Location = new System.Drawing.Point(1212, 17);
-            this.labelTotalHour.Name = "labelTotalHour";
-            this.labelTotalHour.Size = new System.Drawing.Size(402, 23);
-            this.labelTotalHour.TabIndex = 24;
-            this.labelTotalHour.Text = "TotalHour";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1489, 81);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 81);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1659, 81);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(164, 81);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // InputWorkTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -372,47 +331,46 @@
             this.Controls.Add(this.panelInput);
             this.Name = "InputWorkTime";
             this.Size = new System.Drawing.Size(1846, 196);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime6)).EndInit();
             this.panelInput.ResumeLayout(false);
             this.panelInput.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWorkTime7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime7)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
 
-        private System.Windows.Forms.Label labelDate1;
+        private Label labelDate1;
         private System.Windows.Forms.NumericUpDown numericUpDownWorkTime1;
         private System.Windows.Forms.TextBox textBoxNote1;
-        private System.Windows.Forms.TextBox textBoxNote2;
-        private System.Windows.Forms.NumericUpDown numericUpDownWorkTime2;
-        private System.Windows.Forms.Label labelDate2;
-        private System.Windows.Forms.TextBox textBoxNote3;
-        private System.Windows.Forms.NumericUpDown numericUpDownWorkTime3;
-        private System.Windows.Forms.Label labelDate3;
-        private System.Windows.Forms.TextBox textBoxNote4;
-        private System.Windows.Forms.NumericUpDown numericUpDownWorkTime4;
-        private System.Windows.Forms.Label labelDate4;
-        private System.Windows.Forms.TextBox textBoxNote5;
-        private System.Windows.Forms.NumericUpDown numericUpDownWorkTime5;
-        private System.Windows.Forms.Label labelDate5;
-        private System.Windows.Forms.TextBox textBoxNote6;
-        private System.Windows.Forms.NumericUpDown numericUpDownWorkTime6;
-        private System.Windows.Forms.Label labelDate6;
-        private System.Windows.Forms.Panel panelInput;
-        private System.Windows.Forms.TextBox textBoxNote7;
-        private System.Windows.Forms.NumericUpDown numericUpDownWorkTime7;
-        private System.Windows.Forms.Label labelDate7;
+        private TextBox textBoxNote2;
+        private NumericUpDown numericUpDownWorkTime2;
+        private Label labelDate2;
+        private TextBox textBoxNote3;
+        private NumericUpDown numericUpDownWorkTime3;
+        private Label labelDate3;
+        private TextBox textBoxNote4;
+        private NumericUpDown numericUpDownWorkTime4;
+        private Label labelDate4;
+        private TextBox textBoxNote5;
+        private NumericUpDown numericUpDownWorkTime5;
+        private Label labelDate5;
+        private TextBox textBoxNote6;
+        private NumericUpDown numericUpDownWorkTime6;
+        private Label labelDate6;
+        private Panel panelInput;
+        private TextBox textBoxNote7;
+        private NumericUpDown numericUpDownWorkTime7;
+        private Label labelDate7;
         private System.Windows.Forms.Label labelProject;
         private System.Windows.Forms.Label labelWorkDate;
         private System.Windows.Forms.Label labelTotalHour;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private Button button2;
     }
 }
