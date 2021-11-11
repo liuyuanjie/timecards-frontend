@@ -16,7 +16,7 @@ namespace Timecards.Application.Commands.Timecards
             _timecardsServices = new TimecardsSerivice(apiRequestFactory);
         }
 
-        public void LoginAsync(QueryTimecardsRequest queryTimecardsRequest,
+        public void GetAsync(QueryTimecardsRequest queryTimecardsRequest,
             Action<ResponseBase<List<TimecardsResult>>> callbackProcess)
         {
             _timecardsServices.GetTimecardsAsync(queryTimecardsRequest, callbackProcess);

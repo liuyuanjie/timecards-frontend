@@ -6,7 +6,7 @@ namespace Timecards.Application.Commands.Timecards
 {
     public interface IQueryTimecardsCommand
     {
-        void LoginAsync(QueryTimecardsRequest queryTimecardsRequest,
+        void GetAsync(QueryTimecardsRequest queryTimecardsRequest,
             Action<ResponseBase<List<TimecardsResult>>> callbackProcess);
     }
 }

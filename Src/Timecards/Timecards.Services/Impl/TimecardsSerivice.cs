@@ -28,7 +28,9 @@ namespace Timecards.Services.Impl
                 queryTimecardsRequest.TimecardsDate.ToString());
 
             _apiRequestFactory.CreateClient().ExecuteAsyncGet<List<TimecardsResult>>(request,
-                (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(response)); },
+                (response, e) => { 
+                    callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
+                },
                 Method.GET.ToString());
         }
 
@@ -36,6 +38,7 @@ namespace Timecards.Services.Impl
             Action<ResponseState> callbackProcessHandler)
         {
             var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
             request.AddJsonBody(saveTimecardsRequest);
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost(request,

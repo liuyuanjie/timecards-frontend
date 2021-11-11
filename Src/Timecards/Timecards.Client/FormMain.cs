@@ -39,6 +39,7 @@ namespace Timecards.Client
             labelRole.Text = AccountStore.Account.Role;
 
             GetProjects();
+            GetTimecardsOfDate(DateTime.Now.Date);
         }
 
         private void GetProjects()
@@ -63,6 +64,12 @@ namespace Timecards.Client
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
+            var inputWorkTime = AnddInputWorkTime();
+            inputWorkTime.SaveTimecards = SaveTimecards;
+        }
+
+        private InputWorkTime AnddInputWorkTime()
+        {
             var timecardsControlHigh = 105;
             var defaultPosition = 3;
             var count = splitContainerWorkTime.Panel2.Controls
@@ -70,14 +77,15 @@ namespace Timecards.Client
                 .Count(x => x.GetType() == typeof(InputWorkTime));
 
             var inputWorkTime = new InputWorkTime(
+                AccountStore.Account.UserId,
                 new Guid(comboBoxProject.SelectedValue.ToString()),
                 comboBoxProject.Text,
-                dateTimeWorkDate.Value)
+                dateTimeWorkDate.Value.Date)
             {
                 Location = new Point(defaultPosition, defaultPosition + count * timecardsControlHigh)
             };
             splitContainerWorkTime.Panel2.Controls.Add(inputWorkTime);
-            inputWorkTime.SaveTimecards = SaveTimecards;
+            return inputWorkTime;
         }
 
         private void SaveTimecards(TimecardsDataSource timecardsDataSource)
@@ -111,10 +119,70 @@ namespace Timecards.Client
             else
             {
                 MessageBox.Show(
-                    responseState.ResponseStateMessage.OutputResponseMessage(),
-                    "Login Failed",
+                    "Save Failed",
+                    "Save",
                     MessageBoxButtons.OK);
             }
+        }
+
+        private void dateTimeWorkDate_ValueChanged(object sender, EventArgs e)
+        {
+            GetTimecardsOfDate(dateTimeWorkDate.Value.Date);
+        }
+
+        private void GetTimecardsOfDate(DateTime date)
+        {
+            var queryTimecardsRequest = new QueryTimecardsRequest()
+            {
+                UserId = AccountStore.Account.UserId,
+                TimecardsDate = date
+            };
+
+            _queryTimecardsCommand.GetAsync(queryTimecardsRequest,
+                responseResult => CallbackProcessPopulate(responseResult));
+        }
+
+        private void CallbackProcessPopulate(ResponseBase<List<TimecardsResult>> responseResult)
+        {
+            if (responseResult.ResponseState.IsSuccess)
+            {
+                RemoveAllInputWorkTimes();
+
+                responseResult.ResponseResult.ForEach(x =>
+                {
+                    var inputWorkTime = AnddInputWorkTime();
+                    inputWorkTime.InitialTimecards(new TimecardsDataSource()
+                    {
+                        UserId = x.UserId,
+                        ProjectId = x.ProjectId,
+                        TimecardsDate = x.TimecardsDate,
+                        Items = x.Items.Select(s =>
+                            new TimecardsControl.Item
+                            {
+                                Hour = s.Hour,
+                                Note = s.Note,
+                                WorkDay = s.WorkDay
+                            }).ToList()
+                    });
+                });
+            }
+            else
+            {
+                MessageBox.Show(
+                    responseResult.ResponseState.ResponseStateMessage.OutputResponseMessage(),
+                    "Load",
+                    MessageBoxButtons.OK);
+            }
+        }
+
+        private void RemoveAllInputWorkTimes()
+        {
+            var items = splitContainerWorkTime.Panel2.Controls
+                .Cast<Control>()
+                .Where(x => x.GetType() == typeof(InputWorkTime))
+                .Cast<InputWorkTime>()
+                .ToList();
+            items.ForEach(x => splitContainerWorkTime.Panel2.Controls.Remove(x));
         }
     }
 }

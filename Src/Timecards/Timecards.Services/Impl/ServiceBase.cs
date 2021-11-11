@@ -15,7 +15,8 @@ namespace Timecards.Services.Impl
 
             if (serverResponse.ResponseState.IsSuccess)
             {
-                serverResponse.ResponseResult = response.Data;
+                //serverResponse.ResponseResult = response.Data;
+                serverResponse.ResponseResult = JsonConvert.DeserializeObject<T>(response.Content);
                 return serverResponse;
             }
 
@@ -38,7 +39,7 @@ namespace Timecards.Services.Impl
             else
             {
                 registerResponse.ResponseState.ResponseStateMessage =
-                    JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content);
+                    JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content) ?? new ResponseStateMessage();
             }
         }
 
@@ -52,7 +53,7 @@ namespace Timecards.Services.Impl
                         ErrorCode = "RequestFailed",
                         ErrorMessage = response.ErrorMessage
                     }
-                    : JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content)
+                    : JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content) ?? new ResponseStateMessage()
             };
 
             return responseState;
