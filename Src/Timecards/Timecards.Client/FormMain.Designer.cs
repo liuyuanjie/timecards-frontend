@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace Timecards.Client
 {
     partial class FormMain
@@ -6,7 +9,7 @@ namespace Timecards.Client
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -73,7 +76,7 @@ namespace Timecards.Client
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 60);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(2194, 104);
+            this.groupBox1.Size = new System.Drawing.Size(2497, 104);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "My Profile";
@@ -195,7 +198,7 @@ namespace Timecards.Client
             // 
             // comboBoxProject
             // 
-            this.comboBoxProject.Font = new System.Drawing.Font("Cascadia Mono", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProject.Font = new System.Drawing.Font("Cascadia Mono", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.comboBoxProject.FormattingEnabled = true;
             this.comboBoxProject.Location = new System.Drawing.Point(8, 174);
             this.comboBoxProject.Name = "comboBoxProject";
@@ -211,7 +214,7 @@ namespace Timecards.Client
             // 
             // comboBox1
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Cascadia Mono", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.Font = new System.Drawing.Font("Cascadia Mono", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(9, 157);
             this.comboBox1.Name = "comboBox1";
@@ -257,8 +260,8 @@ namespace Timecards.Client
             this.splitContainerWorkTime.Panel1.Controls.Add(this.label6);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.dateTimeWorkDate);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.label7);
-            this.splitContainerWorkTime.Size = new System.Drawing.Size(2433, 720);
-            this.splitContainerWorkTime.SplitterDistance = 524;
+            this.splitContainerWorkTime.Size = new System.Drawing.Size(2467, 720);
+            this.splitContainerWorkTime.SplitterDistance = 531;
             this.splitContainerWorkTime.TabIndex = 13;
             // 
             // groupBoxWorkTime
@@ -266,7 +269,7 @@ namespace Timecards.Client
             this.groupBoxWorkTime.Controls.Add(this.splitContainerWorkTime);
             this.groupBoxWorkTime.Location = new System.Drawing.Point(17, 188);
             this.groupBoxWorkTime.Name = "groupBoxWorkTime";
-            this.groupBoxWorkTime.Size = new System.Drawing.Size(2439, 888);
+            this.groupBoxWorkTime.Size = new System.Drawing.Size(2492, 888);
             this.groupBoxWorkTime.TabIndex = 14;
             this.groupBoxWorkTime.TabStop = false;
             this.groupBoxWorkTime.Text = "Work Time";
@@ -276,10 +279,10 @@ namespace Timecards.Client
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2468, 1103);
+            this.ClientSize = new System.Drawing.Size(2521, 1103);
             this.Controls.Add(this.groupBoxWorkTime);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.Name = "FormMain";
@@ -292,7 +295,6 @@ namespace Timecards.Client
             this.splitContainerWorkTime.ResumeLayout(false);
             this.groupBoxWorkTime.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         private System.Windows.Forms.Button button1;
@@ -304,21 +306,21 @@ namespace Timecards.Client
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimeWorkDate;
-        private System.Windows.Forms.ComboBox comboBoxProject;
-        private System.Windows.Forms.Label labelRole;
-        private System.Windows.Forms.Label labelEmail;
-        private System.Windows.Forms.Label LabelUserName;
-        private System.Windows.Forms.Label labelLastName;
-        private System.Windows.Forms.Label labelFirstName;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button buttonNew;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private DateTimePicker dateTimeWorkDate;
+        private ComboBox comboBoxProject;
+        private Label labelRole;
+        private Label labelEmail;
+        private Label LabelUserName;
+        private Label labelLastName;
+        private Label labelFirstName;
+        private Label label6;
+        private Label label7;
+        private Button buttonNew;
         private System.Windows.Forms.SplitContainer splitContainerWorkTime;
         private System.Windows.Forms.GroupBox groupBoxWorkTime;
     }

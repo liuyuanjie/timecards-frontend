@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace Timecards.Client
 {
     partial class FormRegister
@@ -6,7 +9,7 @@ namespace Timecards.Client
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -284,23 +287,23 @@ namespace Timecards.Client
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxFullName;
-        private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxConfirmPassword;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkSignIn;
-        private System.Windows.Forms.RadioButton radioButtonStaff;
-        private System.Windows.Forms.RadioButton radioButtonAdmin;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBoxFirstName;
-        private System.Windows.Forms.TextBox textBoxLastName;
+        private Label label2;
+        private TextBox textBoxFullName;
+        private TextBox textBoxEmail;
+        private Label label3;
+        private TextBox textBoxPassword;
+        private Label label4;
+        private TextBox textBoxConfirmPassword;
+        private Label label5;
+        private Button button1;
+        private Label label1;
+        private LinkLabel linkSignIn;
+        private RadioButton radioButtonStaff;
+        private RadioButton radioButtonAdmin;
+        private GroupBox groupBox1;
+        private Label label6;
+        private Label label7;
+        private TextBox textBoxFirstName;
+        private TextBox textBoxLastName;
     }
 }

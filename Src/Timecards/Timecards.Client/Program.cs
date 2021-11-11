@@ -2,8 +2,6 @@
 using System.Configuration;
 using System.Windows.Forms;
 using Timecards.Infrastructure;
-using Timecards.Infrastructure.Model;
-using Timecards.Services;
 
 namespace Timecards.Client
 {
@@ -18,7 +16,7 @@ namespace Timecards.Client
             //ConfigurationManager.
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(SystmeExceptionHandler);
+            AppDomain.CurrentDomain.UnhandledException += SystmeExceptionHandler;
             var apiRequestFactory =
                 new ApiRequestFactory(new Uri(ConfigurationManager.AppSettings["baseUrl"]));
             System.Windows.Forms.Application.Run(new FormLogin(apiRequestFactory));
@@ -27,7 +25,7 @@ namespace Timecards.Client
         static void SystmeExceptionHandler(object sender, UnhandledExceptionEventArgs args)
         {
             var e = (Exception) args.ExceptionObject;
-            System.Windows.Forms.MessageBox.Show(e.ToString(), "System Error", MessageBoxButtons.OK);
+            MessageBox.Show(e.ToString(), "System Error", MessageBoxButtons.OK);
         }
     }
 }

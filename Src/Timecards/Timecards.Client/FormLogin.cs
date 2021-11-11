@@ -1,4 +1,4 @@
-﻿using System.Threading;
+﻿using System;
 using System.Windows.Forms;
 using Timecards.Application.Commands;
 using Timecards.Application.Commands.Login;
@@ -23,11 +23,11 @@ namespace Timecards.Client
         private void linkCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FormRegister formRegister = new FormRegister(_apiRequestFactory);
-            this.Hide();
+            Hide();
             formRegister.ShowDialog();
         }
 
-        private void buttonSignIn_Click(object sender, System.EventArgs e)
+        private void buttonSignIn_Click(object sender, EventArgs e)
         {
             var loginRequest = new LoginRequest
             {
@@ -35,7 +35,7 @@ namespace Timecards.Client
                 Password = textBoxPassword.Text
             };
 
-            _loginCommand.LoginAsync(loginRequest, (loginResponse) => CallbackProcess(loginResponse));
+            _loginCommand.LoginAsync(loginRequest, loginResponse => CallbackProcess(loginResponse));
         }
 
         private void CallbackProcess(ResponseBase<LoginResult> loginResponse)
@@ -43,7 +43,7 @@ namespace Timecards.Client
             if (loginResponse.ResponseState.IsSuccess)
             {
                 FormMain formMain = new FormMain(_apiRequestFactory);
-                this.Hide();
+                Hide();
                 formMain.ShowDialog();
             }
             else

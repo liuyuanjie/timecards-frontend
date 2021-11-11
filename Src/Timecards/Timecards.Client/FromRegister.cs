@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Timecards.Application.Commands;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
@@ -19,11 +20,11 @@ namespace Timecards.Client
 
         private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
+            Hide();
             new FormLogin(_apiRequestFactory).ShowDialog();
         }
 
-        private void buttonSignUp_Click(object sender, System.EventArgs e)
+        private void buttonSignUp_Click(object sender, EventArgs e)
         {
             var registerRequest = new RegisterRequest
             {
@@ -36,7 +37,7 @@ namespace Timecards.Client
                 RoleType = radioButtonAdmin.Checked ? RoleType.Admin : RoleType.Staff
             };
 
-            _registerCommand.RegisterAsync(registerRequest, (registerResponse) => CallbackProcess(registerResponse));
+            _registerCommand.RegisterAsync(registerRequest, registerResponse => CallbackProcess(registerResponse));
         }
 
         private void CallbackProcess(ResponseBase<RegisterResult> registerResponse)
@@ -44,7 +45,7 @@ namespace Timecards.Client
             if (registerResponse.ResponseState.IsSuccess)
             {
                 FormLogin fromLogin = new FormLogin(_apiRequestFactory);
-                this.Hide();
+                Hide();
                 fromLogin.CallbackFromRegister(registerResponse.ResponseResult.Email);
                 fromLogin.ShowDialog();
             }

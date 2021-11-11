@@ -48,6 +48,10 @@
   <ItemGroup>
     <Compile Include="Commands\Project\GetProjectsCommand.cs" />
     <Compile Include="Commands\Project\IGetProjectsCommand.cs" />
+    <Compile Include="Commands\Timecards\IQueryTimecardsCommand.cs" />
+    <Compile Include="Commands\Timecards\ISaveTimecardsCommand.cs" />
+    <Compile Include="Commands\Timecards\QueryTimecardsCommand.cs" />
+    <Compile Include="Commands\Timecards\SaveTimecardsCommand.cs" />
     <Compile Include="Commands\User\GetUserCommand.cs" />
     <Compile Include="Commands\User\IGetUserCommand.cs" />
     <Compile Include="Commands\Login\ILoginCommand.cs" />
