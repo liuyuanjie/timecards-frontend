@@ -23,10 +23,10 @@ namespace Timecards.Client
 
             _getProjectsCommand = new GetProjectsCommand(apiRequestFactory);
 
-            InitializaData();
+            InitialData();
         }
 
-        private void InitializaData()
+        private void InitialData()
         {
             labelFirstName.Text = AccountStore.Account.FirstName;
             labelLastName.Text = AccountStore.Account.LastName;
@@ -37,9 +37,8 @@ namespace Timecards.Client
             GetProjects();
         }
 
-        public void GetProjects()
+        private void GetProjects()
         {
-
             _getProjectsCommand.GetProjectsAsync((projectResponse) => CallbackProcess(projectResponse));
         }
 
@@ -58,9 +57,16 @@ namespace Timecards.Client
             }
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void buttonNew_Click(object sender, EventArgs e)
         {
-
+            var count = splitContainerWorkTime.Panel2.Controls
+                .Cast<Control>()
+                .Count(x => x.GetType() == typeof(TimecardsControl.InputWorkTime));
+            var inputWorkTime = new TimecardsControl.InputWorkTime(this.comboBoxProject.SelectedText, this.dateTimeWorkDate.Value)
+            {
+                Location = new Point(3, 3 + count * 100)
+            };
+            this.splitContainerWorkTime.Panel2.Controls.Add(inputWorkTime);
         }
     }
 }

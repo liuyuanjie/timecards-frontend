@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timecards.Client", "Timecards.Client\Timecards.Client.csproj", "{0C1D900F-1C79-4B02-A4CE-5141217872F5}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timecards.Infrastructure", "Timecards.Infrastructure\Timecards.Infrastructure.csproj", "{BCE93D34-5B73-4E75-B37E-C26242F04992}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timecards.Application", "Timecards.Application\Timecards.Application.csproj", "{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{BED9FD0D-0643-4BB3-8D05-A42E50EBC0C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimecardsControl", "TimecardsControl\TimecardsControl.csproj", "{389BA17D-3793-42BF-BE85-65936B91F3A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,17 @@ Global
 		{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACCDD8FF-5CE8-4FF0-B8A1-87561638B8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389BA17D-3793-42BF-BE85-65936B91F3A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{389BA17D-3793-42BF-BE85-65936B91F3A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{389BA17D-3793-42BF-BE85-65936B91F3A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389BA17D-3793-42BF-BE85-65936B91F3A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C1D900F-1C79-4B02-A4CE-5141217872F5} = {BED9FD0D-0643-4BB3-8D05-A42E50EBC0C9}
+		{389BA17D-3793-42BF-BE85-65936B91F3A0} = {BED9FD0D-0643-4BB3-8D05-A42E50EBC0C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D7B6C2A-745B-45FE-85B4-E672D09B50D7}

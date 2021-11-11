@@ -44,6 +44,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TimecardsControl">
+      <HintPath>..\TimecardsControl\obj\Debug\TimecardsControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormMain.cs">

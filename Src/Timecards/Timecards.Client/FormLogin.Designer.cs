@@ -117,9 +117,9 @@ namespace Timecards.Client
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(708, 732);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(696, 730);
             this.Controls.Add(this.linkCreateAccount);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonSignIn);
