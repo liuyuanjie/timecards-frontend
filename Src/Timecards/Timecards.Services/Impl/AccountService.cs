@@ -18,7 +18,7 @@ namespace Timecards.Services.Impl
 
         public void RegisterAsync(RegisterRequest registerRequest, Action<ResponseBase<RegisterResult>> callbackProcessHandler)
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
+            var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(registerRequest);
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost<RegisterResult>(request, (response, e) =>

@@ -6,7 +6,7 @@ namespace Timecards.Services.Impl
 {
     public class ServiceBase
     {
-        protected virtual ResponseBase<T> BuildAsyncResponseResult<T>(IRestResponse<T> response) where T : class
+        protected ResponseBase<T> BuildAsyncResponseResult<T>(IRestResponse<T> response) where T : class
         {
             var serverResponse = new ResponseBase<T>
             {
@@ -18,13 +18,14 @@ namespace Timecards.Services.Impl
                 serverResponse.ResponseResult = response.Data;
                 return serverResponse;
             }
-            
+
             CollectFailedStateMessage(response, serverResponse);
 
             return serverResponse;
         }
 
-        private static void CollectFailedStateMessage<T>(IRestResponse<T> response, ResponseBase<T> registerResponse) where T : class
+        private static void CollectFailedStateMessage<T>(IRestResponse<T> response, ResponseBase<T> registerResponse)
+            where T : class
         {
             if (response.ErrorException != null)
             {
@@ -39,6 +40,22 @@ namespace Timecards.Services.Impl
                 registerResponse.ResponseState.ResponseStateMessage =
                     JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content);
             }
+        }
+
+        protected ResponseState BuildResponseState(IRestResponse response)
+        {
+            var responseState = new ResponseState(response.StatusCode)
+            {
+                ResponseStateMessage = response.ErrorException != null
+                    ? new ResponseStateMessage
+                    {
+                        ErrorCode = "RequestFailed",
+                        ErrorMessage = response.ErrorMessage
+                    }
+                    : JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content)
+            };
+
+            return responseState;
         }
     }
 }

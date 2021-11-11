@@ -52,8 +52,10 @@
     <Compile Include="Impl\IdentityService.cs" />
     <Compile Include="Impl\ProjectService.cs" />
     <Compile Include="Impl\ServiceBase.cs" />
+    <Compile Include="Impl\TimecardsSerivice.cs" />
     <Compile Include="Impl\UserService.cs" />
     <Compile Include="IProjectService.cs" />
+    <Compile Include="ITimecardsServices.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

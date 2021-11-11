@@ -54,6 +54,9 @@
     <Compile Include="ApiRequestFactory.cs" />
     <Compile Include="Model\ProjectRequest.cs" />
     <Compile Include="Model\ProjectResult.cs" />
+    <Compile Include="Model\QueryTimecardsRequest.cs" />
+    <Compile Include="Model\SaveTimecardsRequest.cs" />
+    <Compile Include="Model\TimecardsResult.cs" />
     <Compile Include="Model\UserRequest.cs" />
     <Compile Include="Model\UserResult.cs" />
     <Compile Include="Model\LoginResult.cs" />

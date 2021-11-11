@@ -24,7 +24,7 @@ namespace Timecards.Services.Impl
             request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
             request.AddQueryParameter(nameof(UserRequest.Email), userRequest.Email);
 
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost<List<UserResult>>(request, (response, e) =>
+            _apiRequestFactory.CreateClient().ExecuteAsyncGet<List<UserResult>>(request, (response, e) =>
             {
                 callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
             }, Method.GET.ToString());
