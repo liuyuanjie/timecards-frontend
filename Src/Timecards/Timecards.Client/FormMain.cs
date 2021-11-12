@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Timecards.Application;
@@ -10,6 +9,7 @@ using Timecards.Application.Commands.Timecards;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using TimecardsControl;
+using TimecardsControl.Extensions;
 
 namespace Timecards.Client
 {
@@ -32,14 +32,19 @@ namespace Timecards.Client
 
         private void InitialData()
         {
+            InitialMyProfile();
+
+            GetProjects();
+            GetTimecardsOfDate(DateTime.Now.Date);
+        }
+
+        private void InitialMyProfile()
+        {
             labelFirstName.Text = AccountStore.Account.FirstName;
             labelLastName.Text = AccountStore.Account.LastName;
             labelEmail.Text = AccountStore.Account.Email;
             LabelUserName.Text = AccountStore.Account.UserName;
             labelRole.Text = AccountStore.Account.Role;
-
-            GetProjects();
-            GetTimecardsOfDate(DateTime.Now.Date);
         }
 
         private void GetProjects()
@@ -64,28 +69,23 @@ namespace Timecards.Client
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
-            var inputWorkTime = AnddInputWorkTime();
-            inputWorkTime.SaveTimecards = SaveTimecards;
+            var inputWorkTimeControl = AddInputWorkTimeControl();
+            inputWorkTimeControl.InputWorkTime.SaveTimecards = SaveTimecards;
+            inputWorkTimeControl.InputWorkTime.RemoveTimecards =
+                splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl;
         }
 
-        private InputWorkTime AnddInputWorkTime()
+        private InputWorkTimeControl AddInputWorkTimeControl()
         {
-            var timecardsControlHigh = 105;
-            var defaultPosition = 3;
-            var count = splitContainerWorkTime.Panel2.Controls
-                .Cast<Control>()
-                .Count(x => x.GetType() == typeof(InputWorkTime));
-
-            var inputWorkTime = new InputWorkTime(
-                AccountStore.Account.UserId,
-                new Guid(comboBoxProject.SelectedValue.ToString()),
-                comboBoxProject.Text,
-                dateTimeWorkDate.Value.Date)
+            var inputWorkTime = new InputWorkTime()
             {
-                Location = new Point(defaultPosition, defaultPosition + count * timecardsControlHigh)
+                UserId = AccountStore.Account.UserId,
+                ProjectId = new Guid(comboBoxProject.SelectedValue.ToString()),
+                ProjectName = comboBoxProject.Text,
+                TimecardsDate = dateTimeWorkDate.Value.Date
             };
-            splitContainerWorkTime.Panel2.Controls.Add(inputWorkTime);
-            return inputWorkTime;
+
+            return splitContainerWorkTime.Panel2.Controls.AddInputWorkTimeControl(inputWorkTime);
         }
 
         private void SaveTimecards(TimecardsDataSource timecardsDataSource)
@@ -109,20 +109,10 @@ namespace Timecards.Client
 
         private void CallbackProcess(ResponseState responseState)
         {
-            if (responseState.IsSuccess)
-            {
-                MessageBox.Show(
-                    "Save Successfully!",
-                    "Save",
-                    MessageBoxButtons.OK);
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Save Failed",
-                    "Save",
-                    MessageBoxButtons.OK);
-            }
+            MessageBox.Show(
+                responseState.IsSuccess ? "Save Successfully!" : "Save Failed",
+                "Save",
+                MessageBoxButtons.OK);
         }
 
         private void dateTimeWorkDate_ValueChanged(object sender, EventArgs e)
@@ -146,25 +136,7 @@ namespace Timecards.Client
         {
             if (responseResult.ResponseState.IsSuccess)
             {
-                RemoveAllInputWorkTimes();
-
-                responseResult.ResponseResult.ForEach(x =>
-                {
-                    var inputWorkTime = AnddInputWorkTime();
-                    inputWorkTime.InitialTimecards(new TimecardsDataSource()
-                    {
-                        UserId = x.UserId,
-                        ProjectId = x.ProjectId,
-                        TimecardsDate = x.TimecardsDate,
-                        Items = x.Items.Select(s =>
-                            new TimecardsControl.Item
-                            {
-                                Hour = s.Hour,
-                                Note = s.Note,
-                                WorkDay = s.WorkDay
-                            }).ToList()
-                    });
-                });
+                PopulateWorkTimes(responseResult);
             }
             else
             {
@@ -175,14 +147,26 @@ namespace Timecards.Client
             }
         }
 
-        private void RemoveAllInputWorkTimes()
+        private void PopulateWorkTimes(ResponseBase<List<TimecardsResult>> responseResult)
         {
-            var items = splitContainerWorkTime.Panel2.Controls
-                .Cast<Control>()
-                .Where(x => x.GetType() == typeof(InputWorkTime))
-                .Cast<InputWorkTime>()
-                .ToList();
-            items.ForEach(x => splitContainerWorkTime.Panel2.Controls.Remove(x));
+            splitContainerWorkTime.Panel2.Controls.RemoveAllInputWorkTimes();
+            responseResult.ResponseResult.ForEach(x =>
+            {
+                var inputWorkTime = AddInputWorkTimeControl();
+                var dataSource = new TimecardsDataSource()
+                {
+                    UserId = x.UserId,
+                    ProjectId = x.ProjectId,
+                    TimecardsDate = x.TimecardsDate,
+                    Items = x.Items.Select(s => new TimecardsControl.Item
+                    {
+                        Hour = s.Hour,
+                        Note = s.Note,
+                        WorkDay = s.WorkDay
+                    }).ToList()
+                };
+                inputWorkTime.InputWorkTime.InitialTimecards(dataSource);
+            });
         }
     }
 }

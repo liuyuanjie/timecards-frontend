@@ -69,6 +69,10 @@
       <Project>{3585b34a-c0aa-4e85-b8d6-f4ea6cccc5d5}</Project>
       <Name>Timecards.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TimecardsControl\TimecardsControl.csproj">
+      <Project>{389ba17d-3793-42bf-be85-65936b91f3a0}</Project>
+      <Name>TimecardsControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
