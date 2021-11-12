@@ -50,15 +50,15 @@ namespace TimecardsControl
             this.numericUpDownWorkTime6 = new System.Windows.Forms.NumericUpDown();
             this.labelDate6 = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxNote7 = new System.Windows.Forms.TextBox();
+            this.numericUpDownWorkTime7 = new System.Windows.Forms.NumericUpDown();
+            this.labelDate7 = new System.Windows.Forms.Label();
             this.labelTotalHour = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.labelWorkDate = new System.Windows.Forms.Label();
-            this.textBoxNote7 = new System.Windows.Forms.TextBox();
             this.labelProject = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.numericUpDownWorkTime7 = new System.Windows.Forms.NumericUpDown();
-            this.labelDate7 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime3)).BeginInit();
@@ -66,8 +66,8 @@ namespace TimecardsControl
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime6)).BeginInit();
             this.panelInput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime7)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime7)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDate1
@@ -257,6 +257,45 @@ namespace TimecardsControl
             this.panelInput.Size = new System.Drawing.Size(1843, 182);
             this.panelInput.TabIndex = 21;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (192)))), ((int) (((byte) (255)))), ((int) (((byte) (255)))));
+            this.panel1.Controls.Add(this.textBoxNote7);
+            this.panel1.Controls.Add(this.numericUpDownWorkTime7);
+            this.panel1.Controls.Add(this.labelDate7);
+            this.panel1.Controls.Add(this.textBoxNote6);
+            this.panel1.Controls.Add(this.numericUpDownWorkTime6);
+            this.panel1.Controls.Add(this.labelDate6);
+            this.panel1.Location = new System.Drawing.Point(1059, 54);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(430, 123);
+            this.panel1.TabIndex = 27;
+            // 
+            // textBoxNote7
+            // 
+            this.textBoxNote7.Location = new System.Drawing.Point(223, 77);
+            this.textBoxNote7.Name = "textBoxNote7";
+            this.textBoxNote7.Size = new System.Drawing.Size(192, 31);
+            this.textBoxNote7.TabIndex = 24;
+            // 
+            // numericUpDownWorkTime7
+            // 
+            this.numericUpDownWorkTime7.Location = new System.Drawing.Point(223, 39);
+            this.numericUpDownWorkTime7.Maximum = new decimal(new int[] {24, 0, 0, 0});
+            this.numericUpDownWorkTime7.Name = "numericUpDownWorkTime7";
+            this.numericUpDownWorkTime7.Size = new System.Drawing.Size(192, 31);
+            this.numericUpDownWorkTime7.TabIndex = 7;
+            this.numericUpDownWorkTime7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // labelDate7
+            // 
+            this.labelDate7.AutoSize = true;
+            this.labelDate7.Location = new System.Drawing.Point(229, 11);
+            this.labelDate7.Name = "labelDate7";
+            this.labelDate7.Size = new System.Drawing.Size(85, 25);
+            this.labelDate7.TabIndex = 22;
+            this.labelDate7.Text = "Sunday";
+            // 
             // labelTotalHour
             // 
             this.labelTotalHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
@@ -285,13 +324,6 @@ namespace TimecardsControl
             this.labelWorkDate.TabIndex = 23;
             this.labelWorkDate.Text = "WeekDate";
             // 
-            // textBoxNote7
-            // 
-            this.textBoxNote7.Location = new System.Drawing.Point(223, 77);
-            this.textBoxNote7.Name = "textBoxNote7";
-            this.textBoxNote7.Size = new System.Drawing.Size(192, 31);
-            this.textBoxNote7.TabIndex = 24;
-            // 
             // labelProject
             // 
             this.labelProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
@@ -311,38 +343,6 @@ namespace TimecardsControl
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // numericUpDownWorkTime7
-            // 
-            this.numericUpDownWorkTime7.Location = new System.Drawing.Point(223, 39);
-            this.numericUpDownWorkTime7.Maximum = new decimal(new int[] {24, 0, 0, 0});
-            this.numericUpDownWorkTime7.Name = "numericUpDownWorkTime7";
-            this.numericUpDownWorkTime7.Size = new System.Drawing.Size(192, 31);
-            this.numericUpDownWorkTime7.TabIndex = 7;
-            this.numericUpDownWorkTime7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // labelDate7
-            // 
-            this.labelDate7.AutoSize = true;
-            this.labelDate7.Location = new System.Drawing.Point(229, 11);
-            this.labelDate7.Name = "labelDate7";
-            this.labelDate7.Size = new System.Drawing.Size(85, 25);
-            this.labelDate7.TabIndex = 22;
-            this.labelDate7.Text = "Sunday";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (192)))), ((int) (((byte) (255)))), ((int) (((byte) (255)))));
-            this.panel1.Controls.Add(this.textBoxNote7);
-            this.panel1.Controls.Add(this.numericUpDownWorkTime7);
-            this.panel1.Controls.Add(this.labelDate7);
-            this.panel1.Controls.Add(this.textBoxNote6);
-            this.panel1.Controls.Add(this.numericUpDownWorkTime6);
-            this.panel1.Controls.Add(this.labelDate6);
-            this.panel1.Location = new System.Drawing.Point(1059, 54);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(430, 123);
-            this.panel1.TabIndex = 27;
-            // 
             // InputWorkTimeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -359,9 +359,9 @@ namespace TimecardsControl
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime6)).EndInit();
             this.panelInput.ResumeLayout(false);
             this.panelInput.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime7)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime7)).EndInit();
             this.ResumeLayout(false);
         }
 

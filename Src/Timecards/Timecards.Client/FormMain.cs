@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Timecards.Application;
 using Timecards.Application.Commands;
@@ -150,9 +151,11 @@ namespace Timecards.Client
         private void PopulateWorkTimes(ResponseBase<List<TimecardsResult>> responseResult)
         {
             splitContainerWorkTime.Panel2.Controls.RemoveAllInputWorkTimes();
+
+            this.labelFirstName.Text = Thread.CurrentThread.GetHashCode().ToString();
             responseResult.ResponseResult.ForEach(x =>
             {
-                var inputWorkTime = AddInputWorkTimeControl();
+                var inputWorkTimeControl = AddInputWorkTimeControl();
                 var dataSource = new TimecardsDataSource()
                 {
                     UserId = x.UserId,
@@ -165,7 +168,7 @@ namespace Timecards.Client
                         WorkDay = s.WorkDay
                     }).ToList()
                 };
-                inputWorkTime.InputWorkTime.InitialTimecards(dataSource);
+                inputWorkTimeControl.InputWorkTime.InitialTimecards(dataSource);
             });
         }
     }

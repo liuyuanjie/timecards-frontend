@@ -15,8 +15,7 @@ namespace Timecards.Services.Impl
 
             if (serverResponse.ResponseState.IsSuccess)
             {
-                // serverResponse.ResponseResult = response.Data;
-                serverResponse.ResponseResult = JsonConvert.DeserializeObject<T>(response.Content);
+                serverResponse.ResponseResult = response.Data;
                 return serverResponse;
             }
 
