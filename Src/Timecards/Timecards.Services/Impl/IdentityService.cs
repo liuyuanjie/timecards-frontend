@@ -29,7 +29,6 @@ namespace Timecards.Services.Impl
         private ResponseBase<LoginResult> BuildAsyncResponseResult(LoginRequest loginRequest,
             IRestResponse<LoginResult> response)
         {
-            response.Data.Email = loginRequest.Email;
             return base.BuildAsyncResponseResult(response);
         }
 

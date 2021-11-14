@@ -4,6 +4,6 @@ namespace Timecards.Application
 {
     public static class AccountStore
     {
-        public static UserResult Account { get; set; }        
+        public static AccountResult Account { get; set; }        
     }
 }

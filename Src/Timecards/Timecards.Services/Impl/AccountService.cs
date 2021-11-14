@@ -1,5 +1,6 @@
 ﻿using System;
 using RestSharp;
+using Timecards.Application;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 
@@ -7,7 +8,7 @@ namespace Timecards.Services.Impl
 {
     public class AccountService : ServiceBase, IAccountService
     {
-        const string IdentityTokenEndPoint = "account/register";
+        const string IdentityTokenEndPoint = "account";
 
         private readonly IApiRequestFactory _apiRequestFactory;
 
@@ -19,7 +20,7 @@ namespace Timecards.Services.Impl
         public void RegisterAsync(RegisterRequest registerRequest,
             Action<ResponseBase<RegisterResult>> callbackProcessHandler)
         {
-            var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
+            var request = new RestRequest($"{IdentityTokenEndPoint}/register", Method.POST);
             request.AddJsonBody(registerRequest);
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost<RegisterResult>(request,
@@ -35,6 +36,26 @@ namespace Timecards.Services.Impl
             var registerResponseResult = _apiRequestFactory.CreateClient().Execute<RegisterResult>(request);
 
             return BuildAsyncResponseResult(registerResponseResult);
+        }
+
+        public ResponseBase<AccountResult> GetAccount(UserRequest userRequest)
+        {
+            var request = new RestRequest($"{IdentityTokenEndPoint}/{userRequest.AccountId}", Method.GET);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+
+            var accountResponseResult = _apiRequestFactory.CreateClient().Execute<AccountResult>(request);
+
+            return BuildAsyncResponseResult(accountResponseResult);
+        }
+
+        public void GetAccountAsync(UserRequest userRequest, Action<ResponseBase<AccountResult>> callbackProcessHandler)
+        {
+            var request = new RestRequest($"{IdentityTokenEndPoint}/{userRequest.AccountId}", Method.GET);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+
+            _apiRequestFactory.CreateClient().ExecuteAsyncGet<AccountResult>(request,
+                (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(response)); },
+                Method.GET.ToString());
         }
     }
 }

@@ -72,7 +72,7 @@ namespace Timecards.Client
         {
             var inputWorkTime = new InputWorkTime()
             {
-                UserId = AccountStore.Account.UserId,
+                UserId = AccountStore.Account.AccountId,
                 ProjectId = new Guid(comboBoxProject.SelectedValue.ToString()),
                 ProjectName = comboBoxProject.Text,
                 TimecardsDate = dateTimeWorkDate.Value.Date.AddHours(8)
@@ -95,7 +95,7 @@ namespace Timecards.Client
             var saveTimecardsRequest = new SaveTimecardsRequest()
             {
                 ProjectId = timecardsDataSource.ProjectId,
-                UserId = AccountStore.Account.UserId,
+                UserId = AccountStore.Account.AccountId,
                 TimecardsDate = timecardsDataSource.TimecardsDate.ToUniversalTime(),
                 Items = timecardsDataSource.Items.Select(x => new ItemcardsItem()
                 {
@@ -126,7 +126,7 @@ namespace Timecards.Client
         {
             var queryTimecardsRequest = new QueryTimecardsRequest()
             {
-                UserId = AccountStore.Account.UserId,
+                UserId = AccountStore.Account.AccountId,
                 TimecardsDate = date.ToUniversalTime()
             };
 

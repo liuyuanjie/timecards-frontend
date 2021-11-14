@@ -52,6 +52,7 @@
     <Compile Include="AccountStore.cs" />
     <Compile Include="IApiRequestFactory.cs" />
     <Compile Include="ApiRequestFactory.cs" />
+    <Compile Include="Model\AccountResult.cs" />
     <Compile Include="Model\ProjectRequest.cs" />
     <Compile Include="Model\ProjectResult.cs" />
     <Compile Include="Model\QueryTimecardsRequest.cs" />

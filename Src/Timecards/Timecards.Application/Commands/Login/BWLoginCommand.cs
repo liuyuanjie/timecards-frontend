@@ -12,13 +12,13 @@ namespace Timecards.Application.Commands.Login
     public class BWLoginCommand : ILoginCommand
     {
         private readonly IdentityService _identityService;
-        private readonly IUserService _userService;
+        private readonly IAccountService _accountService;
         private BackgroundWorker _backgroundWorker;
 
         public BWLoginCommand(IApiRequestFactory apiRequestFactory)
         {
             _identityService = new IdentityService(apiRequestFactory);
-            _userService = new UserService(apiRequestFactory);
+            _accountService = new AccountService(apiRequestFactory);
         }
 
         public void LoginAsync(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcess)
@@ -43,22 +43,17 @@ namespace Timecards.Application.Commands.Login
             }
             else
             {
-                loginResponseResult.ResponseResult.Email = loginRequest.Email;
-                TokenStore.Login = new LoginResult
-                {
-                    Token = loginResponseResult.ResponseResult.Token,
-                    Email = loginRequest.Email
-                };
+                TokenStore.Login = loginResponseResult.ResponseResult;
                 e.Result = StoreMyProfile(loginResponseResult);
             }
         }
 
         private ResponseBase<LoginResult> StoreMyProfile(ResponseBase<LoginResult> loginResponseResult)
         {
-            var userResponseResult = GetLoginAccount(loginResponseResult.ResponseResult.Email);
+            var userResponseResult = GetLoginAccount(loginResponseResult.ResponseResult.AccountId);
             if (userResponseResult.ResponseState.IsSuccess)
             {
-                AccountStore.Account = userResponseResult.ResponseResult.First();
+                AccountStore.Account = userResponseResult.ResponseResult;
             }
 
             return new ResponseBase<LoginResult>()
@@ -68,13 +63,13 @@ namespace Timecards.Application.Commands.Login
             };
         }
 
-        private ResponseBase<List<UserResult>> GetLoginAccount(string email)
+        private ResponseBase<AccountResult> GetLoginAccount(Guid accountId)
         {
-            var userResponseResult = _userService.GetUser(new UserRequest
+            var userRequest = new UserRequest
             {
-                Email = email
-            });
-
+                AccountId = accountId
+            };
+            var userResponseResult = _accountService.GetAccount(userRequest);
             return userResponseResult;
         }
     }

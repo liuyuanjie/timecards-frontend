@@ -11,11 +11,13 @@ namespace Timecards.Application.Commands.Login
     {
         private readonly IdentityService _identityService;
         private readonly IUserService _userService;
+        private readonly IAccountService _accountService;
 
         public LoginCommand(IApiRequestFactory apiRequestFactory)
         {
             _identityService = new IdentityService(apiRequestFactory);
             _userService = new UserService(apiRequestFactory);
+            _accountService = new AccountService(apiRequestFactory);
         }
 
         public void LoginAsync(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcess)
@@ -56,14 +58,14 @@ namespace Timecards.Application.Commands.Login
 
         private void GetLoginAccount(Action<ResponseBase<LoginResult>> callbackProcess, ResponseBase<LoginResult> responseResult)
         {
-            _userService.GetUserAsync(new UserRequest
+            _accountService.GetAccountAsync(new UserRequest
             {
-                Email = responseResult.ResponseResult.Email
+                AccountId = responseResult.ResponseResult.AccountId
             }, userResponseResult =>
             {
                 if (responseResult.ResponseState.IsSuccess)
                 {
-                    AccountStore.Account = userResponseResult.ResponseResult.First();
+                    AccountStore.Account = userResponseResult.ResponseResult;
                 }
 
                 callbackProcess(new ResponseBase<LoginResult>()

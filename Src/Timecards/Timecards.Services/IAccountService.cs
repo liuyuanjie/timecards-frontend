@@ -11,5 +11,7 @@ namespace Timecards.Services
     {
         void RegisterAsync(RegisterRequest registerRequest, Action<ResponseBase<RegisterResult>> callbackProcessHandler);
         ResponseBase<RegisterResult> Register(RegisterRequest registerRequest);
+        ResponseBase<AccountResult> GetAccount(UserRequest userRequest);
+        void GetAccountAsync(UserRequest userRequest, Action<ResponseBase<AccountResult>> callbackProcessHandler);
     }
 }
