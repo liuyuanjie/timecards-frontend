@@ -28,10 +28,20 @@ namespace Timecards.Services.Impl
                 queryTimecardsRequest.TimecardsDate.ToString());
 
             _apiRequestFactory.CreateClient().ExecuteAsyncGet<List<TimecardsResult>>(request,
-                (response, e) => { 
-                    callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
-                },
+                (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(response)); },
                 Method.GET.ToString());
+        }
+
+        public ResponseBase<List<TimecardsResult>> GetTimecards(QueryTimecardsRequest queryTimecardsRequest)
+        {
+            var request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddQueryParameter(nameof(QueryTimecardsRequest.UserId), queryTimecardsRequest.UserId.ToString());
+            request.AddQueryParameter(nameof(QueryTimecardsRequest.TimecardsDate),
+                queryTimecardsRequest.TimecardsDate.ToString());
+            var response = _apiRequestFactory.CreateClient().Execute<List<TimecardsResult>>(request);
+
+            return BuildAsyncResponseResult(response);
         }
 
         public void SaveTimecardsAsync(SaveTimecardsRequest saveTimecardsRequest,

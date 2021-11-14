@@ -46,8 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Login\BWLoginCommand.cs" />
+    <Compile Include="Commands\Project\BWGetProjectsCommand.cs" />
     <Compile Include="Commands\Project\GetProjectsCommand.cs" />
     <Compile Include="Commands\Project\IGetProjectsCommand.cs" />
+    <Compile Include="Commands\Register\BWRegisterCommand.cs" />
+    <Compile Include="Commands\Timecards\BWQueryTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\IQueryTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\ISaveTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\QueryTimecardsCommand.cs" />

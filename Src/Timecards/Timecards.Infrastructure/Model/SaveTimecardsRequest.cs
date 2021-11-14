@@ -8,10 +8,10 @@ namespace Timecards.Infrastructure.Model
         public Guid UserId { get; set; }
         public Guid ProjectId { get; set; }
         public DateTime TimecardsDate { get; set; }
-        public List<Item> Items { get; set; }
+        public List<ItemcardsItem> Items { get; set; }
     }
     
-    public class Item
+    public class ItemcardsItem
     {
         public DateTime WorkDay { get; set; }
         public decimal Hour { get; set; }

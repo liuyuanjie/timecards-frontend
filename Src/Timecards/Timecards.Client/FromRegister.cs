@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Timecards.Application.Commands;
+using Timecards.Application.Commands.Register;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 
@@ -15,7 +16,7 @@ namespace Timecards.Client
         {
             InitializeComponent();
             _apiRequestFactory = apiRequestFactory;
-            _registerCommand = new RegisterCommand(apiRequestFactory);
+            _registerCommand = new BWRegisterCommand(apiRequestFactory);
         }
 
         private void linkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

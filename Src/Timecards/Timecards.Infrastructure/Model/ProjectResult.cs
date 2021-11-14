@@ -32,7 +32,7 @@ namespace Timecards.Infrastructure.Model
 
         private static string GetExpectedLengthName(string name)
         {
-            var MaxNameDisplayLength = 42;
+            var MaxNameDisplayLength = 70;
             var expectedNameLength = (MaxNameDisplayLength - name.Length) / 2 + name.Length;
             return name.PadLeft(expectedNameLength, '-') +
                    name.PadRight(expectedNameLength, '-').Substring(name.Length);

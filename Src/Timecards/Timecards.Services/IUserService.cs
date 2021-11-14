@@ -10,5 +10,6 @@ namespace Timecards.Services
     public interface IUserService
     {
         void GetUserAsync(UserRequest userRequest, Action<ResponseBase<List<UserResult>>> callbackProcessHandler);
+        ResponseBase<List<UserResult>> GetUser(UserRequest userRequest);
     }
 }

@@ -16,8 +16,7 @@ namespace Timecards.Client
         {
             InitializeComponent();
             _apiRequestFactory = apiRequestFactory;
-            _loginCommand = new LoginCommand(apiRequestFactory);
-
+            _loginCommand = new BWLoginCommand(apiRequestFactory);
         }
 
         private void linkCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -29,5 +29,16 @@ namespace Timecards.Services.Impl
                 callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
             }, Method.GET.ToString());
         }
+        
+        public ResponseBase<List<UserResult>> GetUser(UserRequest userRequest)
+        {
+            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddQueryParameter(nameof(UserRequest.Email), userRequest.Email);
+
+            var getUserResponseResult = _apiRequestFactory.CreateClient().Execute<List<UserResult>>(request);
+
+            return BuildAsyncResponseResult(getUserResponseResult);
+        }
     }
 }

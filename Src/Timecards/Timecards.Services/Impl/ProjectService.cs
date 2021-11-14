@@ -23,10 +23,17 @@ namespace Timecards.Services.Impl
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
             request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
 
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost<List<Project>>(request, (response, e) =>
-            {
-                callbackProcessHandler.Invoke(BuildAsyncResponseResult(response));
-            }, Method.GET.ToString());
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost<List<Project>>(request,
+                (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(response)); },
+                Method.GET.ToString());
+        }
+
+        public ResponseBase<List<Project>> GetProjects()
+        {
+            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+
+            return BuildAsyncResponseResult(_apiRequestFactory.CreateClient().Execute<List<Project>>(request));
         }
     }
 }

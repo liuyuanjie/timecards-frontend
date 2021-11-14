@@ -18,19 +18,29 @@ namespace Timecards.Services.Impl
 
         public void LoginAsync(LoginRequest loginRequest, Action<ResponseBase<LoginResult>> callbackProcessHandler)
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.POST);
+            var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(loginRequest);
 
-            _apiRequestFactory.CreateClient().ExecuteAsyncPost<LoginResult>(request, (response, e) =>
-            {
-                callbackProcessHandler.Invoke(BuildAsyncResponseResult(loginRequest, response));
-            }, Method.POST.ToString());
+            _apiRequestFactory.CreateClient().ExecuteAsyncPost<LoginResult>(request,
+                (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(loginRequest, response)); },
+                Method.POST.ToString());
         }
 
-        private ResponseBase<LoginResult> BuildAsyncResponseResult(LoginRequest loginRequest, IRestResponse<LoginResult> response)
+        private ResponseBase<LoginResult> BuildAsyncResponseResult(LoginRequest loginRequest,
+            IRestResponse<LoginResult> response)
         {
             response.Data.Email = loginRequest.Email;
             return base.BuildAsyncResponseResult(response);
+        }
+
+        public ResponseBase<LoginResult> Login(LoginRequest loginRequest)
+        {
+            var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
+            request.AddJsonBody(loginRequest);
+
+            var responseResult = base.BuildAsyncResponseResult(_apiRequestFactory.CreateClient().Execute<LoginResult>(request));
+
+            return responseResult;
         }
     }
 }

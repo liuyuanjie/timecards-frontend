@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using Timecards.Application;
 using Timecards.Application.Commands;
@@ -24,8 +23,8 @@ namespace Timecards.Client
         {
             InitializeComponent();
 
-            _getProjectsCommand = new GetProjectsCommand(apiRequestFactory);
-            _queryTimecardsCommand = new QueryTimecardsCommand(apiRequestFactory);
+            _getProjectsCommand = new BWGetProjectsCommand(apiRequestFactory);
+            _queryTimecardsCommand = new BWQueryTimecardsCommand(apiRequestFactory);
             _saveTimecardsCommand = new SaveTimecardsCommand(apiRequestFactory);
 
             InitialData();
@@ -36,7 +35,8 @@ namespace Timecards.Client
             InitialMyProfile();
 
             GetProjects();
-            GetTimecardsOfDate(DateTime.Now.Date);
+            GetTimecardsOfDate(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0,
+                DateTimeKind.Utc));
         }
 
         private void InitialMyProfile()
@@ -70,23 +70,24 @@ namespace Timecards.Client
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
-            var inputWorkTimeControl = AddInputWorkTimeControl();
-            inputWorkTimeControl.InputWorkTime.SaveTimecards = SaveTimecards;
-            inputWorkTimeControl.InputWorkTime.RemoveTimecards =
-                splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl;
-        }
-
-        private InputWorkTimeControl AddInputWorkTimeControl()
-        {
             var inputWorkTime = new InputWorkTime()
             {
                 UserId = AccountStore.Account.UserId,
                 ProjectId = new Guid(comboBoxProject.SelectedValue.ToString()),
                 ProjectName = comboBoxProject.Text,
-                TimecardsDate = dateTimeWorkDate.Value.Date
+                TimecardsDate = dateTimeWorkDate.Value.Date.AddHours(8)
             };
+            AddInputWorkTimeControl(inputWorkTime);
+        }
 
-            return splitContainerWorkTime.Panel2.Controls.AddInputWorkTimeControl(inputWorkTime);
+        private InputWorkTimeControl AddInputWorkTimeControl(InputWorkTime inputWorkTime)
+        {
+            var inputWorkTimeControl = splitContainerWorkTime.Panel2.Controls.AddInputWorkTimeControl(inputWorkTime);
+            inputWorkTimeControl.InputWorkTime.SaveTimecards = SaveTimecards;
+            inputWorkTimeControl.InputWorkTime.RemoveTimecards =
+                splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl;
+
+            return inputWorkTimeControl;
         }
 
         private void SaveTimecards(TimecardsDataSource timecardsDataSource)
@@ -95,10 +96,10 @@ namespace Timecards.Client
             {
                 ProjectId = timecardsDataSource.ProjectId,
                 UserId = AccountStore.Account.UserId,
-                TimecardsDate = timecardsDataSource.TimecardsDate,
-                Items = timecardsDataSource.Items.Select(x => new Infrastructure.Model.Item()
+                TimecardsDate = timecardsDataSource.TimecardsDate.ToUniversalTime(),
+                Items = timecardsDataSource.Items.Select(x => new ItemcardsItem()
                 {
-                    WorkDay = x.WorkDay,
+                    WorkDay = x.WorkDay.ToUniversalTime(),
                     Hour = x.Hour,
                     Note = x.Note
                 }).ToList()
@@ -118,7 +119,7 @@ namespace Timecards.Client
 
         private void dateTimeWorkDate_ValueChanged(object sender, EventArgs e)
         {
-            GetTimecardsOfDate(dateTimeWorkDate.Value.Date);
+            GetTimecardsOfDate(dateTimeWorkDate.Value.Date.AddHours(8));
         }
 
         private void GetTimecardsOfDate(DateTime date)
@@ -126,7 +127,7 @@ namespace Timecards.Client
             var queryTimecardsRequest = new QueryTimecardsRequest()
             {
                 UserId = AccountStore.Account.UserId,
-                TimecardsDate = date
+                TimecardsDate = date.ToUniversalTime()
             };
 
             _queryTimecardsCommand.GetAsync(queryTimecardsRequest,
@@ -152,16 +153,22 @@ namespace Timecards.Client
         {
             splitContainerWorkTime.Panel2.Controls.RemoveAllInputWorkTimes();
 
-            this.labelFirstName.Text = Thread.CurrentThread.GetHashCode().ToString();
             responseResult.ResponseResult.ForEach(x =>
             {
-                var inputWorkTimeControl = AddInputWorkTimeControl();
+                var inputWorkTime = new InputWorkTime()
+                {
+                    UserId = x.UserId,
+                    ProjectId =x.ProjectId,
+                    ProjectName = comboBoxProject.Items.Cast<Project>().First(p => p.ProjectId == x.ProjectId).Name,
+                    TimecardsDate = x.TimecardsDate.Date
+                };
+                var inputWorkTimeControl = AddInputWorkTimeControl(inputWorkTime);
                 var dataSource = new TimecardsDataSource()
                 {
                     UserId = x.UserId,
                     ProjectId = x.ProjectId,
                     TimecardsDate = x.TimecardsDate,
-                    Items = x.Items.Select(s => new TimecardsControl.Item
+                    Items = x.Items.Select(s => new Item
                     {
                         Hour = s.Hour,
                         Note = s.Note,

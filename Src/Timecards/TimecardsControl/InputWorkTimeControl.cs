@@ -15,6 +15,7 @@ namespace TimecardsControl
             InputWorkTime = inputWorkTime;
             labelProject.Text = inputWorkTime.ProjectName;
             labelWorkDate.Text = GetWorkTimeDisplay();
+            InputWorkTime.InitialTimecards = PopulateTimecards;
         }
 
         private string GetWorkTimeDisplay()

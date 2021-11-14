@@ -8,6 +8,6 @@ namespace Timecards.Services
     {
         void GetTimecardsAsync(QueryTimecardsRequest queryTimecardsRequest, Action<ResponseBase<List<TimecardsResult>>> callbackProcessHandler);
         void SaveTimecardsAsync(SaveTimecardsRequest saveTimecardsRequest, Action<ResponseState> callbackProcessHandler);
-
+        ResponseBase<List<TimecardsResult>> GetTimecards(QueryTimecardsRequest queryTimecardsRequest);
     }
 }

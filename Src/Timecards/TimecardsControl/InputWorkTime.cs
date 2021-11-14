@@ -20,7 +20,6 @@ namespace TimecardsControl
         public string ProjectName { get; set; }
 
         private const byte DaysInWeek = 7;
-
         private DateTime GetFirstDayOfWeek(DateTime day)
         {
             return day.AddDays(-(day.DayOfWeek == DayOfWeek.Sunday
