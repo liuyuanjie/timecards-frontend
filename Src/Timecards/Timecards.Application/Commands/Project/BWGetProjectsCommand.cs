@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
-using Timecards.Services;
 using Timecards.Services.Impl;
 
 namespace Timecards.Application.Commands.Project

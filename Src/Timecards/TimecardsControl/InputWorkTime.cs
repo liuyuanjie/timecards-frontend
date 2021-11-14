@@ -9,6 +9,7 @@ namespace TimecardsControl
         public Action<InputWorkTimeControl> RemoveTimecards { get; set; }
         public Guid UserId { get; set; }
         public Guid ProjectId { get; set; }
+        public Guid? TimecardsId { get; set; }
 
         private DateTime _dateTime;
         public DateTime TimecardsDate

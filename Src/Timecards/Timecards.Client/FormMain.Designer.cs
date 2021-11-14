@@ -57,6 +57,7 @@ namespace Timecards.Client
             this.splitContainerWorkTime = new System.Windows.Forms.SplitContainer();
             this.groupBoxWorkTime = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).BeginInit();
             this.splitContainerWorkTime.Panel1.SuspendLayout();
             this.splitContainerWorkTime.SuspendLayout();
             this.groupBoxWorkTime.SuspendLayout();
@@ -171,6 +172,7 @@ namespace Timecards.Client
             // 
             // buttonNew
             // 
+            this.buttonNew.Enabled = false;
             this.buttonNew.Location = new System.Drawing.Point(8, 269);
             this.buttonNew.Name = "buttonNew";
             this.buttonNew.Size = new System.Drawing.Size(496, 62);
@@ -199,12 +201,13 @@ namespace Timecards.Client
             // 
             // comboBoxProject
             // 
-            this.comboBoxProject.Font = new System.Drawing.Font("Cascadia Mono", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.comboBoxProject.FormattingEnabled = true;
             this.comboBoxProject.Location = new System.Drawing.Point(8, 174);
             this.comboBoxProject.Name = "comboBoxProject";
-            this.comboBoxProject.Size = new System.Drawing.Size(496, 36);
+            this.comboBoxProject.Size = new System.Drawing.Size(496, 33);
             this.comboBoxProject.TabIndex = 2;
+            this.comboBoxProject.SelectedValueChanged += new System.EventHandler(this.comboBoxProject_SelectedValueChanged);
             // 
             // dateTimePicker1
             // 
@@ -215,11 +218,11 @@ namespace Timecards.Client
             // 
             // comboBox1
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Cascadia Mono", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(9, 157);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(496, 36);
+            this.comboBox1.Size = new System.Drawing.Size(496, 33);
             this.comboBox1.TabIndex = 2;
             // 
             // label9
@@ -283,7 +286,7 @@ namespace Timecards.Client
             this.ClientSize = new System.Drawing.Size(2472, 1243);
             this.Controls.Add(this.groupBoxWorkTime);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.Name = "FormMain";
@@ -293,10 +296,10 @@ namespace Timecards.Client
             this.groupBox1.PerformLayout();
             this.splitContainerWorkTime.Panel1.ResumeLayout(false);
             this.splitContainerWorkTime.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).EndInit();
             this.splitContainerWorkTime.ResumeLayout(false);
             this.groupBoxWorkTime.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         private System.Windows.Forms.Button button1;
@@ -314,7 +317,7 @@ namespace Timecards.Client
         private Label label2;
         private Label label1;
         private DateTimePicker dateTimeWorkDate;
-        private ComboBox comboBoxProject;
+        private System.Windows.Forms.ComboBox comboBoxProject;
         private Label labelRole;
         private Label labelEmail;
         private Label LabelUserName;
@@ -322,7 +325,7 @@ namespace Timecards.Client
         private Label labelFirstName;
         private Label label6;
         private Label label7;
-        private Button buttonNew;
+        private System.Windows.Forms.Button buttonNew;
         private System.Windows.Forms.SplitContainer splitContainerWorkTime;
         private System.Windows.Forms.GroupBox groupBoxWorkTime;
     }

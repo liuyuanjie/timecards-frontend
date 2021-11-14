@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using Timecards.Services;

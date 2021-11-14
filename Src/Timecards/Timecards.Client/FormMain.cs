@@ -77,7 +77,12 @@ namespace Timecards.Client
                 ProjectName = comboBoxProject.Text,
                 TimecardsDate = dateTimeWorkDate.Value.Date.AddHours(8)
             };
-            AddInputWorkTimeControl(inputWorkTime);
+            var inputWorkTimeControl = AddInputWorkTimeControl(inputWorkTime);
+
+            inputWorkTimeControl.InputWorkTime.InitialTimecards(new TimecardsDataSource
+            {
+                TimecardsDate = inputWorkTime.TimecardsDate
+            });
         }
 
         private InputWorkTimeControl AddInputWorkTimeControl(InputWorkTime inputWorkTime)
@@ -96,6 +101,7 @@ namespace Timecards.Client
             {
                 ProjectId = timecardsDataSource.ProjectId,
                 UserId = AccountStore.Account.AccountId,
+                TimecardsId = timecardsDataSource.TimecardsId,
                 TimecardsDate = timecardsDataSource.TimecardsDate.ToUniversalTime(),
                 Items = timecardsDataSource.Items.Select(x => new ItemcardsItem()
                 {
@@ -158,16 +164,14 @@ namespace Timecards.Client
                 var inputWorkTime = new InputWorkTime()
                 {
                     UserId = x.UserId,
-                    ProjectId =x.ProjectId,
+                    ProjectId = x.ProjectId,
+                    TimecardsId = x.TimecardsId,
                     ProjectName = comboBoxProject.Items.Cast<Project>().First(p => p.ProjectId == x.ProjectId).Name,
                     TimecardsDate = x.TimecardsDate.Date
                 };
                 var inputWorkTimeControl = AddInputWorkTimeControl(inputWorkTime);
                 var dataSource = new TimecardsDataSource()
                 {
-                    UserId = x.UserId,
-                    ProjectId = x.ProjectId,
-                    TimecardsDate = x.TimecardsDate,
                     Items = x.Items.Select(s => new Item
                     {
                         Hour = s.Hour,
@@ -177,6 +181,12 @@ namespace Timecards.Client
                 };
                 inputWorkTimeControl.InputWorkTime.InitialTimecards(dataSource);
             });
+        }
+
+        private void comboBoxProject_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var comboBox = (ComboBox) sender;
+            buttonNew.Enabled = ((Project) comboBox.SelectedItem).ParentProjectId.HasValue;
         }
     }
 }

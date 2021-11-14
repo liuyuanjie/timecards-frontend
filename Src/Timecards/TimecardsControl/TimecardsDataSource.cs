@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TimecardsControl
 {
@@ -9,7 +10,33 @@ namespace TimecardsControl
         public Guid ProjectId { get; set; }
         public string ProjectName { get; set; }
         public DateTime TimecardsDate { get; set; }
-        public List<Item> Items { get; set; }
+
+        private List<Item> _items;
+
+        public List<Item> Items
+        {
+            set { _items = value; }
+            get
+            {
+                if (_items != null && _items.Any())
+                {
+                    return _items;
+                }
+
+                var items = new List<Item>();
+                for (var i = 0; i < 7; i++)
+                {
+                    items.Add(new Item()
+                    {
+                        WorkDay = TimecardsDate.AddDays(i)
+                    });
+                }
+
+                return items;
+            }
+        }
+
+        public Guid? TimecardsId { get; set; }
     }
 
     public class Item

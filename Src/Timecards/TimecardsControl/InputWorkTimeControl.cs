@@ -20,9 +20,10 @@ namespace TimecardsControl
 
         private string GetWorkTimeDisplay()
         {
-            return $"{InputWorkTime.TimecardsDate.ToString("M")} - {InputWorkTime.TimecardsDate.AddDays(7).ToString("M")}";
+            return
+                $"{InputWorkTime.TimecardsDate.ToString("M")} - {InputWorkTime.TimecardsDate.AddDays(7).ToString("M")}";
         }
-        
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             var dataSource = new TimecardsDataSource()
@@ -35,7 +36,7 @@ namespace TimecardsControl
                     {
                         WorkDay = InputWorkTime.TimecardsDate,
                         Hour = numericUpDownWorkTime1.Value,
-                        Note = textBoxNote1.Text
+                        Note = textBoxNote1.Text,
                     },
                     new Item()
                     {
@@ -81,37 +82,45 @@ namespace TimecardsControl
 
         private void PopulateTimecards(TimecardsDataSource timecardsDataSource)
         {
-            InputWorkTime.UserId = timecardsDataSource.UserId;
-            InputWorkTime.ProjectId = timecardsDataSource.ProjectId;
-            InputWorkTime.TimecardsDate = timecardsDataSource.TimecardsDate;
-
             var items = timecardsDataSource.Items.OrderBy(x => x.WorkDay).ToList();
+            for (int i = 1; i <= items.Count; i++)
+            {
+                var workHour = panelInput.Controls.Find($"numericUpDownWorkTime{i}", true)[0];
+                workHour.TextChanged += UpdateTotalHours;
+                workHour.Text = items[i - 1].Hour.ToString();
+                var workNote = panelInput.Controls.Find($"textBoxNote{i}", true)[0];
+                workNote.Text = items[i - 1].Note;
+                var workDay = panelInput.Controls.Find($"labelMonth{i}", true)[0];
+                workDay.Text = InputWorkTime.TimecardsDate.AddDays(i - 1).Day.ToString("00");
+            }
 
-            numericUpDownWorkTime1.Value = items[0].Hour;
-            textBoxNote1.Text = items[0].Note;
+            labelSaveStatues.Text = InputWorkTime.TimecardsId != null ? "SAVED" : "UNSAVED";
+            labelTotalHour.Text = items.Sum(x => x.Hour).ToString("F1");
+        }
 
-            numericUpDownWorkTime2.Value = items[1].Hour;
-            textBoxNote2.Text = items[1].Note;
+        private void UpdateTotalHours(object sender, EventArgs e)
+        {
+            var totalHour = 0.0;
+            for (int i = 1; i <= 7; i++)
+            {
+                totalHour += double.Parse(panelInput.Controls.Find($"numericUpDownWorkTime{i}", true)[0].Text);
+            }
 
-            numericUpDownWorkTime3.Value = items[2].Hour;
-            textBoxNote3.Text = items[2].Note;
-
-            numericUpDownWorkTime4.Value = items[3].Hour;
-            textBoxNote4.Text = items[3].Note;
-
-            numericUpDownWorkTime5.Value = items[4].Hour;
-            textBoxNote5.Text = items[4].Note;
-
-            numericUpDownWorkTime6.Value = items[5].Hour;
-            textBoxNote6.Text = items[5].Note;
-
-            numericUpDownWorkTime7.Value = items[6].Hour;
-            textBoxNote7.Text = items[6].Note;
+            labelTotalHour.Text = totalHour.ToString("F1");
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             InputWorkTime.RemoveTimecards(this);
+        }
+
+        private void buttonNote_Click(object sender, EventArgs e)
+        {
+            for (int i = 1; i <= 7; i++)
+            {
+                var workNote = panelInput.Controls.Find($"textBoxNote{i}", true)[0];
+                workNote.Visible = true;
+            }
         }
     }
 }
