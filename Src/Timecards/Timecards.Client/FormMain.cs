@@ -20,6 +20,8 @@ namespace Timecards.Client
         private readonly ISaveTimecardsCommand _saveTimecardsCommand;
         private readonly IDeleteTimecardsCommand _deleteTimecardsCommand;
 
+        private List<InputWorkTime> _inputWorkTimes;
+
         public FormMain(IApiRequestFactory apiRequestFactory)
         {
             InitializeComponent();
@@ -29,16 +31,17 @@ namespace Timecards.Client
             _saveTimecardsCommand = new BWSaveTimecardsCommand(apiRequestFactory);
             _deleteTimecardsCommand = new BWDeleteTimecardsCommand(apiRequestFactory);
 
+            _inputWorkTimes = new List<InputWorkTime>();
+
             InitialData();
         }
 
         private void InitialData()
         {
             InitialMyProfile();
-
             GetProjects();
-            var utcToday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
-                0, 0, 0, DateTimeKind.Utc);
+
+            var utcToday = DateTime.Today.ConvertToUTCDate();
             GetTimecardsOfDate(utcToday);
         }
 
@@ -80,8 +83,8 @@ namespace Timecards.Client
                 ProjectName = comboBoxProject.Text,
                 TimecardsDate = dateTimeWorkDate.Value.Date.AddHours(8)
             };
-            var inputWorkTimeControl = AddInputWorkTimeControl(inputWorkTime);
 
+            var inputWorkTimeControl = AddInputWorkTimeControl(inputWorkTime);
             inputWorkTimeControl.InputWorkTime.InitialTimecards(new TimecardsDataSource
             {
                 TimecardsDate = inputWorkTime.TimecardsDate
@@ -90,8 +93,7 @@ namespace Timecards.Client
 
         private InputWorkTimeControl AddInputWorkTimeControl(InputWorkTime inputWorkTime)
         {
-            var inputWorkTimeControl = splitContainerWorkTime.Panel2.Controls.AddInputWorkTimeControl(inputWorkTime);
-            inputWorkTimeControl.InputWorkTime.SaveTimecards = SaveTimecards;
+            var inputWorkTimeControl = AddInputWorkTime(inputWorkTime);
             inputWorkTimeControl.InputWorkTime.RemoveTimecards = (control) =>
                 RemoveTimecards(inputWorkTimeControl.InputWorkTime, control);
 
@@ -102,7 +104,7 @@ namespace Timecards.Client
         {
             if (!inputWorkTime.TimecardsId.HasValue)
             {
-                splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl(control);
+                RemoveInputWorkTime(inputWorkTime, control);
                 return;
             }
 
@@ -114,7 +116,7 @@ namespace Timecards.Client
                 {
                     if (responseState.IsSuccess)
                     {
-                        splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl(control);
+                        RemoveInputWorkTime(inputWorkTime, control);
                     }
 
                     MessageBox.Show(
@@ -124,35 +126,72 @@ namespace Timecards.Client
                 });
         }
 
-        private void SaveTimecards(TimecardsDataSource timecardsDataSource)
+        private InputWorkTimeControl AddInputWorkTime(InputWorkTime inputWorkTime)
         {
+            _inputWorkTimes.Add(inputWorkTime);
+            var inputWorkTimeControl = splitContainerWorkTime.Panel2.Controls.AddInputWorkTimeControl(inputWorkTime);
+
+            return inputWorkTimeControl;
+        }
+
+        private void RemoveInputWorkTime(InputWorkTime inputWorkTime, InputWorkTimeControl control)
+        {
+            _inputWorkTimes.Remove(inputWorkTime);
+            splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl(control);
+        }
+
+        private void SaveTimecards()
+        {
+            if (!_inputWorkTimes.Any())
+            {
+                MessageBox.Show(
+                    "Nothing need to be save!",
+                    "Save",
+                    MessageBoxButtons.OK);
+                return;
+            }
+
             var saveTimecardsRequest = new SaveTimecardsRequest()
             {
-                ProjectId = timecardsDataSource.ProjectId,
-                UserId = AccountStore.Account.AccountId,
-                TimecardsId = timecardsDataSource.TimecardsId,
-                TimecardsDate = timecardsDataSource.TimecardsDate.ToUniversalTime(),
-                Items = timecardsDataSource.Items.Select(x => new ItemcardsItem()
+                Timecardses = _inputWorkTimes.Select(x => new Infrastructure.Model.Timecards
                 {
-                    WorkDay = x.WorkDay.ToUniversalTime(),
-                    Hour = x.Hour,
-                    Note = x.Note
+                    ProjectId = x.ProjectId,
+                    UserId = AccountStore.Account.AccountId,
+                    TimecardsId = x.TimecardsId,
+                    TimecardsDate = x.TimecardsDate.ConvertToUTCDate(),
+                    Items = x.SaveTimecards.Invoke().Items.Select(t => new ItemcardsItem()
+                    {
+                        WorkDay = t.WorkDay.ConvertToUTCDate(),
+                        Hour = t.Hour,
+                        Note = t.Note
+                    }).ToList()
                 }).ToList()
             };
 
             _saveTimecardsCommand.SaveTimecardsAsync(saveTimecardsRequest,
                 responseState =>
                 {
-                    MessageBox.Show(
-                        responseState.IsSuccess ? "Save Successfully!" : "Save Failed",
-                        "Save",
-                        MessageBoxButtons.OK);
+                    if (responseState.IsSuccess)
+                    {
+                        MessageBox.Show(
+                            "Save Successfully!",
+                            "Save",
+                            MessageBoxButtons.OK);
+                        GetTimecardsOfDate(saveTimecardsRequest.Timecardses.First().TimecardsDate);
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Save Failed",
+                            "Save",
+                            MessageBoxButtons.OK);
+                    }
                 });
         }
 
         private void dateTimeWorkDate_ValueChanged(object sender, EventArgs e)
         {
-            GetTimecardsOfDate(dateTimeWorkDate.Value.Date.AddHours(8));
+            GetTimecardsOfDate(dateTimeWorkDate.Value.ConvertToUTCDate());
         }
 
         private void GetTimecardsOfDate(DateTime date)
@@ -185,6 +224,7 @@ namespace Timecards.Client
         private void PopulateWorkTimes(ResponseBase<List<TimecardsResult>> responseResult)
         {
             splitContainerWorkTime.Panel2.Controls.RemoveAllInputWorkTimes();
+            _inputWorkTimes.Clear();
 
             responseResult.ResponseResult.ForEach(x =>
             {
@@ -214,6 +254,16 @@ namespace Timecards.Client
         {
             var comboBox = (ComboBox) sender;
             buttonNew.Enabled = ((Project) comboBox.SelectedItem).ParentProjectId.HasValue;
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            SaveTimecards();
+        }
+
+        private void buttonSubmit_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

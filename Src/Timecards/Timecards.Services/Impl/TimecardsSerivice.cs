@@ -60,7 +60,7 @@ namespace Timecards.Services.Impl
         {
             var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddAuthorizationHeader();
-            request.AddJsonBody(saveTimecardsRequest);
+            request.AddJsonBody(saveTimecardsRequest.Timecardses);
 
             return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
         }

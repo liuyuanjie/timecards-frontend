@@ -69,7 +69,6 @@ namespace TimecardsControl
             this.buttonDelete = new System.Windows.Forms.Button();
             this.labelWorkDate = new System.Windows.Forms.Label();
             this.labelProject = new System.Windows.Forms.Label();
-            this.buttonSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownWorkTime3)).BeginInit();
@@ -263,7 +262,6 @@ namespace TimecardsControl
             this.panelInput.Controls.Add(this.buttonDelete);
             this.panelInput.Controls.Add(this.labelWorkDate);
             this.panelInput.Controls.Add(this.labelProject);
-            this.panelInput.Controls.Add(this.buttonSave);
             this.panelInput.Controls.Add(this.labelDate1);
             this.panelInput.Controls.Add(this.numericUpDownWorkTime1);
             this.panelInput.Controls.Add(this.textBoxNote1);
@@ -295,7 +293,7 @@ namespace TimecardsControl
             // 
             // buttonNote
             // 
-            this.buttonNote.Location = new System.Drawing.Point(1495, 135);
+            this.buttonNote.Location = new System.Drawing.Point(1665, 87);
             this.buttonNote.Name = "buttonNote";
             this.buttonNote.Size = new System.Drawing.Size(164, 45);
             this.buttonNote.TabIndex = 36;
@@ -448,7 +446,7 @@ namespace TimecardsControl
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(1665, 81);
+            this.buttonDelete.Location = new System.Drawing.Point(1495, 87);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(164, 45);
             this.buttonDelete.TabIndex = 26;
@@ -473,16 +471,6 @@ namespace TimecardsControl
             this.labelProject.Size = new System.Drawing.Size(402, 23);
             this.labelProject.TabIndex = 22;
             this.labelProject.Text = "Project";
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Location = new System.Drawing.Point(1495, 84);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(164, 45);
-            this.buttonSave.TabIndex = 25;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // InputWorkTimeControl
             // 
@@ -551,7 +539,6 @@ namespace TimecardsControl
         private System.Windows.Forms.Label labelProject;
         private System.Windows.Forms.Label labelWorkDate;
         private System.Windows.Forms.Label labelTotalHour;
-        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonDelete;
     }
 }

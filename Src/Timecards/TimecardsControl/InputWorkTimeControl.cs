@@ -17,6 +17,7 @@ namespace TimecardsControl
             labelProject.Text = inputWorkTime.ProjectName;
             labelWorkDate.Text = GetWorkTimeDisplay();
             InputWorkTime.InitialTimecards = PopulateTimecards;
+            InputWorkTime.SaveTimecards = SaveTimecards;
         }
 
         private string GetWorkTimeDisplay()
@@ -25,7 +26,7 @@ namespace TimecardsControl
                 $"{InputWorkTime.TimecardsDate.ToString("M")} - {InputWorkTime.TimecardsDate.AddDays(7).ToString("M")}";
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private TimecardsDataSource SaveTimecards()
         {
             var dataSource = new TimecardsDataSource()
             {
@@ -78,7 +79,7 @@ namespace TimecardsControl
                 }
             };
 
-            InputWorkTime.SaveTimecards(dataSource);
+            return dataSource;
         }
 
         private void PopulateTimecards(TimecardsDataSource timecardsDataSource)

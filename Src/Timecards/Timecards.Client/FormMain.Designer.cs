@@ -55,6 +55,8 @@ namespace Timecards.Client
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainerWorkTime = new System.Windows.Forms.SplitContainer();
+            this.buttonSubmit = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.groupBoxWorkTime = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.splitContainerWorkTime.Panel1.SuspendLayout();
@@ -172,7 +174,7 @@ namespace Timecards.Client
             // buttonNew
             // 
             this.buttonNew.Enabled = false;
-            this.buttonNew.Location = new System.Drawing.Point(8, 269);
+            this.buttonNew.Location = new System.Drawing.Point(11, 269);
             this.buttonNew.Name = "buttonNew";
             this.buttonNew.Size = new System.Drawing.Size(496, 62);
             this.buttonNew.TabIndex = 12;
@@ -258,6 +260,8 @@ namespace Timecards.Client
             // 
             // splitContainerWorkTime.Panel1
             // 
+            this.splitContainerWorkTime.Panel1.Controls.Add(this.buttonSubmit);
+            this.splitContainerWorkTime.Panel1.Controls.Add(this.buttonSave);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.comboBoxProject);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.buttonNew);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.label6);
@@ -266,6 +270,27 @@ namespace Timecards.Client
             this.splitContainerWorkTime.Size = new System.Drawing.Size(2413, 970);
             this.splitContainerWorkTime.SplitterDistance = 519;
             this.splitContainerWorkTime.TabIndex = 13;
+            // 
+            // buttonSubmit
+            // 
+            this.buttonSubmit.Location = new System.Drawing.Point(11, 532);
+            this.buttonSubmit.Name = "buttonSubmit";
+            this.buttonSubmit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonSubmit.Size = new System.Drawing.Size(496, 62);
+            this.buttonSubmit.TabIndex = 14;
+            this.buttonSubmit.Text = "Submit";
+            this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(11, 454);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(496, 62);
+            this.buttonSave.TabIndex = 13;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // groupBoxWorkTime
             // 
@@ -299,6 +324,9 @@ namespace Timecards.Client
             this.groupBoxWorkTime.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonSubmit;
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;

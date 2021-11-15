@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TimecardsControl
 {
     public class InputWorkTime
     {
-        public Action<TimecardsDataSource> SaveTimecards { get; set; }
+        public Func<TimecardsDataSource> SaveTimecards { get; set; }
         public Action<TimecardsDataSource> InitialTimecards { get; set; }
         public Action<InputWorkTimeControl> RemoveTimecards { get; set; }
         public Guid UserId { get; set; }

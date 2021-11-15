@@ -5,6 +5,11 @@ namespace Timecards.Infrastructure.Model
 {
     public class SaveTimecardsRequest
     {
+        public List<Timecards> Timecardses { get; set; }
+    }
+
+    public class Timecards
+    {
         public Guid UserId { get; set; }
         public Guid ProjectId { get; set; }
         public DateTime TimecardsDate { get; set; }
