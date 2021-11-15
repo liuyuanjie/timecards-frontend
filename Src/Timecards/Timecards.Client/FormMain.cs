@@ -56,10 +56,10 @@ namespace Timecards.Client
 
         private void GetProjects()
         {
-            _getProjectsCommand.GetProjectsAsync(projectResponse => CallbackProcess(projectResponse));
+            _getProjectsCommand.GetProjectsAsync(projectResponse => GetProjectCallbackProcess(projectResponse));
         }
 
-        private void CallbackProcess(ResponseBase<ProjectResult> projectResponse)
+        private void GetProjectCallbackProcess(ResponseBase<ProjectResult> projectResponse)
         {
             if (projectResponse.ResponseState.IsSuccess)
             {
@@ -76,19 +76,15 @@ namespace Timecards.Client
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
-            var inputWorkTime = new InputWorkTime()
+            var inputWorkTime = new InputWorkTime(AccountStore.Account.AccountId,
+                new Guid(comboBoxProject.SelectedValue.ToString()))
             {
-                UserId = AccountStore.Account.AccountId,
-                ProjectId = new Guid(comboBoxProject.SelectedValue.ToString()),
                 ProjectName = comboBoxProject.Text,
-                TimecardsDate = dateTimeWorkDate.Value.Date.AddHours(8)
+                TimecardsDate = dateTimeWorkDate.Value.ConvertToUTCDate()
             };
 
             var inputWorkTimeControl = AddInputWorkTimeControl(inputWorkTime);
-            inputWorkTimeControl.InputWorkTime.InitialTimecards(new TimecardsDataSource
-            {
-                TimecardsDate = inputWorkTime.TimecardsDate
-            });
+            inputWorkTimeControl.InputWorkTime.InitialTimecards(new TimecardsDataSource(inputWorkTime.TimecardsDate));
         }
 
         private InputWorkTimeControl AddInputWorkTimeControl(InputWorkTime inputWorkTime)
@@ -153,19 +149,14 @@ namespace Timecards.Client
 
             var saveTimecardsRequest = new SaveTimecardsRequest()
             {
-                Timecardses = _inputWorkTimes.Select(x => new Infrastructure.Model.Timecards
-                {
-                    ProjectId = x.ProjectId,
-                    UserId = AccountStore.Account.AccountId,
-                    TimecardsId = x.TimecardsId,
-                    TimecardsDate = x.TimecardsDate.ConvertToUTCDate(),
-                    Items = x.SaveTimecards.Invoke().Items.Select(t => new ItemcardsItem()
+                Timecardses = _inputWorkTimes.Select(x =>
+                    new Infrastructure.Model.Timecards(x.TimecardsId, AccountStore.Account.AccountId, x.ProjectId,
+                        x.TimecardsDate.ConvertToUTCDate())
                     {
-                        WorkDay = t.WorkDay.ConvertToUTCDate(),
-                        Hour = t.Hour,
-                        Note = t.Note
+                        TimecardsDate = x.TimecardsDate.ConvertToUTCDate(),
+                        Items = x.SaveTimecards.Invoke().Items
+                            .Select(t => new ItemcardsItem(t.WorkDay.ConvertToUTCDate(), t.Hour, t.Note)).ToList()
                     }).ToList()
-                }).ToList()
             };
 
             _saveTimecardsCommand.SaveTimecardsAsync(saveTimecardsRequest,
@@ -178,6 +169,8 @@ namespace Timecards.Client
                             "Save",
                             MessageBoxButtons.OK);
                         GetTimecardsOfDate(saveTimecardsRequest.Timecardses.First().TimecardsDate);
+                        labelWorkHours.Text = saveTimecardsRequest.Timecardses.Sum(x => x.Items.Sum(t => t.Hour))
+                            .ToString("F1");
                     }
                     else
                     {
@@ -228,26 +221,20 @@ namespace Timecards.Client
 
             responseResult.ResponseResult.ForEach(x =>
             {
-                var inputWorkTime = new InputWorkTime()
+                var inputWorkTime = new InputWorkTime(x.TimecardsId, x.UserId, x.ProjectId, x.StatusType)
                 {
-                    UserId = x.UserId,
-                    ProjectId = x.ProjectId,
-                    TimecardsId = x.TimecardsId,
                     ProjectName = comboBoxProject.Items.Cast<Project>().First(p => p.ProjectId == x.ProjectId).Name,
                     TimecardsDate = x.TimecardsDate.Date
                 };
                 var inputWorkTimeControl = AddInputWorkTimeControl(inputWorkTime);
                 var dataSource = new TimecardsDataSource()
                 {
-                    Items = x.Items.Select(s => new Item
-                    {
-                        Hour = s.Hour,
-                        Note = s.Note,
-                        WorkDay = s.WorkDay
-                    }).ToList()
+                    Items = x.Items.Select(s => new Item(s.WorkDay, s.Hour, s.Note)).ToList()
                 };
                 inputWorkTimeControl.InputWorkTime.InitialTimecards(dataSource);
             });
+            labelWorkHours.Text = responseResult.ResponseResult.Sum(x => x.Items.Sum(t => t.Hour))
+                .ToString("F1");
         }
 
         private void comboBoxProject_SelectedValueChanged(object sender, EventArgs e)

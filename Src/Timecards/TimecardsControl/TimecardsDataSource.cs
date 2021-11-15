@@ -6,10 +6,16 @@ namespace TimecardsControl
 {
     public class TimecardsDataSource
     {
-        public Guid UserId { get; set; }
-        public Guid ProjectId { get; set; }
-        public string ProjectName { get; set; }
-        public DateTime TimecardsDate { get; set; }
+        private readonly DateTime _timecardsDate;
+
+        public TimecardsDataSource()
+        {
+        }
+        
+        public TimecardsDataSource(DateTime timecardsDate)
+        {
+            _timecardsDate = timecardsDate;
+        }
 
         private List<Item> _items;
 
@@ -26,23 +32,25 @@ namespace TimecardsControl
                 var items = new List<Item>();
                 for (var i = 0; i < Constant.DaysInWeek; i++)
                 {
-                    items.Add(new Item()
-                    {
-                        WorkDay = TimecardsDate.AddDays(i)
-                    });
+                    items.Add(new Item(_timecardsDate.AddDays(i), 0, null));
                 }
 
                 return items;
             }
         }
-
-        public Guid? TimecardsId { get; set; }
     }
 
     public class Item
     {
-        public DateTime WorkDay { get; set; }
-        public string Note { get; set; }
-        public decimal Hour { get; set; }
+        public Item(DateTime workDay, decimal hour, string note)
+        {
+            WorkDay = workDay;
+            Note = note;
+            Hour = hour;
+        }
+
+        public DateTime WorkDay { get; }
+        public string Note { get; }
+        public decimal Hour { get; }
     }
 }

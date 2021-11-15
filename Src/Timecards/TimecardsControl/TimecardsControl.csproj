@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant.cs" />
-    <Compile Include="Extensions\FormControlsExtensions.cs" />
+    <Compile Include="Extensions\FormControlsExtensions.cs">
+      <DependentUpon>InputWorkTimeExtensions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\InputWorkTimeExtensions.cs" />
     <Compile Include="InputWorkTime.cs" />
     <Compile Include="InputWorkTimeControl.cs">
@@ -70,6 +72,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Timecards.Infrastructure\Timecards.Infrastructure.csproj">
+      <Project>{bce93d34-5b73-4e75-b37e-c26242f04992}</Project>
+      <Name>Timecards.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

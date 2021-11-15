@@ -47,7 +47,7 @@ namespace Timecards.Client
             this.dateTimeWorkDate = new System.Windows.Forms.DateTimePicker();
             this.buttonNew = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelWorkHours = new System.Windows.Forms.Label();
             this.comboBoxProject = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -59,6 +59,7 @@ namespace Timecards.Client
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBoxWorkTime = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).BeginInit();
             this.splitContainerWorkTime.Panel1.SuspendLayout();
             this.splitContainerWorkTime.SuspendLayout();
             this.groupBoxWorkTime.SuspendLayout();
@@ -174,7 +175,7 @@ namespace Timecards.Client
             // buttonNew
             // 
             this.buttonNew.Enabled = false;
-            this.buttonNew.Location = new System.Drawing.Point(11, 269);
+            this.buttonNew.Location = new System.Drawing.Point(8, 299);
             this.buttonNew.Name = "buttonNew";
             this.buttonNew.Size = new System.Drawing.Size(496, 62);
             this.buttonNew.TabIndex = 12;
@@ -191,14 +192,18 @@ namespace Timecards.Client
             this.label7.TabIndex = 11;
             this.label7.Text = "Select Workday:";
             // 
-            // label6
+            // labelWorkHours
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 131);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 25);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Select Project:";
+            this.labelWorkHours.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelWorkHours.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.labelWorkHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelWorkHours.ForeColor = System.Drawing.Color.Red;
+            this.labelWorkHours.Location = new System.Drawing.Point(11, 614);
+            this.labelWorkHours.Name = "labelWorkHours";
+            this.labelWorkHours.Size = new System.Drawing.Size(493, 74);
+            this.labelWorkHours.TabIndex = 10;
+            this.labelWorkHours.Text = "40";
+            this.labelWorkHours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBoxProject
             // 
@@ -264,7 +269,7 @@ namespace Timecards.Client
             this.splitContainerWorkTime.Panel1.Controls.Add(this.buttonSave);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.comboBoxProject);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.buttonNew);
-            this.splitContainerWorkTime.Panel1.Controls.Add(this.label6);
+            this.splitContainerWorkTime.Panel1.Controls.Add(this.labelWorkHours);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.dateTimeWorkDate);
             this.splitContainerWorkTime.Panel1.Controls.Add(this.label7);
             this.splitContainerWorkTime.Size = new System.Drawing.Size(2413, 970);
@@ -273,7 +278,7 @@ namespace Timecards.Client
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(11, 532);
+            this.buttonSubmit.Location = new System.Drawing.Point(8, 710);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonSubmit.Size = new System.Drawing.Size(496, 62);
@@ -284,9 +289,9 @@ namespace Timecards.Client
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(11, 454);
+            this.buttonSave.Location = new System.Drawing.Point(8, 386);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(496, 62);
+            this.buttonSave.Size = new System.Drawing.Size(493, 62);
             this.buttonSave.TabIndex = 13;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -320,10 +325,13 @@ namespace Timecards.Client
             this.groupBox1.PerformLayout();
             this.splitContainerWorkTime.Panel1.ResumeLayout(false);
             this.splitContainerWorkTime.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).EndInit();
             this.splitContainerWorkTime.ResumeLayout(false);
             this.groupBoxWorkTime.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label labelWorkHours;
 
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonSubmit;
