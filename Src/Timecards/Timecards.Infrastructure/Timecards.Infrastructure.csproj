@@ -54,6 +54,8 @@
     <Compile Include="Enum\RoleType.cs" />
     <Compile Include="IApiRequestFactory.cs" />
     <Compile Include="ApiRequestFactory.cs" />
+    <Compile Include="Model\Request\BatchTimecardsRequest.cs" />
+    <Compile Include="Model\Request\DeleteTimecardsRequest.cs" />
     <Compile Include="Model\Request\LoginRequest.cs" />
     <Compile Include="Model\Request\ProjectRequest.cs" />
     <Compile Include="Model\Request\QueryTimecardsRequest.cs" />

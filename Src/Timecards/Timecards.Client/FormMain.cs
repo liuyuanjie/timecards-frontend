@@ -18,6 +18,7 @@ namespace Timecards.Client
         private readonly IGetProjectsCommand _getProjectsCommand;
         private readonly IQueryTimecardsCommand _queryTimecardsCommand;
         private readonly ISaveTimecardsCommand _saveTimecardsCommand;
+        private readonly IDeleteTimecardsCommand _deleteTimecardsCommand;
 
         public FormMain(IApiRequestFactory apiRequestFactory)
         {
@@ -25,7 +26,8 @@ namespace Timecards.Client
 
             _getProjectsCommand = new BWGetProjectsCommand(apiRequestFactory);
             _queryTimecardsCommand = new BWQueryTimecardsCommand(apiRequestFactory);
-            _saveTimecardsCommand = new SaveTimecardsCommand(apiRequestFactory);
+            _saveTimecardsCommand = new BWSaveTimecardsCommand(apiRequestFactory);
+            _deleteTimecardsCommand = new BWDeleteTimecardsCommand(apiRequestFactory);
 
             InitialData();
         }
@@ -35,8 +37,9 @@ namespace Timecards.Client
             InitialMyProfile();
 
             GetProjects();
-            GetTimecardsOfDate(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0,
-                DateTimeKind.Utc));
+            var utcToday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                0, 0, 0, DateTimeKind.Utc);
+            GetTimecardsOfDate(utcToday);
         }
 
         private void InitialMyProfile()
@@ -89,10 +92,36 @@ namespace Timecards.Client
         {
             var inputWorkTimeControl = splitContainerWorkTime.Panel2.Controls.AddInputWorkTimeControl(inputWorkTime);
             inputWorkTimeControl.InputWorkTime.SaveTimecards = SaveTimecards;
-            inputWorkTimeControl.InputWorkTime.RemoveTimecards =
-                splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl;
+            inputWorkTimeControl.InputWorkTime.RemoveTimecards = (control) =>
+                RemoveTimecards(inputWorkTimeControl.InputWorkTime, control);
 
             return inputWorkTimeControl;
+        }
+
+        private void RemoveTimecards(InputWorkTime inputWorkTime, InputWorkTimeControl control)
+        {
+            if (!inputWorkTime.TimecardsId.HasValue)
+            {
+                splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl(control);
+                return;
+            }
+
+            _deleteTimecardsCommand.DeleteTimecardsAsync(new DeleteTimecardsRequest()
+                {
+                    TimecardsId = inputWorkTime.TimecardsId.Value
+                },
+                responseState =>
+                {
+                    if (responseState.IsSuccess)
+                    {
+                        splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl(control);
+                    }
+
+                    MessageBox.Show(
+                        responseState.IsSuccess ? "Delete Successfully!" : "Delete Failed",
+                        "Delete",
+                        MessageBoxButtons.OK);
+                });
         }
 
         private void SaveTimecards(TimecardsDataSource timecardsDataSource)
@@ -112,15 +141,13 @@ namespace Timecards.Client
             };
 
             _saveTimecardsCommand.SaveTimecardsAsync(saveTimecardsRequest,
-                loginResponse => CallbackProcess(loginResponse));
-        }
-
-        private void CallbackProcess(ResponseState responseState)
-        {
-            MessageBox.Show(
-                responseState.IsSuccess ? "Save Successfully!" : "Save Failed",
-                "Save",
-                MessageBoxButtons.OK);
+                responseState =>
+                {
+                    MessageBox.Show(
+                        responseState.IsSuccess ? "Save Successfully!" : "Save Failed",
+                        "Save",
+                        MessageBoxButtons.OK);
+                });
         }
 
         private void dateTimeWorkDate_ValueChanged(object sender, EventArgs e)

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using RestSharp;
-using Timecards.Application;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using Timecards.Services.Extensions;
@@ -55,6 +54,50 @@ namespace Timecards.Services.Impl
             _apiRequestFactory.CreateClient().ExecuteAsyncPost(request,
                 (response, e) => { callbackProcessHandler.Invoke(BuildResponseState(response)); },
                 Method.POST.ToString());
+        }
+
+        public ResponseState SaveTimecards(SaveTimecardsRequest saveTimecardsRequest)
+        {
+            var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
+            request.AddAuthorizationHeader();
+            request.AddJsonBody(saveTimecardsRequest);
+
+            return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
+        }
+
+        public ResponseState DeleteTimecards(DeleteTimecardsRequest deleteTimecardsRequest)
+        {
+            var request = new RestRequest($"{IdentityTokenEndPoint}/{deleteTimecardsRequest.TimecardsId}", Method.DELETE);
+            request.AddAuthorizationHeader();
+            
+            return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
+        }
+
+        public ResponseState SubmitTimecards(BatchTimecardsRequest submitTimecardsRequest)
+        {
+            var request = new RestRequest($"{IdentityTokenEndPoint}/submit", Method.POST);
+            request.AddAuthorizationHeader();
+            request.AddJsonBody(submitTimecardsRequest);
+            
+            return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
+        }
+
+        public ResponseState Approveimecards(BatchTimecardsRequest approveTimecardsRequest)
+        {
+            var request = new RestRequest($"{IdentityTokenEndPoint}/approve", Method.POST);
+            request.AddAuthorizationHeader();
+            request.AddJsonBody(approveTimecardsRequest);
+
+            return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
+        }
+
+        public ResponseState DeclineTimecards(BatchTimecardsRequest declineTimecardsRequest)
+        {
+            var request = new RestRequest($"{IdentityTokenEndPoint}/decline", Method.POST);
+            request.AddAuthorizationHeader();
+            request.AddJsonBody(declineTimecardsRequest);
+
+            return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
         }
     }
 }
