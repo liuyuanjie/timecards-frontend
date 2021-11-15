@@ -39,12 +39,6 @@ namespace Timecards.Infrastructure.Model
         }
     }
 
-    public enum ProjectType : byte
-    {
-        Global,
-        Custom
-    }
-
     public class Project
     {
         public Guid ProjectId { get; set; }

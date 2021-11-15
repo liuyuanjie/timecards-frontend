@@ -4,6 +4,7 @@ using RestSharp;
 using Timecards.Application;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
+using Timecards.Services.Extensions;
 
 namespace Timecards.Services.Impl
 {
@@ -22,7 +23,7 @@ namespace Timecards.Services.Impl
             Action<ResponseBase<List<TimecardsResult>>> callbackProcessHandler)
         {
             var request = new RestRequest(IdentityTokenEndPoint, Method.GET);
-            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddAuthorizationHeader();
             request.AddQueryParameter(nameof(QueryTimecardsRequest.UserId), queryTimecardsRequest.UserId.ToString());
             request.AddQueryParameter(nameof(QueryTimecardsRequest.TimecardsDate),
                 queryTimecardsRequest.TimecardsDate.ToString());
@@ -35,7 +36,7 @@ namespace Timecards.Services.Impl
         public ResponseBase<List<TimecardsResult>> GetTimecards(QueryTimecardsRequest queryTimecardsRequest)
         {
             var request = new RestRequest(IdentityTokenEndPoint, Method.GET);
-            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddAuthorizationHeader();
             request.AddQueryParameter(nameof(QueryTimecardsRequest.UserId), queryTimecardsRequest.UserId.ToString());
             request.AddQueryParameter(nameof(QueryTimecardsRequest.TimecardsDate),
                 queryTimecardsRequest.TimecardsDate.ToString());
@@ -48,7 +49,7 @@ namespace Timecards.Services.Impl
             Action<ResponseState> callbackProcessHandler)
         {
             var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
-            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddAuthorizationHeader();
             request.AddJsonBody(saveTimecardsRequest);
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost(request,

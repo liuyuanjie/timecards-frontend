@@ -3,6 +3,7 @@ using RestSharp;
 using Timecards.Application;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
+using Timecards.Services.Extensions;
 
 namespace Timecards.Services.Impl
 {
@@ -41,7 +42,7 @@ namespace Timecards.Services.Impl
         public ResponseBase<AccountResult> GetAccount(UserRequest userRequest)
         {
             var request = new RestRequest($"{IdentityTokenEndPoint}/{userRequest.AccountId}", Method.GET);
-            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddAuthorizationHeader();
 
             var accountResponseResult = _apiRequestFactory.CreateClient().Execute<AccountResult>(request);
 
@@ -51,7 +52,7 @@ namespace Timecards.Services.Impl
         public void GetAccountAsync(UserRequest userRequest, Action<ResponseBase<AccountResult>> callbackProcessHandler)
         {
             var request = new RestRequest($"{IdentityTokenEndPoint}/{userRequest.AccountId}", Method.GET);
-            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddAuthorizationHeader();
 
             _apiRequestFactory.CreateClient().ExecuteAsyncGet<AccountResult>(request,
                 (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(response)); },

@@ -22,12 +22,11 @@ namespace Timecards.Services.Impl
             request.AddJsonBody(loginRequest);
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost<LoginResult>(request,
-                (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(loginRequest, response)); },
+                (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(response)); },
                 Method.POST.ToString());
         }
 
-        private ResponseBase<LoginResult> BuildAsyncResponseResult(LoginRequest loginRequest,
-            IRestResponse<LoginResult> response)
+        private ResponseBase<LoginResult> BuildAsyncResponseResult(IRestResponse<LoginResult> response)
         {
             return base.BuildAsyncResponseResult(response);
         }
@@ -37,7 +36,8 @@ namespace Timecards.Services.Impl
             var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
             request.AddJsonBody(loginRequest);
 
-            var responseResult = base.BuildAsyncResponseResult(_apiRequestFactory.CreateClient().Execute<LoginResult>(request));
+            var responseResult =
+                base.BuildAsyncResponseResult(_apiRequestFactory.CreateClient().Execute<LoginResult>(request));
 
             return responseResult;
         }

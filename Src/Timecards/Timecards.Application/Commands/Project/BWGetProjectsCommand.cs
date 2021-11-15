@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
+using Timecards.Services;
 using Timecards.Services.Impl;
 
 namespace Timecards.Application.Commands.Project
@@ -10,7 +11,7 @@ namespace Timecards.Application.Commands.Project
     {
         private readonly BackgroundWorker _backgroundWorker;
 
-        private readonly ProjectService _projectService;
+        private readonly IProjectService _projectService;
 
         public BWGetProjectsCommand(IApiRequestFactory apiRequestFactory)
         {
@@ -31,11 +32,8 @@ namespace Timecards.Application.Commands.Project
 
         public void GetProjectsAsync(Action<ResponseBase<ProjectResult>> callbackProcess)
         {
-            _backgroundWorker.RunWorkerCompleted += (sender, e) =>
-            {
-                callbackProcess((ResponseBase<ProjectResult>) e.Result);
-            };
-
+            _backgroundWorker.RunWorkerCompleted +=
+                (sender, e) => callbackProcess((ResponseBase<ProjectResult>) e.Result);
             _backgroundWorker.RunWorkerAsync();
         }
     }

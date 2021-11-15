@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
 using Timecards.Services;
@@ -11,7 +9,7 @@ namespace Timecards.Application.Commands.Login
 {
     public class BWLoginCommand : ILoginCommand
     {
-        private readonly IdentityService _identityService;
+        private readonly IIdentityService _identityService;
         private readonly IAccountService _accountService;
         private BackgroundWorker _backgroundWorker;
 
@@ -25,11 +23,8 @@ namespace Timecards.Application.Commands.Login
         {
             _backgroundWorker = new BackgroundWorker();
             _backgroundWorker.DoWork += BackgroundWorker_DoWork;
-
-            _backgroundWorker.RunWorkerCompleted += (sender, e) =>
-            {
-                callbackProcess((ResponseBase<LoginResult>) e.Result);
-            };
+            _backgroundWorker.RunWorkerCompleted +=
+                (sender, e) => callbackProcess((ResponseBase<LoginResult>) e.Result);
             _backgroundWorker.RunWorkerAsync(loginRequest);
         }
 

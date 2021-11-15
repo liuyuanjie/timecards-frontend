@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountStore.cs" />
+    <Compile Include="Enum\ProjectType.cs" />
+    <Compile Include="Enum\RoleType.cs" />
     <Compile Include="IApiRequestFactory.cs" />
     <Compile Include="ApiRequestFactory.cs" />
     <Compile Include="Model\AccountResult.cs" />

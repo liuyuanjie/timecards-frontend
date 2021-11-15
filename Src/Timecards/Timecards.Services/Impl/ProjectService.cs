@@ -4,6 +4,7 @@ using RestSharp;
 using Timecards.Application;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
+using Timecards.Services.Extensions;
 
 namespace Timecards.Services.Impl
 {
@@ -21,7 +22,7 @@ namespace Timecards.Services.Impl
         public void GetProjectsAsync(Action<ResponseBase<List<Project>>> callbackProcessHandler)
         {
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
-            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddAuthorizationHeader();
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost<List<Project>>(request,
                 (response, e) => { callbackProcessHandler.Invoke(BuildAsyncResponseResult(response)); },
@@ -31,7 +32,7 @@ namespace Timecards.Services.Impl
         public ResponseBase<List<Project>> GetProjects()
         {
             RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
-            request.AddHeader("Authorization", $"Bearer {TokenStore.Login.Token}");
+            request.AddAuthorizationHeader();
 
             return BuildAsyncResponseResult(_apiRequestFactory.CreateClient().Execute<List<Project>>(request));
         }

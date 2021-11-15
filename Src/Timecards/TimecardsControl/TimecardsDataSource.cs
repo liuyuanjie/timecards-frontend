@@ -24,7 +24,7 @@ namespace TimecardsControl
                 }
 
                 var items = new List<Item>();
-                for (var i = 0; i < 7; i++)
+                for (var i = 0; i < Constant.DaysInWeek; i++)
                 {
                     items.Add(new Item()
                     {

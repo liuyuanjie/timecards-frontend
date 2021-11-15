@@ -1,13 +1,14 @@
 using System;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
+using Timecards.Services;
 using Timecards.Services.Impl;
 
 namespace Timecards.Application.Commands.Project
 {
     public class GetProjectsCommand : IGetProjectsCommand
     {
-        private readonly ProjectService _projectService;
+        private readonly IProjectService _projectService;
 
         public GetProjectsCommand(IApiRequestFactory apiRequestFactory)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
+using TimecardsControl.Extensions;
 
 namespace TimecardsControl
 {
@@ -83,15 +84,15 @@ namespace TimecardsControl
         private void PopulateTimecards(TimecardsDataSource timecardsDataSource)
         {
             var items = timecardsDataSource.Items.OrderBy(x => x.WorkDay).ToList();
-            for (int i = 1; i <= items.Count; i++)
+            for (int itemIndex = 1; itemIndex <= items.Count; itemIndex++)
             {
-                var workHour = panelInput.Controls.Find($"numericUpDownWorkTime{i}", true)[0];
+                var workHour = panelInput.Controls.FindControl($"numericUpDownWorkTime{itemIndex}");
                 workHour.TextChanged += UpdateTotalHours;
-                workHour.Text = items[i - 1].Hour.ToString();
-                var workNote = panelInput.Controls.Find($"textBoxNote{i}", true)[0];
-                workNote.Text = items[i - 1].Note;
-                var workDay = panelInput.Controls.Find($"labelMonth{i}", true)[0];
-                workDay.Text = InputWorkTime.TimecardsDate.AddDays(i - 1).Day.ToString("00");
+                workHour.Text = items[itemIndex - 1].Hour.ToString();
+                var workNote = panelInput.Controls.FindControl($"textBoxNote{itemIndex}");
+                workNote.Text = items[itemIndex - 1].Note;
+                var workDay = panelInput.Controls.FindControl($"labelMonth{itemIndex}");
+                workDay.Text = InputWorkTime.TimecardsDate.AddDays(itemIndex - 1).Day.ToString("00");
             }
 
             labelSaveStatues.Text = InputWorkTime.TimecardsId != null ? "SAVED" : "UNSAVED";
@@ -101,9 +102,9 @@ namespace TimecardsControl
         private void UpdateTotalHours(object sender, EventArgs e)
         {
             var totalHour = 0.0;
-            for (int i = 1; i <= 7; i++)
+            for (int i = 1; i <= Constant.DaysInWeek; i++)
             {
-                totalHour += double.Parse(panelInput.Controls.Find($"numericUpDownWorkTime{i}", true)[0].Text);
+                totalHour += double.Parse(panelInput.Controls.FindControl($"numericUpDownWorkTime{i}").Text);
             }
 
             labelTotalHour.Text = totalHour.ToString("F1");
@@ -116,9 +117,9 @@ namespace TimecardsControl
 
         private void buttonNote_Click(object sender, EventArgs e)
         {
-            for (int i = 1; i <= 7; i++)
+            for (int i = 1; i <= Constant.DaysInWeek; i++)
             {
-                var workNote = panelInput.Controls.Find($"textBoxNote{i}", true)[0];
+                var workNote = panelInput.Controls.FindControl($"textBoxNote{i}");
                 workNote.Visible = true;
             }
         }

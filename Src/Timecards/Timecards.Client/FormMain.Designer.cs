@@ -57,7 +57,6 @@ namespace Timecards.Client
             this.splitContainerWorkTime = new System.Windows.Forms.SplitContainer();
             this.groupBoxWorkTime = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).BeginInit();
             this.splitContainerWorkTime.Panel1.SuspendLayout();
             this.splitContainerWorkTime.SuspendLayout();
             this.groupBoxWorkTime.SuspendLayout();
@@ -296,7 +295,6 @@ namespace Timecards.Client
             this.groupBox1.PerformLayout();
             this.splitContainerWorkTime.Panel1.ResumeLayout(false);
             this.splitContainerWorkTime.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).EndInit();
             this.splitContainerWorkTime.ResumeLayout(false);
             this.groupBoxWorkTime.ResumeLayout(false);
             this.ResumeLayout(false);

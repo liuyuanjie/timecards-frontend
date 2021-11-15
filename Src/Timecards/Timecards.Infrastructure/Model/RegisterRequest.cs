@@ -10,10 +10,4 @@
         public string ConfirmPassword { get; set; }
         public RoleType RoleType { get; set; }
     }
-
-    public enum RoleType
-    {
-        Staff,
-        Admin
-    }
 }

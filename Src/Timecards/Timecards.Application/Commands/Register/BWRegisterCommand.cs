@@ -27,12 +27,8 @@ namespace Timecards.Application.Commands.Register
         {
             _backgroundWorker = new BackgroundWorker();
             _backgroundWorker.DoWork += BackgroundWorker_DoWork;
-            
-            _backgroundWorker.RunWorkerCompleted += (sender, e) =>
-            {
-                callbackProcess((ResponseBase<RegisterResult>) e.Result);
-            };
-
+            _backgroundWorker.RunWorkerCompleted +=
+                (sender, e) => callbackProcess((ResponseBase<RegisterResult>) e.Result);
             _backgroundWorker.RunWorkerAsync(registerRequest);
         }
     }

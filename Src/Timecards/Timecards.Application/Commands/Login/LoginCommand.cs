@@ -8,14 +8,12 @@ namespace Timecards.Application.Commands.Login
 {
     public class LoginCommand : ILoginCommand
     {
-        private readonly IdentityService _identityService;
-        private readonly IUserService _userService;
+        private readonly IIdentityService _identityService;
         private readonly IAccountService _accountService;
 
         public LoginCommand(IApiRequestFactory apiRequestFactory)
         {
             _identityService = new IdentityService(apiRequestFactory);
-            _userService = new UserService(apiRequestFactory);
             _accountService = new AccountService(apiRequestFactory);
         }
 

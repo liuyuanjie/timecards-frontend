@@ -24,11 +24,8 @@ namespace Timecards.Application.Commands.Timecards
         {
             _backgroundWorker = new BackgroundWorker();
             _backgroundWorker.DoWork += BackgroundWorker_DoWork;
-
             _backgroundWorker.RunWorkerCompleted += (sender, e) =>
-            {
                 callbackProcess((ResponseBase<List<TimecardsResult>>) e.Result);
-            };
             _backgroundWorker.RunWorkerAsync(queryTimecardsRequest);
         }
 

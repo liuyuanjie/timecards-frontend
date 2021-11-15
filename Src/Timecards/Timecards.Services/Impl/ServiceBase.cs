@@ -24,21 +24,21 @@ namespace Timecards.Services.Impl
             return serverResponse;
         }
 
-        private static void CollectFailedStateMessage<T>(IRestResponse<T> response, ResponseBase<T> registerResponse)
+        private static void CollectFailedStateMessage<T>(IRestResponse<T> restResponse, ResponseBase<T> response)
             where T : class
         {
-            if (response.ErrorException != null)
+            if (restResponse.ErrorException != null)
             {
-                registerResponse.ResponseState.ResponseStateMessage = new ResponseStateMessage
+                response.ResponseState.ResponseStateMessage = new ResponseStateMessage
                 {
                     ErrorCode = "RequestFailed",
-                    ErrorMessage = response.ErrorMessage
+                    ErrorMessage = restResponse.ErrorMessage
                 };
             }
             else
             {
-                registerResponse.ResponseState.ResponseStateMessage =
-                    JsonConvert.DeserializeObject<ResponseStateMessage>(response.Content) ?? new ResponseStateMessage();
+                response.ResponseState.ResponseStateMessage =
+                    JsonConvert.DeserializeObject<ResponseStateMessage>(restResponse.Content) ?? new ResponseStateMessage();
             }
         }
 

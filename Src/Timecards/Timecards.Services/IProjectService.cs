@@ -10,5 +10,6 @@ namespace Timecards.Services
     public interface IProjectService
     {
         void GetProjectsAsync(Action<ResponseBase<List<Project>>> callbackProcessHandler);
+        ResponseBase<List<Project>> GetProjects();
     }
 }

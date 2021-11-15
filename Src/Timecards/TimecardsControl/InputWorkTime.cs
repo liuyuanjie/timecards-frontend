@@ -10,6 +10,7 @@ namespace TimecardsControl
         public Guid UserId { get; set; }
         public Guid ProjectId { get; set; }
         public Guid? TimecardsId { get; set; }
+        public string ProjectName { get; set; }
 
         private DateTime _dateTime;
         public DateTime TimecardsDate
@@ -18,13 +19,10 @@ namespace TimecardsControl
             get => GetFirstDayOfWeek(_dateTime);
         }
 
-        public string ProjectName { get; set; }
-
-        private const byte DaysInWeek = 7;
         private DateTime GetFirstDayOfWeek(DateTime day)
         {
             return day.AddDays(-(day.DayOfWeek == DayOfWeek.Sunday
-                ? DaysInWeek
+                ? Constant.DaysInWeek
                 : (byte) day.DayOfWeek) + 1);
         }
     }
