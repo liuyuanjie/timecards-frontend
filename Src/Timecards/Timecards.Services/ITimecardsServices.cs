@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Timecards.Infrastructure.Model;
+using Timecards.Infrastructure.Model.Response;
 
 namespace Timecards.Services
 {
@@ -8,6 +9,7 @@ namespace Timecards.Services
     {
         void GetTimecardsAsync(QueryTimecardsRequest queryTimecardsRequest, Action<ResponseBase<List<TimecardsResult>>> callbackProcessHandler);
         ResponseBase<List<TimecardsResult>> GetTimecards(QueryTimecardsRequest queryTimecardsRequest);
+        ResponseBase<List<SearchTimecardsResult>> SearchTimecards(QueryTimecardsRequest queryTimecardsRequest);
         void SaveTimecardsAsync(SaveTimecardsRequest saveTimecardsRequest, Action<ResponseState> callbackProcessHandler);
         ResponseState SaveTimecards(SaveTimecardsRequest saveTimecardsRequest);
         ResponseState DeleteTimecards(DeleteTimecardsRequest deleteTimecardsRequest);

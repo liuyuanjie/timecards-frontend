@@ -43,20 +43,19 @@ namespace Timecards.Client
 
         private void CallbackProcess(ResponseBase<RegisterResult> registerResponse)
         {
-            if (registerResponse.ResponseState.IsSuccess)
-            {
-                FormLogin fromLogin = new FormLogin(_apiRequestFactory);
-                Hide();
-                fromLogin.CallbackFromRegister(registerResponse.ResponseResult.Email);
-                fromLogin.ShowDialog();
-            }
-            else
+            if (!registerResponse.ResponseState.IsSuccess)
             {
                 MessageBox.Show(
                     registerResponse.ResponseState.ResponseStateMessage.OutputResponseMessage(),
                     "Register Failed",
                     MessageBoxButtons.OK);
+                return;
             }
+
+            FormLogin fromLogin = new FormLogin(_apiRequestFactory);
+            Hide();
+            fromLogin.CallbackFromRegister(registerResponse.ResponseResult.Email);
+            fromLogin.ShowDialog();
         }
     }
 }

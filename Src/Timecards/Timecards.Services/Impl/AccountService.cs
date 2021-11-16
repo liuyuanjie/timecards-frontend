@@ -31,7 +31,7 @@ namespace Timecards.Services.Impl
 
         public ResponseBase<RegisterResult> Register(RegisterRequest registerRequest)
         {
-            var request = new RestRequest(IdentityTokenEndPoint, Method.POST);
+            var request = new RestRequest($"{IdentityTokenEndPoint}/register", Method.POST);
             request.AddJsonBody(registerRequest);
 
             var registerResponseResult = _apiRequestFactory.CreateClient().Execute<RegisterResult>(request);

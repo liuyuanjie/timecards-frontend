@@ -84,7 +84,6 @@
       <DependentUpon>FormTimecardsList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTimecardsList\InitialDataGridView.cs" />
-    <Compile Include="FormTimecardsList\TimecardsBindingModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FromRegister.cs">

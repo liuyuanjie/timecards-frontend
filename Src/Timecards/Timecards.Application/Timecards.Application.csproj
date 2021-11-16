@@ -61,10 +61,12 @@
     <Compile Include="Commands\Timecards\IDeleteTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\IQueryTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\ISaveTimecardsCommand.cs" />
+    <Compile Include="Commands\Timecards\ISearchTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\ISubmitTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\QueryTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\SaveTimecardsCommand.cs" />
     <Compile Include="Commands\Timecards\BWSubmitTimecardsCommand.cs" />
+    <Compile Include="Commands\Timecards\SearchTimecardsCommand.cs" />
     <Compile Include="Commands\User\GetUserCommand.cs" />
     <Compile Include="Commands\User\IGetUserCommand.cs" />
     <Compile Include="Commands\Login\ILoginCommand.cs" />

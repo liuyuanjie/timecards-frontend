@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Timecards.Application.Commands;
 using Timecards.Application.Commands.Timecards;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
+using Timecards.Infrastructure.Model.Response;
 
 namespace Timecards.Client.FormTimecardsList
 {
     public partial class FormTimecardsList : Form
     {
-        private readonly IQueryTimecardsCommand _queryTimecardsCommand;
+        private readonly ISearchTimecardsCommand _searchTimecardsCommand;
         private readonly IApproveTimecardsCommand _approveTimecardsCommand;
         private readonly IDeclineTimecardsCommand _declineTimecardsCommand;
 
@@ -18,7 +20,7 @@ namespace Timecards.Client.FormTimecardsList
         {
             InitializeComponent();
 
-            _queryTimecardsCommand = new BWQueryTimecardsCommand(apiRequestFactory);
+            _searchTimecardsCommand = new BWSearchTimecardsCommand(apiRequestFactory);
             _approveTimecardsCommand = new ApproveTimecardsCommand(apiRequestFactory);
             _declineTimecardsCommand = new BWDeclineTimecardsCommand(apiRequestFactory);
 
@@ -28,11 +30,11 @@ namespace Timecards.Client.FormTimecardsList
 
         private void LoadData()
         {
-            _queryTimecardsCommand.GetAsync(new QueryTimecardsRequest(),
+            _searchTimecardsCommand.SearchAsync(new QueryTimecardsRequest(),
                 responseResult => LoadCallback(responseResult));
         }
 
-        private void LoadCallback(ResponseBase<List<TimecardsResult>> responseResult)
+        private void LoadCallback(ResponseBase<List<SearchTimecardsResult>> responseResult)
         {
             if (!responseResult.ResponseState.IsSuccess)
             {
@@ -43,7 +45,9 @@ namespace Timecards.Client.FormTimecardsList
                 return;
             }
 
-            dataGridViewTimecards.DataSource = TimecardsBindingModel.ConvertTo(responseResult.ResponseResult);
+            dataGridViewTimecards.DataSource = responseResult.ResponseResult
+                .Where(x => x.StatusType == StatusType.Submitted)
+                .ToList();
         }
 
         private void buttonApprove_Click(object sender, EventArgs e)

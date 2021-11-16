@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RestSharp;
 using Timecards.Infrastructure;
 using Timecards.Infrastructure.Model;
+using Timecards.Infrastructure.Model.Response;
 using Timecards.Services.Extensions;
 
 namespace Timecards.Services.Impl
@@ -40,6 +41,15 @@ namespace Timecards.Services.Impl
             request.AddQueryParameter(nameof(QueryTimecardsRequest.TimecardsDate),
                 queryTimecardsRequest.TimecardsDate.ToString());
             var response = _apiRequestFactory.CreateClient().Execute<List<TimecardsResult>>(request);
+
+            return BuildAsyncResponseResult(response);
+        }
+
+        public ResponseBase<List<SearchTimecardsResult>> SearchTimecards(QueryTimecardsRequest queryTimecardsRequest)
+        {
+            var request = new RestRequest($"{IdentityTokenEndPoint}/search", Method.GET);
+            request.AddAuthorizationHeader();
+            var response = _apiRequestFactory.CreateClient().Execute<List<SearchTimecardsResult>>(request);
 
             return BuildAsyncResponseResult(response);
         }

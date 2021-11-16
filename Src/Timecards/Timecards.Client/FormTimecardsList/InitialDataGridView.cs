@@ -18,11 +18,12 @@ namespace Timecards.Client.FormTimecardsList
             selectColumn.Name = "columnSelect";
             selectColumn.HeaderText = "Select";
             selectColumn.ReadOnly = false;
+            selectColumn.Width = 50;
             dataGridViewTimecards.Columns.Add(selectColumn);
 
             DataGridViewColumn timecardsColumn = new DataGridViewTextBoxColumn();
             timecardsColumn.ValueType = typeof(Guid);
-            timecardsColumn.Name = "columnId";
+            timecardsColumn.Name = "keyId";
             timecardsColumn.DataPropertyName = "TimecardsId";
             timecardsColumn.Visible = false;
             dataGridViewTimecards.Columns.Add(timecardsColumn);
@@ -31,30 +32,40 @@ namespace Timecards.Client.FormTimecardsList
             projectColumn.ValueType = typeof(string);
             projectColumn.Name = "Project";
             projectColumn.DataPropertyName = "ProjectName";
+            projectColumn.Width = 200;
             dataGridViewTimecards.Columns.Add(projectColumn);
 
-            DataGridViewColumn userColumn = new DataGridViewTextBoxColumn();
-            userColumn.ValueType = typeof(string);
-            userColumn.Name = "Staff";
-            userColumn.DataPropertyName = "UserId";
-            dataGridViewTimecards.Columns.Add(userColumn);
+            DataGridViewColumn userFistNameColumn = new DataGridViewTextBoxColumn();
+            userFistNameColumn.ValueType = typeof(string);
+            userFistNameColumn.Name = "Full Name";
+            userFistNameColumn.DataPropertyName = "FullName";
+            userFistNameColumn.Width = 150;
+            dataGridViewTimecards.Columns.Add(userFistNameColumn);
+
+            DataGridViewColumn userRoleColumn = new DataGridViewTextBoxColumn();
+            userRoleColumn.ValueType = typeof(string);
+            userRoleColumn.Name = "Role";
+            userRoleColumn.DataPropertyName = "Role";
+            dataGridViewTimecards.Columns.Add(userRoleColumn);
 
             DataGridViewColumn inputStartDateColumn = new DataGridViewTextBoxColumn();
             inputStartDateColumn.ValueType = typeof(DateTime);
             inputStartDateColumn.Name = "Start Date";
-            inputStartDateColumn.DataPropertyName = "StartDate";
+            inputStartDateColumn.DataPropertyName = "DisplayStartDate";
+            inputStartDateColumn.Width = 200;
             dataGridViewTimecards.Columns.Add(inputStartDateColumn);
 
             DataGridViewColumn inputEndDateColumn = new DataGridViewTextBoxColumn();
             inputEndDateColumn.ValueType = typeof(DateTime);
             inputEndDateColumn.Name = "End Date";
-            inputEndDateColumn.DataPropertyName = "EndDate";
+            inputEndDateColumn.DataPropertyName = "DisplayEndDate";
+            inputEndDateColumn.Width = 200;
             dataGridViewTimecards.Columns.Add(inputEndDateColumn);
 
             DataGridViewColumn hourColumn = new DataGridViewTextBoxColumn();
             hourColumn.ValueType = typeof(decimal);
-            hourColumn.Name = "Hour";
-            hourColumn.DataPropertyName = "Hour";
+            hourColumn.Name = "Total Hour";
+            hourColumn.DataPropertyName = "TotalHour";
             dataGridViewTimecards.Columns.Add(hourColumn);
         }
 
@@ -65,7 +76,7 @@ namespace Timecards.Client.FormTimecardsList
                 .Select(x => new
                 {
                     IsChecked = (bool?) x.Cells["columnSelect"].Value ?? false,
-                    Id = new Guid(x.Cells["columnId"].Value.ToString())
+                    Id = new Guid(x.Cells["keyId"].Value.ToString())
                 })
                 .Where(x => x.IsChecked)
                 .Select(x => x.Id)

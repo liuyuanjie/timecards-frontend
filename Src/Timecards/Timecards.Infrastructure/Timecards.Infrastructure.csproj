@@ -67,6 +67,7 @@
     <Compile Include="Model\Response\LoginResult.cs" />
     <Compile Include="Model\Response\ProjectResult.cs" />
     <Compile Include="Model\Response\RegisterResult.cs" />
+    <Compile Include="Model\Response\SearchTimecardsResult.cs" />
     <Compile Include="Model\Response\TimecardsResult.cs" />
     <Compile Include="Model\Response\UserResult.cs" />
     <Compile Include="Model\ResponseBase.cs" />
