@@ -47,7 +47,7 @@ namespace Timecards.Client
             {
                 var inputWorkTime = new InputWorkTime(x.TimecardsId, x.UserId, x.ProjectId, x.StatusType)
                 {
-                    ProjectName = comboBoxProject.Items.Cast<Project>().First(p => p.ProjectId == x.ProjectId).Name,
+                    ProjectName = x.ProjectName,
                     TimecardsDate = x.TimecardsDate.Date
                 };
                 var dataSource = new TimecardsDataSource()

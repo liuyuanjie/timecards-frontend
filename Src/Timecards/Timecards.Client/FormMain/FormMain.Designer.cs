@@ -76,7 +76,7 @@ namespace Timecards.Client
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 60);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(2441, 104);
             this.groupBox1.TabIndex = 0;
@@ -295,7 +295,7 @@ namespace Timecards.Client
             // groupBoxWorkTime
             // 
             this.groupBoxWorkTime.Controls.Add(this.splitContainerWorkTime);
-            this.groupBoxWorkTime.Location = new System.Drawing.Point(17, 188);
+            this.groupBoxWorkTime.Location = new System.Drawing.Point(12, 140);
             this.groupBoxWorkTime.Name = "groupBoxWorkTime";
             this.groupBoxWorkTime.Size = new System.Drawing.Size(2436, 1024);
             this.groupBoxWorkTime.TabIndex = 14;
@@ -307,7 +307,7 @@ namespace Timecards.Client
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2472, 1243);
+            this.ClientSize = new System.Drawing.Size(2472, 1171);
             this.Controls.Add(this.groupBoxWorkTime);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));

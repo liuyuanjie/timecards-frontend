@@ -7,6 +7,7 @@ namespace Timecards.Infrastructure.Model
     {
         public Guid UserId { get; set; }
         public Guid ProjectId { get; set; }
+        public string ProjectName { get; set; }
         public DateTime TimecardsDate { get; set; }
         public Guid TimecardsId { get; set; }
         public StatusType StatusType { get; set; }

@@ -37,6 +37,9 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -68,6 +71,18 @@
     <Compile Include="FormMain\RemoveTimecards.cs" />
     <Compile Include="FormMain\SaveTimecards.cs" />
     <Compile Include="FormMain\SubmitTimecards.cs" />
+    <Compile Include="FormNavigate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNavigate.Designer.cs">
+      <DependentUpon>FormNavigate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTimecardsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTimecardsList.Designer.cs">
+      <DependentUpon>FormTimecardsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FromRegister.cs">
@@ -81,6 +96,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNavigate.resx">
+      <DependentUpon>FormNavigate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTimecardsList.resx">
+      <DependentUpon>FormTimecardsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -41,7 +41,7 @@ namespace Timecards.Client
         {
             if (loginResponse.ResponseState.IsSuccess)
             {
-                FormMain formMain = new FormMain(_apiRequestFactory);
+                FormNavigate formMain = new FormNavigate(_apiRequestFactory);
                 Hide();
                 formMain.ShowDialog();
             }
