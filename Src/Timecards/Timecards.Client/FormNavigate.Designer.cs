@@ -58,10 +58,10 @@ namespace Timecards.Client
             // 
             this.linkLabelOperateTimecards.Location = new System.Drawing.Point(243, 9);
             this.linkLabelOperateTimecards.Name = "linkLabelOperateTimecards";
-            this.linkLabelOperateTimecards.Size = new System.Drawing.Size(208, 62);
+            this.linkLabelOperateTimecards.Size = new System.Drawing.Size(358, 62);
             this.linkLabelOperateTimecards.TabIndex = 2;
             this.linkLabelOperateTimecards.TabStop = true;
-            this.linkLabelOperateTimecards.Text = "Approve/Decline";
+            this.linkLabelOperateTimecards.Text = "Approve/Decline Timecards";
             this.linkLabelOperateTimecards.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkLabelOperateTimecards.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOperateTimecards_LinkClicked);
             // 
@@ -81,13 +81,7 @@ namespace Timecards.Client
 
         private System.Windows.Forms.LinkLabel linkLabelAddTimecards;
         private System.Windows.Forms.LinkLabel linkLabelOperateTimecards;
-
         private System.Windows.Forms.Panel panelMain;
-
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-
-        private System.Windows.Forms.Panel panel1;
 
         #endregion
     }

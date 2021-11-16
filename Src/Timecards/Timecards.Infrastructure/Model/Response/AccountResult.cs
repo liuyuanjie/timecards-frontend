@@ -10,5 +10,7 @@ namespace Timecards.Infrastructure.Model
         public string UserName { get; set; }
         public string Role { get; set; }
         public Guid AccountId { get; set; }
+
+        public bool IsAdmin => (RoleType) Enum.Parse(typeof(RoleType), Role) == RoleType.Admin;
     }
 }

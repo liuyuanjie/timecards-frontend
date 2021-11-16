@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Linq;
@@ -71,9 +72,13 @@ namespace TimecardsControl
                 workDay.Text = InputWorkTime.TimecardsDate.AddDays(itemIndex).Day.ToString("00");
             }
 
-            labelSaveStatues.Text = InputWorkTime.StatusType != null
-                ? InputWorkTime.StatusType.ToString().ToUpper()
+            labelSaveStatues.Text = InputWorkTime.Status != null
+                ? InputWorkTime.Status.ToString().ToUpper()
                 : "UNSAVED";
+            labelSaveStatues.ForeColor =
+                InputWorkTime.Status != null && _statusColors.ContainsKey(InputWorkTime.Status.Value)
+                    ? _statusColors[InputWorkTime.Status.Value]
+                    : Color.White;
             labelTotalHour.Text = items.Sum(x => x.Hour).ToString("F1");
 
             FreezeInputWorkTime();
@@ -106,12 +111,8 @@ namespace TimecardsControl
 
         private void FreezeInputWorkTime()
         {
-            var disableChange = InputWorkTime.StatusType == StatusType.Submitted ||
-                    InputWorkTime.StatusType == StatusType.Approved ||
-                    InputWorkTime.StatusType == StatusType.Denied;
-            
-            if (!disableChange) return;
-            
+            if (!InputWorkTime.IsInProcess) return;
+
             for (int itemIndex = 0; itemIndex < Constant.DaysInWeek; itemIndex++)
             {
                 var workHour = panelInput.Controls.FindControl(GetWorkTimeControl(itemIndex));
@@ -124,9 +125,16 @@ namespace TimecardsControl
             buttonDelete.Visible = false;
             buttonNote.Visible = false;
         }
-        
+
         private static string GetDisplayMonthControl(int itemIndex) => $"labelMonth{itemIndex}";
         private static string GetWorkNoteControl(int itemIndex) => $"textBoxNote{itemIndex}";
         private static string GetWorkTimeControl(int itemIndex) => $"numericUpDownWorkTime{itemIndex}";
+
+        private Dictionary<StatusType, Color> _statusColors = new Dictionary<StatusType, Color>()
+        {
+            {StatusType.Approved, Color.Green},
+            {StatusType.Denied, Color.Red},
+            {StatusType.Submitted, Color.Blue}
+        };
     }
 }

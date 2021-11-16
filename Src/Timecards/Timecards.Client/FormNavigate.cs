@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Timecards.Application;
 using Timecards.Infrastructure;
 
 namespace Timecards.Client
@@ -13,11 +14,12 @@ namespace Timecards.Client
             InitializeComponent();
 
             ShowFormMain();
+            linkLabelOperateTimecards.Visible = AccountStore.Account.IsAdmin;
         }
         
         private void ShowTimecards()
         {
-            var formMain = new FormTimecardsList(_apiRequestFactory);
+            var formMain = new FormTimecardsList.FormTimecardsList(_apiRequestFactory);
             ShowForm(formMain);
         }
 

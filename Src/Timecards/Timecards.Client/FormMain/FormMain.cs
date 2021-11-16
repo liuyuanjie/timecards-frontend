@@ -102,20 +102,20 @@ namespace Timecards.Client
 
         private void UpdateSaveButtonState()
         {
-            buttonSave.Enabled = _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved || !x.StatusType.HasValue);
+            buttonSave.Enabled = _inputWorkTimes.Any(x => x.Status == StatusType.Saved || !x.Status.HasValue);
         }
 
         private void UpdateSubmitButtonState()
         {
-            buttonSubmit.Enabled = _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved);
+            buttonSubmit.Enabled = _inputWorkTimes.Any(x => x.Status == StatusType.Saved);
         }
 
         private void UpdateNewButtonState()
         {
-            var validProject = ((Project)comboBoxProject.SelectedItem).ParentProjectId.HasValue;
+            var validProject = ((Project) comboBoxProject.SelectedItem)?.ParentProjectId.HasValue ?? false;
             buttonNew.Enabled = validProject &&
                                 (!_inputWorkTimes.Any() ||
-                                 _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved || !x.StatusType.HasValue));
+                                 _inputWorkTimes.Any(x => x.Status == StatusType.Saved || !x.Status.HasValue));
         }
     }
 }

@@ -386,7 +386,7 @@ namespace TimecardsControl
             this.labelSaveStatues.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.labelSaveStatues.Location = new System.Drawing.Point(1495, 11);
             this.labelSaveStatues.Name = "labelSaveStatues";
-            this.labelSaveStatues.Size = new System.Drawing.Size(128, 37);
+            this.labelSaveStatues.Size = new System.Drawing.Size(176, 37);
             this.labelSaveStatues.TabIndex = 28;
             this.labelSaveStatues.Text = "UnSaved";
             this.labelSaveStatues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
