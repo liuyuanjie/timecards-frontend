@@ -32,6 +32,9 @@ namespace Timecards.Infrastructure.Model
 
     public class ItemcardsItem
     {
+        public ItemcardsItem()
+        {
+        }
         public ItemcardsItem(DateTime workDay, decimal hour, string note)
         {
             WorkDay = workDay;

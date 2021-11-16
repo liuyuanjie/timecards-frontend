@@ -59,7 +59,6 @@ namespace Timecards.Client
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBoxWorkTime = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).BeginInit();
             this.splitContainerWorkTime.Panel1.SuspendLayout();
             this.splitContainerWorkTime.SuspendLayout();
             this.groupBoxWorkTime.SuspendLayout();
@@ -197,8 +196,8 @@ namespace Timecards.Client
             this.labelWorkHours.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.labelWorkHours.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.labelWorkHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.labelWorkHours.ForeColor = System.Drawing.Color.Red;
-            this.labelWorkHours.Location = new System.Drawing.Point(11, 614);
+            this.labelWorkHours.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelWorkHours.Location = new System.Drawing.Point(8, 614);
             this.labelWorkHours.Name = "labelWorkHours";
             this.labelWorkHours.Size = new System.Drawing.Size(493, 74);
             this.labelWorkHours.TabIndex = 10;
@@ -278,7 +277,7 @@ namespace Timecards.Client
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(8, 710);
+            this.buttonSubmit.Location = new System.Drawing.Point(7, 691);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonSubmit.Size = new System.Drawing.Size(496, 62);
@@ -289,7 +288,7 @@ namespace Timecards.Client
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(8, 386);
+            this.buttonSave.Location = new System.Drawing.Point(7, 549);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(493, 62);
             this.buttonSave.TabIndex = 13;
@@ -325,7 +324,6 @@ namespace Timecards.Client
             this.groupBox1.PerformLayout();
             this.splitContainerWorkTime.Panel1.ResumeLayout(false);
             this.splitContainerWorkTime.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.splitContainerWorkTime)).EndInit();
             this.splitContainerWorkTime.ResumeLayout(false);
             this.groupBoxWorkTime.ResumeLayout(false);
             this.ResumeLayout(false);

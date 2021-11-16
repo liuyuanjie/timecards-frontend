@@ -192,7 +192,7 @@ namespace Timecards.Client
             var queryTimecardsRequest = new QueryTimecardsRequest()
             {
                 UserId = AccountStore.Account.AccountId,
-                TimecardsDate = date.ToUniversalTime()
+                TimecardsDate = date.ConvertToUTCDate()
             };
 
             _queryTimecardsCommand.GetAsync(queryTimecardsRequest,
