@@ -21,7 +21,7 @@ namespace Timecards.Services.Impl
 
         public void GetProjectsAsync(Action<ResponseBase<List<Project>>> callbackProcessHandler)
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            var request = new RestRequest(IdentityTokenEndPoint, Method.GET);
             request.AddAuthorizationHeader();
 
             _apiRequestFactory.CreateClient().ExecuteAsyncPost<List<Project>>(request,
@@ -31,7 +31,7 @@ namespace Timecards.Services.Impl
 
         public ResponseBase<List<Project>> GetProjects()
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            var request = new RestRequest(IdentityTokenEndPoint, Method.GET);
             request.AddAuthorizationHeader();
 
             return BuildAsyncResponseResult(_apiRequestFactory.CreateClient().Execute<List<Project>>(request));

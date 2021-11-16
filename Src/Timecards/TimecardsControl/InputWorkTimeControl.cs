@@ -109,20 +109,20 @@ namespace TimecardsControl
             var disableChange = InputWorkTime.StatusType == StatusType.Submitted ||
                     InputWorkTime.StatusType == StatusType.Approved ||
                     InputWorkTime.StatusType == StatusType.Denied;
-            if (disableChange)
+            
+            if (!disableChange) return;
+            
+            for (int itemIndex = 0; itemIndex < Constant.DaysInWeek; itemIndex++)
             {
-                for (int itemIndex = 0; itemIndex < Constant.DaysInWeek; itemIndex++)
-                {
-                    var workHour = panelInput.Controls.FindControl(GetWorkTimeControl(itemIndex));
-                    workHour.Enabled = false;
+                var workHour = panelInput.Controls.FindControl(GetWorkTimeControl(itemIndex));
+                workHour.Enabled = false;
 
-                    var workNote = panelInput.Controls.FindControl(GetWorkNoteControl(itemIndex));
-                    workNote.Enabled = false;
-                }
-
-                buttonDelete.Visible = false;
-                buttonNote.Visible = false;
+                var workNote = panelInput.Controls.FindControl(GetWorkNoteControl(itemIndex));
+                workNote.Enabled = false;
             }
+
+            buttonDelete.Visible = false;
+            buttonNote.Visible = false;
         }
         
         private static string GetDisplayMonthControl(int itemIndex) => $"labelMonth{itemIndex}";

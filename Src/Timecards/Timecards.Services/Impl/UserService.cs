@@ -20,7 +20,7 @@ namespace Timecards.Services.Impl
 
         public void GetUserAsync(UserRequest userRequest, Action<ResponseBase<List<UserResult>>> callbackProcessHandler)
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            var request = new RestRequest(IdentityTokenEndPoint, Method.GET);
             request.AddAuthorizationHeader();
             request.AddQueryParameter(nameof(UserRequest.Email), userRequest.Email);
 
@@ -32,7 +32,7 @@ namespace Timecards.Services.Impl
         
         public ResponseBase<List<UserResult>> GetUser(UserRequest userRequest)
         {
-            RestRequest request = new RestRequest(IdentityTokenEndPoint, Method.GET);
+            var request = new RestRequest(IdentityTokenEndPoint, Method.GET);
             request.AddAuthorizationHeader();
             request.AddQueryParameter(nameof(UserRequest.Email), userRequest.Email);
 
