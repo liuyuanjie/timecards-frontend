@@ -72,8 +72,7 @@ namespace Timecards.Client
 
         private void comboBoxProject_SelectedValueChanged(object sender, EventArgs e)
         {
-            var comboBox = (ComboBox) sender;
-            UpdateNewButtonState(((Project) comboBox.SelectedItem).ParentProjectId.HasValue);
+            UpdateNewButtonState();
         }
 
         private void UpdateTotalWorkHour(decimal hours)
@@ -86,7 +85,7 @@ namespace Timecards.Client
             _inputWorkTimes.Remove(inputWorkTime);
             splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl(control);
 
-            UpdateSaveButtonState(_inputWorkTimes.Any());
+            UpdateSaveButtonState();
         }
 
         private void AddInputWorkTime(InputWorkTime inputWorkTime, TimecardsDataSource dataSource)
@@ -98,13 +97,12 @@ namespace Timecards.Client
                 RemoveTimecards(inputWorkTimeControl.InputWorkTime, control);
             inputWorkTimeControl.InputWorkTime.InitialTimecards(dataSource);
 
-            UpdateSaveButtonState(true);
+            UpdateSaveButtonState();
         }
 
-        private void UpdateSaveButtonState(bool enabled)
+        private void UpdateSaveButtonState()
         {
-            buttonSave.Enabled = enabled &&
-                                 _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved || !x.StatusType.HasValue);
+            buttonSave.Enabled = _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved || !x.StatusType.HasValue);
         }
 
         private void UpdateSubmitButtonState()
@@ -112,10 +110,12 @@ namespace Timecards.Client
             buttonSubmit.Enabled = _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved);
         }
 
-        private void UpdateNewButtonState(bool enabled)
+        private void UpdateNewButtonState()
         {
-            buttonNew.Enabled = enabled &&
-                                   _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved || !x.StatusType.HasValue);
+            var validProject = ((Project)comboBoxProject.SelectedItem).ParentProjectId.HasValue;
+            buttonNew.Enabled = validProject &&
+                                (!_inputWorkTimes.Any() ||
+                                 _inputWorkTimes.Any(x => x.StatusType == StatusType.Saved || !x.StatusType.HasValue));
         }
     }
 }

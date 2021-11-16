@@ -29,8 +29,8 @@ namespace Timecards.Client
                 ClearInputWorkTimes();
                 PopulateWorkTimes(responseResult);
                 UpdateSubmitButtonState();
-                UpdateSaveButtonState(true);
-                UpdateNewButtonState(true);
+                UpdateSaveButtonState();
+                UpdateNewButtonState();
             }
             else
             {
