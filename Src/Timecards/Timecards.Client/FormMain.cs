@@ -119,6 +119,9 @@ namespace Timecards.Client
                         responseState.IsSuccess ? "Delete Successfully!" : "Delete Failed",
                         "Delete",
                         MessageBoxButtons.OK);
+
+                    UpdateTotalWorkHour(_inputWorkTimes.Select(x =>
+                        x.SaveTimecards.Invoke()).ToList());
                 });
         }
 
@@ -169,8 +172,7 @@ namespace Timecards.Client
                             "Save",
                             MessageBoxButtons.OK);
                         GetTimecardsOfDate(saveTimecardsRequest.Timecardses.First().TimecardsDate);
-                        labelWorkHours.Text = saveTimecardsRequest.Timecardses.Sum(x => x.Items.Sum(t => t.Hour))
-                            .ToString("F1");
+                        UpdateTotalWorkHour(saveTimecardsRequest.Timecardses);
                     }
                     else
                     {
@@ -180,6 +182,18 @@ namespace Timecards.Client
                             MessageBoxButtons.OK);
                     }
                 });
+        }
+
+        private void UpdateTotalWorkHour(List<Infrastructure.Model.Timecards> timecards)
+        {
+            labelWorkHours.Text = timecards.Sum(x => x.Items.Sum(t => t.Hour))
+                .ToString("F1");
+        }
+        
+        private void UpdateTotalWorkHour(List<TimecardsDataSource> timecards)
+        {
+            labelWorkHours.Text = timecards.Sum(x => x.Items.Sum(t => t.Hour))
+                .ToString("F1");
         }
 
         private void dateTimeWorkDate_ValueChanged(object sender, EventArgs e)

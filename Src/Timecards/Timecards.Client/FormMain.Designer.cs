@@ -193,13 +193,12 @@ namespace Timecards.Client
             // 
             // labelWorkHours
             // 
-            this.labelWorkHours.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.labelWorkHours.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.labelWorkHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.labelWorkHours.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelWorkHours.Location = new System.Drawing.Point(8, 614);
+            this.labelWorkHours.Location = new System.Drawing.Point(8, 630);
             this.labelWorkHours.Name = "labelWorkHours";
-            this.labelWorkHours.Size = new System.Drawing.Size(493, 74);
+            this.labelWorkHours.Size = new System.Drawing.Size(488, 74);
             this.labelWorkHours.TabIndex = 10;
             this.labelWorkHours.Text = "40";
             this.labelWorkHours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -277,7 +276,7 @@ namespace Timecards.Client
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(7, 691);
+            this.buttonSubmit.Location = new System.Drawing.Point(0, 733);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonSubmit.Size = new System.Drawing.Size(496, 62);
