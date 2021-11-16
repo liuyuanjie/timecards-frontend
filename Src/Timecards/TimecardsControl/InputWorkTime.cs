@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Timecards.Infrastructure.Model;
 
 namespace TimecardsControl
@@ -38,7 +37,7 @@ namespace TimecardsControl
         public string GetWorkDateDisplayText()
         {
             return
-                $"{this.TimecardsDate.ToString("M")} - {this.TimecardsDate.AddDays(Constant.DaysInWeek).ToString("M")}";
+                $"{TimecardsDate.ToString("M")} - {TimecardsDate.AddDays(Constant.DaysInWeek).ToString("M")}";
         }
 
         private DateTime GetFirstDayOfWeek(DateTime day)

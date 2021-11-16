@@ -289,7 +289,7 @@ namespace TimecardsControl
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(147, 23);
             this.label2.TabIndex = 37;
-            this.label2.Text = "Total Hour:";
+            this.label2.Text = "Total Hours:";
             // 
             // buttonNote
             // 

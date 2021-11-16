@@ -77,7 +77,7 @@ namespace Timecards.Services.Impl
         {
             var request = new RestRequest($"{IdentityTokenEndPoint}/submit", Method.POST);
             request.AddAuthorizationHeader();
-            request.AddJsonBody(submitTimecardsRequest);
+            request.AddJsonBody(submitTimecardsRequest.TimecardsIds);
             
             return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
         }
@@ -86,7 +86,7 @@ namespace Timecards.Services.Impl
         {
             var request = new RestRequest($"{IdentityTokenEndPoint}/approve", Method.POST);
             request.AddAuthorizationHeader();
-            request.AddJsonBody(approveTimecardsRequest);
+            request.AddJsonBody(approveTimecardsRequest.TimecardsIds);
 
             return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
         }
@@ -95,7 +95,7 @@ namespace Timecards.Services.Impl
         {
             var request = new RestRequest($"{IdentityTokenEndPoint}/decline", Method.POST);
             request.AddAuthorizationHeader();
-            request.AddJsonBody(declineTimecardsRequest);
+            request.AddJsonBody(declineTimecardsRequest.TimecardsIds);
 
             return BuildResponseState(_apiRequestFactory.CreateClient().Execute(request));
         }

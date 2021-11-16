@@ -180,7 +180,6 @@ namespace Timecards.Client
             this.buttonNew.TabIndex = 12;
             this.buttonNew.Text = "New";
             this.buttonNew.UseVisualStyleBackColor = true;
-            this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
             // label7
             // 
@@ -283,7 +282,6 @@ namespace Timecards.Client
             this.buttonSubmit.TabIndex = 14;
             this.buttonSubmit.Text = "Submit";
             this.buttonSubmit.UseVisualStyleBackColor = true;
-            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
             // buttonSave
             // 
@@ -293,7 +291,6 @@ namespace Timecards.Client
             this.buttonSave.TabIndex = 13;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // groupBoxWorkTime
             // 
@@ -354,7 +351,6 @@ namespace Timecards.Client
         private Label LabelUserName;
         private Label labelLastName;
         private Label labelFirstName;
-        private Label label6;
         private Label label7;
         private System.Windows.Forms.Button buttonNew;
         private System.Windows.Forms.SplitContainer splitContainerWorkTime;
