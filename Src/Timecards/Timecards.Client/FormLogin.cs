@@ -39,22 +39,26 @@ namespace Timecards.Client
 
         private void CallbackProcess(ResponseBase<LoginResult> loginResponse)
         {
-            if (loginResponse.ResponseState.IsSuccess)
-            {
-                FormNavigate formMain = new FormNavigate(_apiRequestFactory);
-                Hide();
-                formMain.ShowDialog();
-            }
-            else
+            if (!loginResponse.ResponseState.IsSuccess)
             {
                 MessageBox.Show(
                     loginResponse.ResponseState.ResponseStateMessage.OutputResponseMessage(),
                     "Login Failed",
                     MessageBoxButtons.OK);
+                return;
             }
+
+            ShowFromMain();
         }
 
-        public void CallbackFromRegister(string email)
+        private void ShowFromMain()
+        {
+            FormNavigate formMain = new FormNavigate(_apiRequestFactory);
+            Hide();
+            formMain.ShowDialog();
+        }
+
+        public void SetEmail(string email)
         {
             textBoxEmail.Text = email;
             textBoxPassword.Focus();

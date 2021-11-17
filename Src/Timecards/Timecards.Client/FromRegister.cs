@@ -52,9 +52,14 @@ namespace Timecards.Client
                 return;
             }
 
+            ShowFromLogin(registerResponse);
+        }
+
+        private void ShowFromLogin(ResponseBase<RegisterResult> registerResponse)
+        {
             FormLogin fromLogin = new FormLogin(_apiRequestFactory);
             Hide();
-            fromLogin.CallbackFromRegister(registerResponse.ResponseResult.Email);
+            fromLogin.SetEmail(registerResponse.ResponseResult.Email);
             fromLogin.ShowDialog();
         }
     }

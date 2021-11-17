@@ -12,7 +12,8 @@ namespace Timecards.Client
         private void SubmitTimecards()
         {
             var dialogResult =
-                MessageBox.Show($"You won't update the records if you submit records.{Environment.NewLine}Are you sure want to submit?",
+                MessageBox.Show(
+                    $"You won't update the records if you submit records.{Environment.NewLine}Are you sure want to submit?",
                     "Submit", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
             {
@@ -50,7 +51,7 @@ namespace Timecards.Client
                 MessageBox.Show("Submit Failed!", "Submit", MessageBoxButtons.OK);
                 return;
             }
-            
+
             LoadTimecardsOfDay(timecardsDate);
         }
     }

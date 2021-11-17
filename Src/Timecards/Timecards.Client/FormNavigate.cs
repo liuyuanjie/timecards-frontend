@@ -38,15 +38,15 @@ namespace Timecards.Client
             ShowForm(formMain);
         }
         
-        private void ShowForm(Form form)
+        private void ShowForm(Form panelForm)
         {
             panelMain.Controls.Clear();
 
-            form.TopLevel = false;
-            panelMain.Controls.Add(form);
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;
-            form.Show();
+            panelForm.TopLevel = false;
+            panelMain.Controls.Add(panelForm);
+            panelForm.FormBorderStyle = FormBorderStyle.None;
+            panelForm.Dock = DockStyle.Fill;
+            panelForm.Show();
         }
     }
 }

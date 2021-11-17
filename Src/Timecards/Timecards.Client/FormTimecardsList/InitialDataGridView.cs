@@ -73,13 +73,18 @@ namespace Timecards.Client.FormTimecardsList
         {
             var timecardsIds = dataGridViewTimecards.Rows
                 .Cast<DataGridViewRow>()
-                .Select(x => new
+                .Select(x =>
                 {
-                    IsChecked = (bool?) x.Cells["columnSelect"].Value ?? false,
-                    Id = new Guid(x.Cells["keyId"].Value.ToString())
+                    var isChecked = x.Cells["columnSelect"]?.Value;
+                    var timecardsId = x.Cells["keyId"]?.Value;
+                    return new
+                    {
+                        IsChecked = (bool?) isChecked ?? false,
+                        TimecardsId = (Guid?) timecardsId
+                    };
                 })
-                .Where(x => x.IsChecked)
-                .Select(x => x.Id)
+                .Where(x => x.IsChecked && x.TimecardsId.HasValue)
+                .Select(x => x.TimecardsId.Value)
                 .ToList();
 
             return timecardsIds;
