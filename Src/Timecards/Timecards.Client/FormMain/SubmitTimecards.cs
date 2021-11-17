@@ -12,7 +12,7 @@ namespace Timecards.Client
         private void SubmitTimecards()
         {
             var dialogResult =
-                MessageBox.Show("You won't update the records if you decide to submit. Do you still want to submit?",
+                MessageBox.Show($"You won't update the records if you submit records.{Environment.NewLine}Are you sure want to submit?",
                     "Submit", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
             {
@@ -20,7 +20,6 @@ namespace Timecards.Client
             }
 
             var timecardses = BuildTimecardses();
-
             _submitTimecardsCommand.SubmitTimecardsAsync(
                 new BatchTimecardsRequest
                 {
@@ -46,15 +45,13 @@ namespace Timecards.Client
 
         private void SubmitTimecardsCallback(ResponseState responseState, DateTime timecardsDate)
         {
-            if (responseState.IsSuccess)
-            {
-                MessageBox.Show("Submit Successfully!", "Submit", MessageBoxButtons.OK);
-                LoadTimecardsOfDay(timecardsDate);
-            }
-            else
+            if (!responseState.IsSuccess)
             {
                 MessageBox.Show("Submit Failed!", "Submit", MessageBoxButtons.OK);
+                return;
             }
+            
+            LoadTimecardsOfDay(timecardsDate);
         }
     }
 }

@@ -24,21 +24,20 @@ namespace Timecards.Client
 
         private void LoadCallback(ResponseBase<List<TimecardsResult>> responseResult)
         {
-            if (responseResult.ResponseState.IsSuccess)
-            {
-                ClearInputWorkTimes();
-                PopulateWorkTimes(responseResult);
-                UpdateSubmitButtonState();
-                UpdateSaveButtonState();
-                UpdateNewButtonState();
-            }
-            else
+            if (!responseResult.ResponseState.IsSuccess)
             {
                 MessageBox.Show(
                     responseResult.ResponseState.ResponseStateMessage.OutputResponseMessage(),
                     "Load",
                     MessageBoxButtons.OK);
+                return;
             }
+
+            ClearInputWorkTimes();
+            PopulateWorkTimes(responseResult);
+            UpdateSubmitButtonState();
+            UpdateSaveButtonState();
+            UpdateNewButtonState();
         }
 
         private void PopulateWorkTimes(ResponseBase<List<TimecardsResult>> responseResult)

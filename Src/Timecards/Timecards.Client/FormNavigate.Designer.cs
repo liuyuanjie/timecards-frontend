@@ -52,7 +52,6 @@ namespace Timecards.Client
             this.linkLabelAddTimecards.TabStop = true;
             this.linkLabelAddTimecards.Text = "Add Timecards";
             this.linkLabelAddTimecards.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.linkLabelAddTimecards.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAddTimecards_LinkClicked);
             // 
             // linkLabelOperateTimecards
             // 
@@ -63,7 +62,6 @@ namespace Timecards.Client
             this.linkLabelOperateTimecards.TabStop = true;
             this.linkLabelOperateTimecards.Text = "Approve/Decline Timecards";
             this.linkLabelOperateTimecards.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.linkLabelOperateTimecards.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOperateTimecards_LinkClicked);
             // 
             // FormNavigate
             // 

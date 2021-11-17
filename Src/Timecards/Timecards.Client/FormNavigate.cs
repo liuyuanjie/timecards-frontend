@@ -11,12 +11,21 @@ namespace Timecards.Client
         public FormNavigate(IApiRequestFactory apiRequestFactory)
         {
             _apiRequestFactory = apiRequestFactory;
+
             InitializeComponent();
+            InitialUISetting();
+        }
+
+        private void InitialUISetting()
+        {
+            linkLabelOperateTimecards.Visible = AccountStore.Account.IsAdmin;
+
+            linkLabelAddTimecards.LinkClicked += (s, e) => ShowFormMain();
+            linkLabelOperateTimecards.LinkClicked += (s, e) => ShowTimecards();;
 
             ShowFormMain();
-            linkLabelOperateTimecards.Visible = AccountStore.Account.IsAdmin;
         }
-        
+
         private void ShowTimecards()
         {
             var formMain = new FormTimecardsList.FormTimecardsList(_apiRequestFactory);
@@ -29,25 +38,15 @@ namespace Timecards.Client
             ShowForm(formMain);
         }
         
-        private void ShowForm(Form formMain)
+        private void ShowForm(Form form)
         {
             panelMain.Controls.Clear();
 
-            formMain.TopLevel = false;
-            panelMain.Controls.Add(formMain);
-            formMain.FormBorderStyle = FormBorderStyle.None;
-            formMain.Dock = DockStyle.Fill;
-            formMain.Show();
-        }
-
-        private void linkLabelAddTimecards_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ShowFormMain();
-        }
-
-        private void linkLabelOperateTimecards_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ShowTimecards();
+            form.TopLevel = false;
+            panelMain.Controls.Add(form);
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            form.Show();
         }
     }
 }

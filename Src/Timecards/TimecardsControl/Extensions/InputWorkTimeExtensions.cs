@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,9 +13,7 @@ namespace TimecardsControl.Extensions
         public static InputWorkTimeControl AddInputWorkTimeControl(this Control.ControlCollection controls,
             InputWorkTime inputWorkTime)
         {
-            var count = controls
-                .Cast<Control>()
-                .Count(x => x.GetType() == typeof(InputWorkTimeControl));
+            var count = FindAllInputWorkTimeControls(controls).Count();
 
             var inputWorkTimeControl = new InputWorkTimeControl(inputWorkTime)
             {
@@ -31,25 +30,29 @@ namespace TimecardsControl.Extensions
             controls.Remove(control);
 
             var index = 0;
-            controls
-                .Cast<Control>()
-                .Where(x => x.GetType() == typeof(InputWorkTimeControl))
+            FindAllInputWorkTimeControls(controls)
                 .ToList()
                 .ForEach(x =>
                 {
-                    x.Location = new Point(_defaultPosition, _defaultPosition + index * _controlHigh);
+                    var controlPositionHigh = index * _controlHigh;
+                    x.Location = new Point(_defaultPosition, _defaultPosition + controlPositionHigh);
                     index++;
                 });
         }
 
         public static void RemoveAllInputWorkTimes(this Control.ControlCollection controls)
         {
-            var items = controls
-                .Cast<Control>()
-                .Where(x => x.GetType() == typeof(InputWorkTimeControl))
+            var items = FindAllInputWorkTimeControls(controls)
                 .Cast<InputWorkTimeControl>()
                 .ToList();
             items.ForEach(x => controls.Remove(x));
+        }
+
+        private static IEnumerable<Control> FindAllInputWorkTimeControls(Control.ControlCollection controls)
+        {
+            return controls
+                .Cast<Control>()
+                .Where(x => x.GetType() == typeof(InputWorkTimeControl));
         }
     }
 }

@@ -12,17 +12,16 @@ namespace Timecards.Client
 
         private void GetProjectCallbackProcess(ResponseBase<ProjectResult> projectResponse)
         {
-            if (projectResponse.ResponseState.IsSuccess)
-            {
-                var dataSource = projectResponse.ResponseResult.GetProjectTree();
-                comboBoxProject.DataSource = dataSource;
-                comboBoxProject.DisplayMember = nameof(Project.Name);
-                comboBoxProject.ValueMember = nameof(Project.ProjectId);
-            }
-            else
+            if (!projectResponse.ResponseState.IsSuccess)
             {
                 MessageBox.Show(projectResponse.ResponseState.ResponseStateMessage.OutputResponseMessage());
+                return;
             }
+            
+            var dataSource = projectResponse.ResponseResult.GetProjectTree();
+            comboBoxProject.DataSource = dataSource;
+            comboBoxProject.DisplayMember = nameof(Project.Name);
+            comboBoxProject.ValueMember = nameof(Project.ProjectId);
         }
     }
 }

@@ -27,15 +27,13 @@ namespace Timecards.Client
 
         private void SaveTimecardsCallback(ResponseState responseState, DateTime timecardsDate)
         {
-            if (responseState.IsSuccess)
-            {
-                MessageBox.Show("Save Successfully!", "Save", MessageBoxButtons.OK);
-                LoadTimecardsOfDay(timecardsDate);
-            }
-            else
+            if (!responseState.IsSuccess)
             {
                 MessageBox.Show("Save Failed!", "Save", MessageBoxButtons.OK);
+                return;
             }
+
+            LoadTimecardsOfDay(timecardsDate);
         }
     }
 }

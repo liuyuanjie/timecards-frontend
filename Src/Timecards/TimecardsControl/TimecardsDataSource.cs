@@ -18,7 +18,6 @@ namespace TimecardsControl
         }
 
         private List<Item> _items;
-
         public List<Item> Items
         {
             set { _items = value; }
@@ -38,19 +37,5 @@ namespace TimecardsControl
                 return items;
             }
         }
-    }
-
-    public class Item
-    {
-        public Item(DateTime workDay, decimal hour, string note)
-        {
-            WorkDay = workDay;
-            Note = note;
-            Hour = hour;
-        }
-
-        public DateTime WorkDay { get; }
-        public string Note { get; }
-        public decimal Hour { get; }
     }
 }

@@ -27,16 +27,15 @@ namespace Timecards.Client
         private void RemoveTimecardsCallback(InputWorkTime inputWorkTime, InputWorkTimeControl control,
             ResponseState responseState)
         {
-            if (responseState.IsSuccess)
-            {
-                RemoveInputWorkTime(inputWorkTime, control);
-                UpdateTotalWorkHour(_inputWorkTimes.Select(x => x.SaveTimecards.Invoke())
-                    .Sum(x => x.Items.Sum(t => t.Hour)));
-            }
-            else
+            if (!responseState.IsSuccess)
             {
                 MessageBox.Show("Delete Failed", "Delete", MessageBoxButtons.OK);
+                return;
             }
+
+            RemoveInputWorkTime(inputWorkTime, control);
+            UpdateTotalWorkHour(_inputWorkTimes.Select(x => x.SaveTimecards.Invoke())
+                .Sum(x => x.Items.Sum(t => t.Hour)));
         }
     }
 }
