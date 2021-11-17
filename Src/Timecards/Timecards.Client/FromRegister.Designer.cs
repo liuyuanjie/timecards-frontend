@@ -57,7 +57,7 @@ namespace Timecards.Client
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label2.Location = new System.Drawing.Point(48, 272);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
@@ -67,7 +67,7 @@ namespace Timecards.Client
             // 
             // textBoxFullName
             // 
-            this.textBoxFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxFullName.Location = new System.Drawing.Point(54, 308);
             this.textBoxFullName.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxFullName.Name = "textBoxFullName";
@@ -76,7 +76,7 @@ namespace Timecards.Client
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxEmail.Location = new System.Drawing.Point(54, 420);
             this.textBoxEmail.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxEmail.Name = "textBoxEmail";
@@ -86,7 +86,7 @@ namespace Timecards.Client
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label3.Location = new System.Drawing.Point(48, 383);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
@@ -96,7 +96,7 @@ namespace Timecards.Client
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxPassword.Location = new System.Drawing.Point(54, 535);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxPassword.Name = "textBoxPassword";
@@ -107,7 +107,7 @@ namespace Timecards.Client
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label4.Location = new System.Drawing.Point(48, 498);
             this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
@@ -117,7 +117,7 @@ namespace Timecards.Client
             // 
             // textBoxConfirmPassword
             // 
-            this.textBoxConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxConfirmPassword.Location = new System.Drawing.Point(54, 652);
             this.textBoxConfirmPassword.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
@@ -128,7 +128,7 @@ namespace Timecards.Client
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label5.Location = new System.Drawing.Point(48, 616);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
@@ -138,12 +138,12 @@ namespace Timecards.Client
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(54, 835);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.button1.Location = new System.Drawing.Point(53, 839);
             this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(556, 75);
-            this.button1.TabIndex = 12;
+            this.button1.TabIndex = 13;
             this.button1.Text = "Create Account";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonSignUp_Click);
@@ -151,7 +151,7 @@ namespace Timecards.Client
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label1.Location = new System.Drawing.Point(134, 52);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
@@ -176,12 +176,13 @@ namespace Timecards.Client
             // radioButtonStaff
             // 
             this.radioButtonStaff.AutoSize = true;
-            this.radioButtonStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonStaff.Location = new System.Drawing.Point(12, 33);
+            this.radioButtonStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.radioButtonStaff.Location = new System.Drawing.Point(26, 36);
             this.radioButtonStaff.Margin = new System.Windows.Forms.Padding(6);
             this.radioButtonStaff.Name = "radioButtonStaff";
             this.radioButtonStaff.Size = new System.Drawing.Size(101, 34);
-            this.radioButtonStaff.TabIndex = 10;
+            this.radioButtonStaff.TabIndex = 11;
+            this.radioButtonStaff.TabStop = true;
             this.radioButtonStaff.Text = "Staff";
             this.radioButtonStaff.UseVisualStyleBackColor = true;
             // 
@@ -189,12 +190,12 @@ namespace Timecards.Client
             // 
             this.radioButtonAdmin.AutoSize = true;
             this.radioButtonAdmin.Checked = true;
-            this.radioButtonAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonAdmin.Location = new System.Drawing.Point(150, 33);
+            this.radioButtonAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.radioButtonAdmin.Location = new System.Drawing.Point(164, 36);
             this.radioButtonAdmin.Margin = new System.Windows.Forms.Padding(6);
             this.radioButtonAdmin.Name = "radioButtonAdmin";
             this.radioButtonAdmin.Size = new System.Drawing.Size(122, 34);
-            this.radioButtonAdmin.TabIndex = 11;
+            this.radioButtonAdmin.TabIndex = 12;
             this.radioButtonAdmin.TabStop = true;
             this.radioButtonAdmin.Text = "Admin";
             this.radioButtonAdmin.UseVisualStyleBackColor = true;
@@ -208,13 +209,13 @@ namespace Timecards.Client
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox1.Size = new System.Drawing.Size(556, 92);
-            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label6.Location = new System.Drawing.Point(350, 164);
             this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
@@ -225,7 +226,7 @@ namespace Timecards.Client
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label7.Location = new System.Drawing.Point(49, 164);
             this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label7.Name = "label7";
@@ -235,7 +236,7 @@ namespace Timecards.Client
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxFirstName.Location = new System.Drawing.Point(53, 200);
             this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxFirstName.Name = "textBoxFirstName";
@@ -244,7 +245,7 @@ namespace Timecards.Client
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBoxLastName.Location = new System.Drawing.Point(355, 200);
             this.textBoxLastName.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxLastName.Name = "textBoxLastName";
@@ -272,7 +273,7 @@ namespace Timecards.Client
             this.Controls.Add(this.textBoxFullName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -283,7 +284,6 @@ namespace Timecards.Client
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -295,12 +295,12 @@ namespace Timecards.Client
         private Label label4;
         private TextBox textBoxConfirmPassword;
         private Label label5;
-        private Button button1;
+        private System.Windows.Forms.Button button1;
         private Label label1;
         private LinkLabel linkSignIn;
-        private RadioButton radioButtonStaff;
-        private RadioButton radioButtonAdmin;
-        private GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButtonStaff;
+        private System.Windows.Forms.RadioButton radioButtonAdmin;
+        private System.Windows.Forms.GroupBox groupBox1;
         private Label label6;
         private Label label7;
         private TextBox textBoxFirstName;

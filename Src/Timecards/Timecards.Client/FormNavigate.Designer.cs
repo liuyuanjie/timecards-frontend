@@ -34,6 +34,7 @@ namespace Timecards.Client
             this.panelMain = new System.Windows.Forms.Panel();
             this.linkLabelAddTimecards = new System.Windows.Forms.LinkLabel();
             this.linkLabelOperateTimecards = new System.Windows.Forms.LinkLabel();
+            this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // panelMain
@@ -63,19 +64,37 @@ namespace Timecards.Client
             this.linkLabelOperateTimecards.Text = "Approve/Decline Timecards";
             this.linkLabelOperateTimecards.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // linkLabelLogout
+            // 
+            this.linkLabelLogout.Location = new System.Drawing.Point(2371, 9);
+            this.linkLabelLogout.Name = "linkLabelLogout";
+            this.linkLabelLogout.Size = new System.Drawing.Size(186, 62);
+            this.linkLabelLogout.TabIndex = 3;
+            this.linkLabelLogout.TabStop = true;
+            this.linkLabelLogout.Text = "Logout";
+            this.linkLabelLogout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormNavigate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2579, 1273);
+            this.Controls.Add(this.linkLabelLogout);
             this.Controls.Add(this.linkLabelOperateTimecards);
             this.Controls.Add(this.linkLabelAddTimecards);
             this.Controls.Add(this.panelMain);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormNavigate";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.LinkLabel linkLabelLogout;
+
+        private System.Windows.Forms.LinkLabel linkLabel1;
 
         private System.Windows.Forms.LinkLabel linkLabelAddTimecards;
         private System.Windows.Forms.LinkLabel linkLabelOperateTimecards;

@@ -21,9 +21,17 @@ namespace Timecards.Client
             linkLabelOperateTimecards.Visible = AccountStore.Account.IsAdmin;
 
             linkLabelAddTimecards.LinkClicked += (s, e) => ShowFormMain();
-            linkLabelOperateTimecards.LinkClicked += (s, e) => ShowTimecards();;
+            linkLabelOperateTimecards.LinkClicked += (s, e) => ShowTimecards();
+            linkLabelLogout.LinkClicked += (s, e) => ShowLogin();
 
             ShowFormMain();
+        }
+
+        private void ShowLogin()
+        {
+            FormLogin fromLogin = new FormLogin(_apiRequestFactory);
+            Hide();
+            fromLogin.ShowDialog();
         }
 
         private void ShowTimecards()
