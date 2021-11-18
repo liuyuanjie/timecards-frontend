@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Timecards.Infrastructure.Model;
 using TimecardsControl;
-using TimecardsControl.Extensions;
 
 namespace Timecards.Client
 {
@@ -34,8 +31,7 @@ namespace Timecards.Client
             }
 
             RemoveInputWorkTime(inputWorkTime, control);
-            UpdateTotalWorkHour(_inputWorkTimes.Select(x => x.SaveTimecards.Invoke())
-                .Sum(x => x.Items.Sum(t => t.Hour)));
+            UpdateTotalWorkHour(_inputWorkTimeSource.GetTotalHours());
         }
     }
 }

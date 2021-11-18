@@ -20,28 +20,12 @@ namespace Timecards.Client
                 return;
             }
 
-            var timecardses = BuildTimecardses();
-            _submitTimecardsCommand.SubmitTimecardsAsync(
-                new BatchTimecardsRequest
+            _submitTimecardsCommand.SubmitTimecardsAsync(new BatchTimecardsRequest
                 {
-                    TimecardsIds = timecardses.Where(x => x.TimecardsId.HasValue).Select(x => x.TimecardsId.Value)
+                    TimecardsIds = _inputWorkTimeSource.GetCanSubmitTimecards().Select(x => x.TimecardsId.Value)
                         .ToList()
                 },
-                responseState => { SubmitTimecardsCallback(responseState, timecardses.First().TimecardsDate); });
-        }
-
-        private List<Infrastructure.Model.Timecards> BuildTimecardses()
-        {
-            var timecardses = _inputWorkTimes.Select(x =>
-                new Infrastructure.Model.Timecards(x.TimecardsId, AccountStore.Account.AccountId, x.ProjectId,
-                    x.TimecardsDate.ConvertToUTCDate())
-                {
-                    TimecardsDate = x.TimecardsDate.ConvertToUTCDate(),
-                    Items = x.SaveTimecards.Invoke().Items
-                        .Select(t => new ItemcardsItem(t.WorkDay.ConvertToUTCDate(), t.Hour, t.Note)).ToList()
-                }).ToList();
-
-            return timecardses;
+                responseState => { SubmitTimecardsCallback(responseState, _inputWorkTimeSource.InputTimecardsDay()); });
         }
 
         private void SubmitTimecardsCallback(ResponseState responseState, DateTime timecardsDate)

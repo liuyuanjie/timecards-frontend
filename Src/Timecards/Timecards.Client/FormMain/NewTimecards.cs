@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 using Timecards.Application;
 using TimecardsControl;
-using TimecardsControl.Extensions;
 
 namespace Timecards.Client
 {
@@ -12,7 +10,7 @@ namespace Timecards.Client
         private void AddEmptyInputWorkTime()
         {
             var projectId = new Guid(comboBoxProject.SelectedValue.ToString());
-            if (_inputWorkTimes.Any(x => x.ProjectId == projectId))
+            if (_inputWorkTimeSource.HasExistingProject(projectId))
             {
                 MessageBox.Show("The same project has added.", "Invalid Project", MessageBoxButtons.OK);
                 return;

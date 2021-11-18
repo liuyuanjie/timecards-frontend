@@ -7,10 +7,10 @@ namespace Timecards.Client
     {
         private void LoadProjects()
         {
-            _getProjectsCommand.GetProjectsAsync(projectResponse => GetProjectCallbackProcess(projectResponse));
+            _getProjectsCommand.GetProjectsAsync(projectResponse => LoadProjectCallbackProcess(projectResponse));
         }
 
-        private void GetProjectCallbackProcess(ResponseBase<ProjectResult> projectResponse)
+        private void LoadProjectCallbackProcess(ResponseBase<ProjectResult> projectResponse)
         {
             if (!projectResponse.ResponseState.IsSuccess)
             {

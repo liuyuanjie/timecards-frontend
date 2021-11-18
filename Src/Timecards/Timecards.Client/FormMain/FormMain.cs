@@ -20,8 +20,7 @@ namespace Timecards.Client
         private ISaveTimecardsCommand _saveTimecardsCommand;
         private IDeleteTimecardsCommand _deleteTimecardsCommand;
         private ISubmitTimecardsCommand _submitTimecardsCommand;
-
-        private List<InputWorkTime> _inputWorkTimes;
+        private InputWorkTimeSource _inputWorkTimeSource;
 
         public FormMain(IApiRequestFactory apiRequestFactory)
         {
@@ -36,6 +35,11 @@ namespace Timecards.Client
             buttonNew.Click += (s, e) => AddEmptyInputWorkTime();
             buttonSave.Click += (s, e) => SaveTimecards();
             buttonSubmit.Click += (s, e) => SubmitTimecards();
+            
+            LoadTimecardsEvent += ClearInputWorkTimes;
+            PopulateTimecardsEvent += UpdateSubmitButtonState;
+            PopulateTimecardsEvent += UpdateSaveButtonState;
+            PopulateTimecardsEvent += UpdateNewButtonState;
         }
 
         private void InitialCommand(IApiRequestFactory apiRequestFactory)
@@ -49,7 +53,7 @@ namespace Timecards.Client
 
         private void InitialData()
         {
-            _inputWorkTimes = new List<InputWorkTime>();
+            _inputWorkTimeSource = new InputWorkTimeSource();
 
             LoadMyProfile();
             LoadProjects();
@@ -82,7 +86,7 @@ namespace Timecards.Client
 
         private void RemoveInputWorkTime(InputWorkTime inputWorkTime, InputWorkTimeControl control)
         {
-            _inputWorkTimes.Remove(inputWorkTime);
+            _inputWorkTimeSource.Remove(inputWorkTime);
             splitContainerWorkTime.Panel2.Controls.RemoveInputWorkTimeControl(control);
 
             UpdateSaveButtonState();
@@ -90,7 +94,7 @@ namespace Timecards.Client
 
         private void AddInputWorkTime(InputWorkTime inputWorkTime, TimecardsDataSource dataSource)
         {
-            _inputWorkTimes.Add(inputWorkTime);
+            _inputWorkTimeSource.Add(inputWorkTime);
 
             var inputWorkTimeControl = splitContainerWorkTime.Panel2.Controls.AddInputWorkTimeControl(inputWorkTime);
             inputWorkTimeControl.InputWorkTime.RemoveTimecards = (control) =>
@@ -102,20 +106,18 @@ namespace Timecards.Client
 
         private void UpdateSaveButtonState()
         {
-            buttonSave.Enabled = _inputWorkTimes.Any(x => x.Status == StatusType.Saved || !x.Status.HasValue);
+            buttonSave.Enabled = _inputWorkTimeSource.AllowSave();
         }
 
         private void UpdateSubmitButtonState()
         {
-            buttonSubmit.Enabled = _inputWorkTimes.Any(x => x.Status == StatusType.Saved);
+            buttonSubmit.Enabled = _inputWorkTimeSource.AllowSubmit();
         }
 
         private void UpdateNewButtonState()
         {
             var validProject = ((Project) comboBoxProject.SelectedItem)?.ParentProjectId.HasValue ?? false;
-            buttonNew.Enabled = validProject &&
-                                (!_inputWorkTimes.Any() ||
-                                 _inputWorkTimes.Any(x => x.Status == StatusType.Saved || !x.Status.HasValue));
+            buttonNew.Enabled = validProject && _inputWorkTimeSource.AllowNew();
         }
     }
 }

@@ -9,20 +9,19 @@ namespace Timecards.Client
     {
         private void SaveTimecards()
         {
-            if (!_inputWorkTimes.Any())
+            if (!_inputWorkTimeSource.HasInputWorkTime())
             {
                 MessageBox.Show("Nothing need to be save!", "Save", MessageBoxButtons.OK);
                 return;
             }
 
-            var buildTimecardses = BuildTimecardses();
             var saveTimecardsRequest = new SaveTimecardsRequest
             {
-                Timecardses = buildTimecardses
+                Timecardses = _inputWorkTimeSource.ConvertTo()
             };
 
             _saveTimecardsCommand.SaveTimecardsAsync(saveTimecardsRequest,
-                responseState => { SaveTimecardsCallback(responseState, buildTimecardses.First().TimecardsDate); });
+                responseState => { SaveTimecardsCallback(responseState, _inputWorkTimeSource.InputTimecardsDay()); });
         }
 
         private void SaveTimecardsCallback(ResponseState responseState, DateTime timecardsDate)

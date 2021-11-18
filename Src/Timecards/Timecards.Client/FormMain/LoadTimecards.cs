@@ -11,6 +11,12 @@ namespace Timecards.Client
 {
     public partial class FormMain
     {
+        private delegate void LoadTimecaredsHandler();
+        private event LoadTimecaredsHandler LoadTimecardsEvent;
+        
+        private delegate void PopulateTimecaredsHandler();
+        private event PopulateTimecaredsHandler PopulateTimecardsEvent;
+
         private void LoadTimecardsOfDay(DateTime day)
         {
             var queryTimecardsRequest = new QueryTimecardsRequest()
@@ -22,27 +28,24 @@ namespace Timecards.Client
             _queryTimecardsCommand.GetAsync(queryTimecardsRequest, responseResult => LoadCallback(responseResult));
         }
 
-        private void LoadCallback(ResponseBase<List<TimecardsResult>> responseResult)
+        private void LoadCallback(ResponseBase<List<TimecardsResult>> response)
         {
-            if (!responseResult.ResponseState.IsSuccess)
+            if (!response.ResponseState.IsSuccess)
             {
                 MessageBox.Show(
-                    responseResult.ResponseState.ResponseStateMessage.OutputResponseMessage(),
+                    response.ResponseState.ResponseStateMessage.OutputResponseMessage(),
                     "Load",
                     MessageBoxButtons.OK);
                 return;
             }
-
-            ClearInputWorkTimes();
-            PopulateWorkTimes(responseResult);
-            UpdateSubmitButtonState();
-            UpdateSaveButtonState();
-            UpdateNewButtonState();
+            
+            LoadTimecardsEvent?.Invoke();
+            PopulateWorkTimes(response.ResponseResult);
         }
 
-        private void PopulateWorkTimes(ResponseBase<List<TimecardsResult>> responseResult)
+        private void PopulateWorkTimes(List<TimecardsResult> responseResult)
         {
-            responseResult.ResponseResult.ForEach(x =>
+            responseResult.ForEach(x =>
             {
                 var inputWorkTime = new InputWorkTime(x.TimecardsId, x.UserId, x.ProjectId, x.StatusType)
                 {
@@ -56,13 +59,14 @@ namespace Timecards.Client
                 AddInputWorkTime(inputWorkTime, dataSource);
             });
 
-            UpdateTotalWorkHour(responseResult.ResponseResult.Sum(x => x.Items.Sum(t => t.Hour)));
+            PopulateTimecardsEvent?.Invoke();
+            UpdateTotalWorkHour(responseResult.Sum(x => x.Items.Sum(t => t.Hour)));
         }
 
         private void ClearInputWorkTimes()
         {
             splitContainerWorkTime.Panel2.Controls.RemoveAllInputWorkTimes();
-            _inputWorkTimes.Clear();
+            _inputWorkTimeSource.ClearAll();
         }
     }
 }
